@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "brand-logo",
+      "name": "기업로고",
+      "description": "유명 기업 로고의 시그니처 컬러를 맞혀보세요.",
+      "thumbnail": "assets/categories/brand-logo/cover.png",
+      "heroImage": "assets/categories/brand-logo/hero.png",
+      "questionFile": "src/data/questions/brand-logo.json",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "id": "sports",
+      "name": "스포츠",
+      "description": "스포츠 팀과 선수를 상징하는 색을 맞혀보세요.",
+      "thumbnail": "assets/categories/sports/cover.png",
+      "heroImage": "assets/categories/sports/hero.png",
+      "questionFile": "src/data/questions/sports.json",
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "id": "country",
+      "name": "국가",
+      "description": "국기와 국가를 상징하는 색을 맞혀보세요.",
+      "thumbnail": "assets/categories/country/cover.png",
+      "heroImage": "assets/categories/country/hero.png",
+      "questionFile": "src/data/questions/country.json",
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "id": "animation",
+      "name": "애니메이션",
+      "description": "애니메이션 캐릭터의 시그니처 컬러를 맞혀보세요.",
+      "thumbnail": "assets/categories/animation/cover.png",
+      "heroImage": "assets/categories/animation/hero.png",
+      "questionFile": "src/data/questions/animation.json",
+      "enabled": true,
+      "order": 4
+    },
+    {
+      "id": "meme",
+      "name": "밈",
+      "description": "인터넷 밈 속 색을 맞혀보세요.",
+      "thumbnail": "assets/categories/meme/cover.png",
+      "heroImage": "assets/categories/meme/hero.png",
+      "questionFile": "src/data/questions/meme.json",
+      "enabled": true,
+      "order": 5
+    },
+    {
+      "id": "dev1",
+      "name": "개발중",
+      "description": "새로운 카테고리를 준비하고 있어요.",
+      "thumbnail": "assets/categories/dev1/cover.png",
+      "heroImage": "assets/categories/dev1/hero.png",
+      "questionFile": "src/data/questions/dev1.json",
+      "enabled": true,
+      "comingSoon": true,
+      "order": 6
+    },
+    {
+      "id": "dev2",
+      "name": "개발중",
+      "description": "새로운 카테고리를 준비하고 있어요.",
+      "thumbnail": "assets/categories/dev2/cover.png",
+      "heroImage": "assets/categories/dev2/hero.png",
+      "questionFile": "src/data/questions/dev2.json",
+      "enabled": true,
+      "comingSoon": true,
+      "order": 7
+    }
+  ]
+}

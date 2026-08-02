@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "categoryId": "meme",
+  "categoryName": "밈",
+  "questions": [
+    {
+      "schemaVersion": 1,
+      "id": "pepe",
+      "categoryId": "meme",
+      "title": "pepe",
+      "originalImage": "assets/questions/meme/pepe/original.webp",
+      "maskImage": "assets/questions/meme/pepe/mask.png",
+      "thumbnail": "assets/questions/meme/pepe/thumbnail.webp",
+      "answerColor": "#598C41",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-02",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "sunshine",
+      "categoryId": "meme",
+      "title": "sunshine",
+      "originalImage": "assets/questions/meme/sunshine/original.webp",
+      "maskImage": "assets/questions/meme/sunshine/mask.png",
+      "thumbnail": "assets/questions/meme/sunshine/thumbnail.webp",
+      "answerColor": "#DF9E65",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-02",
+        "makerVersion": "1.0.0"
+      }
+    }
+  ]
+}

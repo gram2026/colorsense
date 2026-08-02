@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>퀴즈 메이커 · Color Guesser</title>
+  <meta name="description" content="Color Guesser 게임과 바로 연동되는 로컬 문제 제작 도구" />
+
+  <!-- 게임 본체와 같은 디자인 토큰/리셋을 그대로 재사용한다 -->
+  <link rel="stylesheet" href="../src/css/variables.css" />
+  <link rel="stylesheet" href="../src/css/reset.css" />
+  <link rel="stylesheet" href="../src/css/layout.css" />
+  <link rel="stylesheet" href="../src/css/components.css" />
+  <link rel="stylesheet" href="css/maker-layout.css" />
+  <link rel="stylesheet" href="css/maker-components.css" />
+  <link rel="stylesheet" href="css/maker-responsive.css" />
+</head>
+<body>
+  <div id="maker-app">
+
+    <!-- ================= 시작 화면 ================= -->
+    <section class="maker-screen" data-screen="start">
+      <div class="maker-start" data-role="start-root">
+        <!-- maker-app.js가 채운다 -->
+      </div>
+    </section>
+
+    <!-- ================= 에디터 화면 ================= -->
+    <section class="maker-screen" data-screen="editor" hidden>
+      <header class="maker-topbar">
+        <div class="maker-topbar__left">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="topbar-brand__name">퀴즈 메이커</span>
+          <span class="maker-topbar__divider" aria-hidden="true"></span>
+          <span class="maker-filename" data-role="filename">제목 없음</span>
+          <span class="maker-savestate" data-role="savestate" aria-live="polite">저장 안 됨</span>
+        </div>
+        <div class="maker-topbar__right">
+          <button type="button" class="icon-btn" data-action="undo" aria-label="실행 취소" title="실행 취소 (Ctrl+Z)" disabled></button>
+          <button type="button" class="icon-btn" data-action="redo" aria-label="다시 실행" title="다시 실행 (Ctrl+Y)" disabled></button>
+          <span class="maker-topbar__divider" aria-hidden="true"></span>
+          <button type="button" class="btn btn--secondary btn--sm" data-action="new-project" aria-label="새 작업">새 작업</button>
+          <button type="button" class="btn btn--secondary btn--sm" data-action="open-project" aria-label="기존 문제 열기">기존 문제 열기</button>
+          <button type="button" class="icon-btn" data-action="shortcuts" aria-label="단축키 도움말" title="단축키 도움말"></button>
+        </div>
+      </header>
+
+      <div class="maker-body">
+        <aside class="maker-toolrail" data-role="toolrail" aria-label="선택 도구 모음">
+          <!-- mask-tools.js가 채운다 -->
+        </aside>
+
+        <main class="maker-stage" data-role="stage">
+          <div class="maker-canvas-scroll" data-role="canvas-scroll">
+            <div class="maker-canvas-wrap" data-role="canvas-wrap">
+              <canvas class="maker-canvas maker-canvas--image" data-role="image-canvas"></canvas>
+              <canvas class="maker-canvas maker-canvas--mask" data-role="mask-canvas"></canvas>
+              <canvas class="maker-canvas maker-canvas--preview" data-role="preview-canvas" style="display:none;"></canvas>
+              <canvas class="maker-canvas maker-canvas--overlay" data-role="overlay-canvas"
+                tabindex="0" role="application"
+                aria-label="이미지 편집 캔버스. 현재 도구로 마스크 영역을 조절합니다."
+                data-role-status="canvas-status"></canvas>
+            </div>
+          </div>
+
+          <div class="maker-stage-toolbar" data-role="stage-toolbar">
+            <div class="maker-stage-toolbar__group">
+              <button type="button" class="icon-btn icon-btn--sm" data-action="zoom-out" aria-label="축소" title="축소"></button>
+              <span class="maker-zoom-value" data-role="zoom-value">100%</span>
+              <button type="button" class="icon-btn icon-btn--sm" data-action="zoom-in" aria-label="확대" title="확대"></button>
+              <button type="button" class="btn btn--ghost btn--sm" data-action="zoom-fit" title="이미지에 맞춤 (0)">맞춤</button>
+              <button type="button" class="btn btn--ghost btn--sm" data-action="zoom-100" title="100% 보기 (1)">100%</button>
+            </div>
+            <div class="maker-stage-toolbar__group">
+              <label class="maker-view-toggle">
+                <input type="radio" name="view-mode" value="normal" checked />
+                <span>기본</span>
+              </label>
+              <label class="maker-view-toggle">
+                <input type="radio" name="view-mode" value="mask-only" />
+                <span>마스크만</span>
+              </label>
+              <label class="maker-view-toggle">
+                <input type="radio" name="view-mode" value="original-only" />
+                <span>원본만</span>
+              </label>
+              <label class="maker-view-toggle">
+                <input type="radio" name="view-mode" value="preview" />
+                <span>색상 결과</span>
+              </label>
+            </div>
+          </div>
+        </main>
+
+        <aside class="maker-panel" data-role="panel" aria-label="문제 정보 및 내보내기">
+          <nav class="maker-panel__tabs" data-role="panel-tabs" role="tablist">
+            <button type="button" class="maker-panel__tab is-active" data-tab="info" role="tab" aria-selected="true">문제 정보</button>
+            <button type="button" class="maker-panel__tab" data-tab="mask" role="tab" aria-selected="false">마스크</button>
+            <button type="button" class="maker-panel__tab" data-tab="color" role="tab" aria-selected="false">정답 색상</button>
+            <button type="button" class="maker-panel__tab" data-tab="preview" role="tab" aria-selected="false">미리보기</button>
+            <button type="button" class="maker-panel__tab" data-tab="thumbnail" role="tab" aria-selected="false">썸네일</button>
+            <button type="button" class="maker-panel__tab" data-tab="export" role="tab" aria-selected="false">내보내기</button>
+          </nav>
+          <div class="maker-panel__body" data-role="panel-body">
+            <!-- 각 탭 콘텐츠는 해당 모듈이 채운다 -->
+            <div class="maker-panel__section" data-panel="info"></div>
+            <div class="maker-panel__section" data-panel="mask" hidden></div>
+            <div class="maker-panel__section" data-panel="color" hidden></div>
+            <div class="maker-panel__section" data-panel="preview" hidden></div>
+            <div class="maker-panel__section" data-panel="thumbnail" hidden></div>
+            <div class="maker-panel__section" data-panel="export" hidden></div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="maker-statusbar" data-role="statusbar">
+        <span data-role="status-image-size">이미지: -</span>
+        <span data-role="status-zoom">확대율: 100%</span>
+        <span data-role="status-mask-pixels">마스크 픽셀: 0</span>
+        <span data-role="status-mask-ratio">마스크 비율: 0%</span>
+        <span data-role="status-cursor">좌표: -</span>
+        <span class="maker-statusbar__spacer"></span>
+        <span data-role="status-tool">도구: 브러시</span>
+      </footer>
+    </section>
+
+    <!-- ================= 모바일 안내 ================= -->
+    <div class="maker-mobile-notice" data-role="mobile-notice" hidden>
+      정밀한 마스크 편집은 PC 사용을 권장합니다.
+      <button type="button" class="btn btn--ghost btn--sm" data-action="dismiss-mobile-notice">계속 진행</button>
+    </div>
+
+    <!-- ================= 공용 모달 ================= -->
+    <div class="overlay" data-role="shortcuts-modal" hidden>
+      <div class="maker-modal" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
+        <div class="maker-modal__header">
+          <h2 id="shortcuts-title">키보드 단축키</h2>
+          <button type="button" class="icon-btn icon-btn--sm" data-action="close-modal" aria-label="닫기"></button>
+        </div>
+        <div class="maker-modal__body" data-role="shortcuts-body"></div>
+      </div>
+    </div>
+
+    <div class="overlay" data-role="validation-modal" hidden>
+      <div class="maker-modal maker-modal--lg" role="dialog" aria-modal="true" aria-labelledby="validation-title">
+        <div class="maker-modal__header">
+          <h2 id="validation-title">내보내기 전 검증</h2>
+          <button type="button" class="icon-btn icon-btn--sm" data-action="close-modal" aria-label="닫기"></button>
+        </div>
+        <div class="maker-modal__body" data-role="validation-body"></div>
+        <div class="maker-modal__footer" data-role="validation-footer"></div>
+      </div>
+    </div>
+
+    <div class="overlay" data-role="confirm-modal" hidden>
+      <div class="maker-modal" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+        <div class="maker-modal__header">
+          <h2 id="confirm-title" data-role="confirm-title">확인</h2>
+        </div>
+        <div class="maker-modal__body" data-role="confirm-body"></div>
+        <div class="maker-modal__footer" data-role="confirm-footer"></div>
+      </div>
+    </div>
+
+    <div class="overlay" data-role="progress-modal" hidden>
+      <div class="maker-modal maker-modal--sm" role="dialog" aria-modal="true" aria-labelledby="progress-title">
+        <div class="maker-modal__body maker-modal__body--center">
+          <div class="spinner" role="status" aria-label="처리 중"></div>
+          <p id="progress-title" data-role="progress-text">처리 중...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" data-role="toast" role="status" aria-live="polite"></div>
+
+  <!-- JSZip: CDN 대신 npm으로 설치한 패키지를 정적 파일로 직접 서빙한다 (빌드 과정 없는 프로젝트라 UMD 번들을 그대로 사용) -->
+  <script src="../node_modules/jszip/dist/jszip.min.js"></script>
+  <script type="module" src="js/maker-app.js"></script>
+</body>
+</html>

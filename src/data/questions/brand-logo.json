@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "categoryId": "brand-logo",
+  "categoryName": "기업로고",
+  "questions": [
+    {
+      "schemaVersion": 1,
+      "id": "amazon",
+      "categoryId": "brand-logo",
+      "title": "amazon",
+      "originalImage": "assets/questions/brand-logo/amazon/original.webp",
+      "maskImage": "assets/questions/brand-logo/amazon/mask.png",
+      "thumbnail": "assets/questions/brand-logo/amazon/thumbnail.webp",
+      "answerColor": "#FF9901",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-02",
+        "makerVersion": "1.0.0"
+      }
+    }
+  ]
+}

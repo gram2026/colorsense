@@ -1,0 +1,22 @@
+{
+  "name": "color-guesser",
+  "version": "1.0.0",
+  "private": true,
+  "description": "색을 맞히는 캐주얼 웹 게임 (정적 사이트, 빌드 과정 없음)",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/start-local.js",
+    "start": "node scripts/start-local.js",
+    "validate-data": "node scripts/validate-data.js",
+    "import-question": "node scripts/import-question.js",
+    "test": "node scripts/test-color.js",
+    "test:problem-maker": "node scripts/test-problem-maker.js",
+    "generate-sample-assets": "node scripts/generate-sample-assets.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  }
+}

@@ -1,0 +1,235 @@
+/*
+  문제 제작기 레이아웃 뼈대.
+  게임 본체의 variables.css/components.css를 그대로 불러와 쓰기 때문에
+  색상·둥근 정도·그림자·폰트는 여기서 다시 정의하지 않는다.
+*/
+
+html,
+body,
+#maker-app {
+  height: 100%;
+}
+
+body {
+  overflow: hidden; /* 에디터는 앱처럼 동작 — 바깥 스크롤은 막고 안에서만 스크롤한다 */
+}
+
+.maker-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.maker-screen[hidden] {
+  display: none;
+}
+
+/* ================= 시작 화면 ================= */
+
+.maker-start {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(var(--space-6), 5vw, var(--space-8)) var(--space-5);
+}
+
+/* ================= 상단 바 ================= */
+
+.maker-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  border-bottom: var(--border-width-thick) solid var(--border-color);
+  background: var(--bg-card);
+  flex: none;
+}
+
+.maker-topbar__left,
+.maker-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.maker-topbar__divider {
+  width: var(--border-width);
+  height: 22px;
+  background: var(--border-color);
+  flex: none;
+}
+
+.maker-filename {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.maker-savestate {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.maker-savestate.is-saved {
+  color: var(--color-secondary-dark);
+}
+
+/* ================= 본문 3분할 ================= */
+
+.maker-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 68px 1fr 340px;
+  min-height: 0;
+}
+
+.maker-toolrail {
+  border-right: var(--border-width) solid var(--border-color);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  overflow-y: auto;
+}
+
+.maker-stage {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page-alt);
+  position: relative;
+}
+
+.maker-canvas-scroll {
+  flex: 1;
+  overflow: hidden; /* 이동/확대는 뷰포트 컨트롤러가 transform으로 직접 처리한다 */
+  position: relative;
+}
+
+.maker-canvas-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  touch-action: none;
+  transform-origin: center center;
+  box-shadow: var(--shadow-lg);
+  background: repeating-conic-gradient(#e7e2d4 0% 25%, #f6f2e6 0% 50%) 50% / 20px 20px;
+}
+
+.maker-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.maker-canvas--overlay {
+  cursor: crosshair;
+}
+
+.maker-stage-toolbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border-top: var(--border-width) solid var(--border-color);
+  background: var(--bg-card);
+  flex-wrap: wrap;
+}
+
+.maker-stage-toolbar__group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.maker-panel {
+  border-left: var(--border-width) solid var(--border-color);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.maker-panel__tabs {
+  flex: none;
+  display: flex;
+  overflow-x: auto;
+  border-bottom: var(--border-width) solid var(--border-color);
+  scrollbar-width: none;
+}
+
+.maker-panel__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.maker-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.maker-panel__section[hidden] {
+  display: none;
+}
+
+/* ================= 하단 상태바 ================= */
+
+.maker-statusbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-2) var(--space-5);
+  border-top: var(--border-width) solid var(--border-color);
+  background: var(--bg-card);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.maker-statusbar__spacer {
+  flex: 1;
+}
+
+/* ================= 모바일 안내 ================= */
+
+.maker-mobile-notice {
+  position: fixed;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: var(--z-toast);
+  background: var(--text-primary);
+  color: #fff;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.maker-mobile-notice[hidden] {
+  display: none;
+}

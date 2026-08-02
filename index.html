@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Color Guesser · 색을 맞혀보세요</title>
+  <meta name="description" content="사진 속 색을 직접 맞춰보는 캐주얼 컬러 게임" />
+  <link rel="stylesheet" href="src/css/variables.css" />
+  <link rel="stylesheet" href="src/css/reset.css" />
+  <link rel="stylesheet" href="src/css/layout.css" />
+  <link rel="stylesheet" href="src/css/components.css" />
+  <link rel="stylesheet" href="src/css/screens.css" />
+  <link rel="stylesheet" href="src/css/responsive.css" />
+</head>
+<body>
+  <div id="app">
+    <section class="screen home-screen" data-screen-id="home" aria-label="메인 화면">
+      <div class="screen-inner"></div>
+    </section>
+
+    <section class="screen" data-screen-id="categories" aria-label="카테고리 선택 화면">
+      <div class="screen-inner"></div>
+    </section>
+
+    <section class="screen" data-screen-id="category-detail" aria-label="카테고리 상세 화면">
+      <div class="screen-inner"></div>
+    </section>
+
+    <section class="screen game-screen" data-screen-id="game" aria-label="게임 화면">
+      <div class="screen-inner"></div>
+    </section>
+
+    <section class="screen" data-screen-id="round-result" aria-label="문제 결과 화면">
+      <div class="screen-inner"></div>
+    </section>
+
+    <section class="screen" data-screen-id="final-result" aria-label="최종 결과 화면">
+      <div class="screen-inner"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="src/js/app.js"></script>
+</body>
+</html>

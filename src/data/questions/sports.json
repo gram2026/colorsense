@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "categoryId": "sports",
+  "categoryName": "스포츠",
+  "questions": [
+    {
+      "schemaVersion": 1,
+      "id": "levante",
+      "categoryId": "sports",
+      "title": "levante",
+      "originalImage": "assets/questions/sports/levante/original.webp",
+      "maskImage": "assets/questions/sports/levante/mask.png",
+      "thumbnail": "assets/questions/sports/levante/thumbnail.webp",
+      "answerColor": "#005BA6",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-07-31",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "brentford",
+      "categoryId": "sports",
+      "title": "brentford",
+      "originalImage": "assets/questions/sports/brentford/original.webp",
+      "maskImage": "assets/questions/sports/brentford/mask.png",
+      "thumbnail": "assets/questions/sports/brentford/thumbnail.webp",
+      "answerColor": "#C12026",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-07-31",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "lafc",
+      "categoryId": "sports",
+      "title": "lafc",
+      "originalImage": "assets/questions/sports/lafc/original.webp",
+      "maskImage": "assets/questions/sports/lafc/mask.png",
+      "thumbnail": "assets/questions/sports/lafc/thumbnail.webp",
+      "answerColor": "#C3A15D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-07-31",
+        "makerVersion": "1.0.0"
+      }
+    }
+  ]
+}
