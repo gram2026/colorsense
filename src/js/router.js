@@ -6,6 +6,7 @@
 
 import { qs, qsa } from "./utils/dom.js";
 import { getState, setState } from "./state.js";
+import { t } from "./i18n.js";
 
 const VALID_SCREENS = [
   "home",
@@ -15,6 +16,15 @@ const VALID_SCREENS = [
   "round-result",
   "final-result",
 ];
+
+const SCREEN_ARIA_KEYS = {
+  home: "screen.home",
+  categories: "screen.categories",
+  "category-detail": "screen.categoryDetail",
+  game: "screen.game",
+  "round-result": "screen.roundResult",
+  "final-result": "screen.finalResult",
+};
 
 const screenModules = new Map(); // screenId -> { mount, unmount }
 let currentModule = null;
@@ -75,6 +85,8 @@ function renderScreen(screenId) {
 
   for (const section of qsa(".screen")) {
     section.classList.toggle("is-active", section.dataset.screenId === safeId);
+    const ariaKey = SCREEN_ARIA_KEYS[section.dataset.screenId];
+    if (ariaKey) section.setAttribute("aria-label", t(ariaKey));
   }
 
   currentScreenId = safeId;

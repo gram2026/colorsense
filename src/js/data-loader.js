@@ -5,6 +5,7 @@
  */
 
 import { validateQuestionShape, findDuplicateIds, validateCategoryShape } from "./utils/validation.js";
+import { getLang } from "./i18n.js";
 
 let configCache = null;
 let categoriesCache = null;
@@ -26,7 +27,7 @@ export async function loadConfig() {
     console.error("[data-loader] config.json 로드 실패, 기본값을 사용합니다.", err);
     configCache = {
       scoring: {
-        maxScore: 1000,
+        maxScore: 100,
         method: "ciede2000",
         perfectThreshold: 2,
         zeroScoreThreshold: 70,
@@ -39,7 +40,7 @@ export async function loadConfig() {
         maxLightnessOffset: 26,
       },
       randomCategory: { id: "random", maxQuestions: 6 },
-      app: { defaultSoundEnabled: true, tutorialSteps: [] },
+      app: { defaultSoundEnabled: true, tutorialSteps: { ko: [], en: [] } },
     };
   }
   return configCache;
@@ -115,6 +116,18 @@ export async function loadCategories() {
   result.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   categoriesCache = result;
   return result;
+}
+
+/** 카테고리의 화면 표시용 이름. 영어 번역(nameEn)이 있으면 언어에 맞춰 골라 쓴다. */
+export function getCategoryName(category) {
+  if (getLang() === "en" && category.nameEn) return category.nameEn;
+  return category.name;
+}
+
+/** 카테고리의 화면 표시용 설명. 영어 번역(descriptionEn)이 있으면 언어에 맞춰 골라 쓴다. */
+export function getCategoryDescription(category) {
+  if (getLang() === "en" && category.descriptionEn) return category.descriptionEn;
+  return category.description || "";
 }
 
 /** 카테고리 하나의 (검증 통과한) 문제 목록. "random" 믹스 카테고리는 별도 처리. */

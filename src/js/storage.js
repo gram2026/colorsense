@@ -6,7 +6,10 @@
 
 const STORAGE_KEY = "colorguesser_data";
 const SESSION_KEY = "colorguesser_session";
-const DATA_VERSION = 1;
+// v2: 점수 체계를 1000점 만점 합계 -> 100점 만점 평균으로 바꾸면서 척도가 달라져
+// 예전에 저장된 bestScores/overallBest를 그대로 비교하면 항상 "최고 기록"에 못 미치게 된다.
+// 버전을 올려서 예전 데이터는 안전하게 초기화한다.
+const DATA_VERSION = 2;
 
 function defaultData() {
   return {

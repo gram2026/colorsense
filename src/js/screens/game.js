@@ -9,10 +9,12 @@ import { ColorPicker } from "../color/color-picker.js";
 import { hexToHsl, hslToHex } from "../color/color-convert.js";
 import { calculateScore } from "../color/scoring.js";
 import { showToast } from "../toast.js";
+import { t, getLang, setLang } from "../i18n.js";
 
 let renderer = null;
 let colorPicker = null;
 let submitting = false;
+let preserveColorOnNextMount = false; // 언어 전환으로 인한 재렌더링일 때 지금까지 고른 색을 유지
 
 export async function mount(container) {
   const root = qs(".screen-inner", container);
@@ -27,17 +29,28 @@ export async function mount(container) {
   submitting = false;
 
   root.innerHTML = `
-    <div class="game-topbar">
-      <button type="button" class="icon-btn" data-action="exit" aria-label="게임 나가기">${iconSvg(
-        "back"
-      )}</button>
-      <span class="game-progress-text">${state.currentQuestionIndex + 1} / ${state.questions.length}</span>
-      <div class="progress-bar" style="flex:1" role="progressbar"
-           aria-valuemin="0" aria-valuemax="${state.questions.length}"
-           aria-valuenow="${state.currentQuestionIndex + 1}">
-        <div class="progress-bar__fill" style="width:${
-          ((state.currentQuestionIndex + 1) / state.questions.length) * 100
-        }%"></div>
+    <div class="game-header">
+      <div class="top-bar">
+        <button type="button" class="back-link" data-action="exit" aria-label="${t("game.exitAria")}">
+          <span class="logo-mark" aria-hidden="true"></span><span>ColorGuesser</span>
+        </button>
+      </div>
+
+      <div class="game-topbar">
+        <button type="button" class="icon-btn" data-action="exit" aria-label="${t("game.exitAria")}">${iconSvg(
+          "back"
+        )}</button>
+        <span class="game-progress-text">${state.currentQuestionIndex + 1}</span>
+        <div class="progress-bar" style="flex:1" role="progressbar"
+             aria-valuemin="0" aria-valuemax="${state.questions.length}"
+             aria-valuenow="${state.currentQuestionIndex + 1}">
+          <div class="progress-bar__fill" style="width:${
+            ((state.currentQuestionIndex + 1) / state.questions.length) * 100
+          }%"></div>
+        </div>
+        <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">${
+          getLang() === "ko" ? "EN" : "한국어"
+        }</button>
       </div>
     </div>
 
@@ -45,10 +58,10 @@ export async function mount(container) {
       <div class="game-photo-pane">
         <p class="game-question-title">${escapeHtml(question.title || "")}</p>
         <div class="game-photo-frame" data-role="photo-frame">
-          <canvas data-role="canvas" aria-label="색을 바꿀 수 있는 사진"></canvas>
+          <canvas data-role="canvas" aria-label="${t("game.canvasAria")}"></canvas>
           <div class="game-photo-frame__loading" data-role="loading">
-            <div class="spinner" role="status" aria-label="사진 불러오는 중"></div>
-            <span>사진을 불러오는 중...</span>
+            <div class="spinner" role="status" aria-label="${t("game.loading")}"></div>
+            <span>${t("game.loading")}</span>
           </div>
         </div>
       </div>
@@ -58,10 +71,17 @@ export async function mount(container) {
     </div>
   `;
 
-  root.querySelector('[data-action="exit"]').addEventListener("click", () => {
-    if (window.confirm("게임을 나가면 지금까지의 진행 상황이 사라져요. 나가시겠어요?")) {
-      navigate("category-detail");
-    }
+  root.querySelectorAll('[data-action="exit"]').forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (window.confirm(t("game.exitConfirm"))) {
+        navigate("category-detail");
+      }
+    });
+  });
+
+  root.querySelector('[data-action="lang"]').addEventListener("click", () => {
+    preserveColorOnNextMount = true;
+    setLang(getLang() === "ko" ? "en" : "ko");
   });
 
   const canvas = root.querySelector('[data-role="canvas"]');
@@ -73,7 +93,9 @@ export async function mount(container) {
   renderer = new MaskRenderer(canvas);
 
   const config = await loadConfig();
-  const startHex = resolveStartColor(question, config);
+  const shouldPreserveColor = preserveColorOnNextMount;
+  preserveColorOnNextMount = false;
+  const startHex = shouldPreserveColor && state.currentColor ? state.currentColor : resolveStartColor(question, config);
 
   colorPicker = new ColorPicker(pickerRoot, {
     initialHex: startHex,
@@ -93,8 +115,8 @@ export async function mount(container) {
     frameEl.insertAdjacentHTML(
       "beforeend",
       `<div class="game-photo-frame__error" data-role="error">
-         <span>사진을 불러오지 못했어요.</span>
-         <button type="button" class="btn btn--secondary" data-action="skip">다음 문제로</button>
+         <span>${t("game.loadErrorText")}</span>
+         <button type="button" class="btn btn--secondary" data-action="skip">${t("game.loadErrorSkip")}</button>
        </div>`
     );
     frameEl.querySelector('[data-action="skip"]').addEventListener("click", () => {
@@ -104,7 +126,7 @@ export async function mount(container) {
   }
 
   if (result.maskMissing) {
-    showToast("이 문제는 색상 미리보기를 사용할 수 없어요");
+    showToast(t("game.maskMissingToast"));
   }
 
   renderer.setColor(startHex);

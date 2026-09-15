@@ -367,18 +367,44 @@ const TOOL_DEFS = [
   { id: "eyedropper", icon: "eyedropper", label: "스포이드", key: "I" },
 ];
 
+/** 브러시 등 "도구"와 달리 누르는 즉시 실행되는 마스크 선택 동작들 (활성 상태로 남지 않는다) */
+const SELECTION_ACTION_DEFS = [
+  { op: "selectAll", icon: "selectAll", label: "전체 선택", key: "A" },
+  { op: "selectNone", icon: "selectNone", label: "전체 해제", key: "D" },
+  { op: "invert", icon: "invert", label: "반전", key: "R" },
+  { op: "expand", icon: "expand", label: "확장", key: "Shift+]" },
+  { op: "contract", icon: "contract", label: "축소", key: "Shift+[" },
+  { op: "feather", icon: "feather", label: "페더", key: "F" },
+  { op: "fillHoles", icon: "fillHoles", label: "구멍 채우기", key: "H" },
+  { op: "despeckle", icon: "despeckle", label: "고립 픽셀 제거", key: "X" },
+];
+
 function renderToolrail() {
-  el.toolrail.innerHTML = TOOL_DEFS.map(
+  const toolButtons = TOOL_DEFS.map(
     (t) => `
     <button type="button" class="tool-btn" data-tool="${t.id}" aria-label="${t.label} (${t.key})" title="${t.label} (${t.key})">
       ${iconSvg(t.icon, 20)}
       <span class="tool-btn__label">${t.label}</span>
     </button>
   `
-  ).join("<div class='tool-rail__divider'></div>");
+  ).join("");
+
+  const actionButtons = SELECTION_ACTION_DEFS.map(
+    (a) => `
+    <button type="button" class="tool-btn" data-mask-op="${a.op}" aria-label="${a.label} (${a.key})" title="${a.label} (${a.key})">
+      ${iconSvg(a.icon, 20)}
+      <span class="tool-btn__label">${a.label}</span>
+    </button>
+  `
+  ).join("");
+
+  el.toolrail.innerHTML = `${toolButtons}<div class="tool-rail__divider"></div>${actionButtons}`;
 
   qsa("[data-tool]", el.toolrail).forEach((btn) => {
     btn.addEventListener("click", () => setActiveTool(btn.dataset.tool));
+  });
+  qsa("[data-mask-op]", el.toolrail).forEach((btn) => {
+    btn.addEventListener("click", () => runMaskOpFromShortcut(btn.dataset.maskOp));
   });
   updateToolrailActive();
 }
@@ -789,7 +815,6 @@ function renderMaskTab() {
       patchSlice("view", partial);
       canvasEditor.setMaskOverlayStyle({ color: getState().view.maskOverlayColor, opacity: getState().view.maskOverlayOpacity });
     },
-    onMaskOp: runMaskOp,
   });
 }
 
@@ -824,6 +849,13 @@ function runMaskOp(op, amount) {
       return;
   }
   showToast("마스크를 업데이트했습니다.");
+}
+
+/** 키보드 단축키에서 호출: "빠른 편집" 탭에 있는 값 입력칸의 현재 값을 그대로 사용한다 */
+function runMaskOpFromShortcut(op) {
+  const input = document.querySelector(`[data-mask-op-value="${op}"]`);
+  const amount = input ? Number(input.value) : undefined;
+  runMaskOp(op, amount);
 }
 
 function renderColorTab() {
@@ -1195,6 +1227,14 @@ function renderShortcutsModal() {
     ["브러시 작게", "["],
     ["브러시 크게", "]"],
     ["마스크 표시/숨기기", "M"],
+    ["전체 선택", "A"],
+    ["전체 해제", "D"],
+    ["마스크 반전", "R"],
+    ["선택 영역 확장", "Shift+]"],
+    ["선택 영역 축소", "Shift+["],
+    ["가장자리 부드럽게", "F"],
+    ["작은 구멍 채우기", "H"],
+    ["고립 픽셀 제거", "X"],
     ["현재 작업 취소", "Esc"],
   ];
   el.shortcutsBody.innerHTML = `
@@ -1255,6 +1295,16 @@ window.addEventListener("keydown", (e) => {
     historyManager?.redo();
     return;
   }
+  if (!ctrlOrCmd && e.shiftKey && e.code === "BracketRight") {
+    e.preventDefault();
+    runMaskOpFromShortcut("expand");
+    return;
+  }
+  if (!ctrlOrCmd && e.shiftKey && e.code === "BracketLeft") {
+    e.preventDefault();
+    runMaskOpFromShortcut("contract");
+    return;
+  }
   if (ctrlOrCmd && e.key.toLowerCase() === "s") {
     e.preventDefault();
     saveDraftNow().then(() => showToast("임시 저장했습니다."));
@@ -1291,6 +1341,32 @@ window.addEventListener("keydown", (e) => {
       qs(`input[name="view-mode"][value="${nextMode}"]`).checked = true;
       break;
     }
+    // ---- 마스크 선택 도구 (빠른 편집 탭의 버튼과 동일) ----
+    case "a":
+    case "A":
+      runMaskOpFromShortcut("selectAll");
+      break;
+    case "d":
+    case "D":
+      runMaskOpFromShortcut("selectNone");
+      break;
+    case "r":
+    case "R":
+      runMaskOpFromShortcut("invert");
+      break;
+    case "f":
+    case "F":
+      runMaskOpFromShortcut("feather");
+      break;
+    case "h":
+    case "H":
+      runMaskOpFromShortcut("fillHoles");
+      break;
+    case "x":
+    case "X":
+      runMaskOpFromShortcut("despeckle");
+      break;
+
     case "0":
       viewport?.fitToContainer();
       break;

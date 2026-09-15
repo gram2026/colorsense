@@ -56,22 +56,28 @@ console.log("\n3) Delta E");
   assert(deltaE2000(labWhite, labBlack) > 90, "흑백 사이 CIEDE2000 거리는 매우 큼(>90)");
 }
 
-console.log("\n4) 점수 계산");
+console.log("\n4) 점수 계산 (100점 만점, 소수점 첫째 자리까지)");
 {
   const perfect = calculateScore("#FFFFFF", "#FFFFFF");
-  assert(perfect.score === 1000, "동일 색상은 1000점");
+  assert(perfect.score === 100, "동일 색상은 100점");
 
   const worst = calculateScore("#000000", "#FFFFFF");
   assert(worst.score === 0, "흑백처럼 완전히 다른 색은 0점");
 
   const nearRed = calculateScore("#D52B2B", "#D5302E");
-  assert(nearRed.score >= 950, `아주 비슷한 빨강은 950점 이상 (실제 ${nearRed.score})`);
+  assert(nearRed.score >= 95, `아주 비슷한 빨강은 95점 이상 (실제 ${nearRed.score})`);
 
   const complementary = calculateScore("#FF0000", "#00FFFF");
-  assert(complementary.score <= 300, `보색 관계는 낮은 점수 (실제 ${complementary.score})`);
+  assert(complementary.score <= 30, `보색 관계는 낮은 점수 (실제 ${complementary.score})`);
 
   const grayNear = calculateScore("#808080", "#828282");
-  assert(grayNear.score >= 950, `채도가 낮은 회색끼리 비슷하면 여전히 높은 점수 (실제 ${grayNear.score})`);
+  assert(grayNear.score >= 95, `채도가 낮은 회색끼리 비슷하면 여전히 높은 점수 (실제 ${grayNear.score})`);
+
+  const decimalCase = calculateScore("#D52B2B", "#C93030");
+  assert(
+    Number.isInteger(decimalCase.score * 10),
+    `점수는 소수점 첫째 자리까지만 가짐 (실제 ${decimalCase.score})`
+  );
 
   for (const [a, b] of [
     ["#123456", "#654321"],
@@ -250,6 +256,67 @@ console.log("\n11) 실제 사진 형태 합성: 반사광/하이라이트/중간
         `${name} 선택 시 ${p.label} 결과가 0~255 범위 안의 유한한 값`
       );
     }
+  }
+}
+
+console.log(
+  "\n12) preserve-lightness: 선택색의 Lightness가 중간값(50) 오프셋으로 실제 밝기에 반영되되, 텍스처(상대 명암)는 유지됨"
+);
+{
+  const luma = ({ r, g, b }) => 0.299 * r + 0.587 * g + 0.114 * b;
+  const mid = makeSample(0, 45, 50);
+
+  // selectedL을 안 넘기면(기본값 50) 기존과 동일하게 원본 명도를 그대로 따라야 한다.
+  const defaultOut = composePreserveLightnessPixel(mid.r, mid.g, mid.b, 210, 70, mid.l, mid.s, 1);
+  const explicitMidOut = composePreserveLightnessPixel(mid.r, mid.g, mid.b, 210, 70, mid.l, mid.s, 1, 50);
+  assert(
+    approx(luma(defaultOut), luma(explicitMidOut), 0.01),
+    "selectedL 생략 시(기본값 50) selectedL=50을 명시한 것과 결과가 동일함"
+  );
+
+  // 어둡게 고르면(selectedL 낮음) 결과가 원본보다 어두워져야 한다.
+  const darkOut = composePreserveLightnessPixel(mid.r, mid.g, mid.b, 210, 70, mid.l, mid.s, 1, 10);
+  assert(
+    luma(darkOut) < luma(explicitMidOut),
+    `selectedL=10(어둡게)으로 고르면 selectedL=50일 때보다 결과가 어두움 (${luma(darkOut).toFixed(1)} < ${luma(explicitMidOut).toFixed(1)})`
+  );
+
+  // 밝게 고르면(selectedL 높음) 결과가 원본보다 밝아져야 한다.
+  const lightOut = composePreserveLightnessPixel(mid.r, mid.g, mid.b, 210, 70, mid.l, mid.s, 1, 90);
+  assert(
+    luma(lightOut) > luma(explicitMidOut),
+    `selectedL=90(밝게)으로 고르면 selectedL=50일 때보다 결과가 밝음 (${luma(lightOut).toFixed(1)} > ${luma(explicitMidOut).toFixed(1)})`
+  );
+
+  // 어떤 selectedL을 고르든, 사진의 상대적 명암(하이라이트>그림자) 순서는 유지되어야 한다 (텍스처 보존).
+  const shadow = makeSample(0, 45, 15);
+  const highlight = makeSample(0, 45, 85);
+  for (const selL of [10, 50, 90]) {
+    const shadowOut = composePreserveLightnessPixel(shadow.r, shadow.g, shadow.b, 210, 70, shadow.l, shadow.s, 1, selL);
+    const highlightOut = composePreserveLightnessPixel(
+      highlight.r,
+      highlight.g,
+      highlight.b,
+      210,
+      70,
+      highlight.l,
+      highlight.s,
+      1,
+      selL
+    );
+    assert(
+      luma(shadowOut) < luma(highlightOut),
+      `selectedL=${selL}이어도 그림자 < 하이라이트 밝기 순서는 유지됨 (${luma(shadowOut).toFixed(1)} < ${luma(highlightOut).toFixed(1)})`
+    );
+  }
+
+  // 극단값(0, 100)에서도 결과가 0~255 범위를 벗어나지 않아야 한다.
+  for (const selL of [0, 100]) {
+    const extreme = composePreserveLightnessPixel(shadow.r, shadow.g, shadow.b, 210, 70, shadow.l, shadow.s, 1, selL);
+    assert(
+      [extreme.r, extreme.g, extreme.b].every((v) => Number.isFinite(v) && v >= 0 && v <= 255),
+      `selectedL=${selL} 극단값에서도 결과가 0~255 범위 안의 유한한 값`
+    );
   }
 }
 

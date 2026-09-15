@@ -3,8 +3,9 @@
  * 화면 모듈을 라우터에 등록하고, 세션 복구를 시도한 뒤 라우터를 시작한다.
  */
 
-import { initRouter, registerScreen } from "./router.js";
+import { initRouter, registerScreen, navigate, getCurrentScreenId } from "./router.js";
 import { tryRestoreSession } from "./state.js";
+import { initI18n, onLangChange } from "./i18n.js";
 
 import * as home from "./screens/home.js";
 import * as categories from "./screens/categories.js";
@@ -28,5 +29,16 @@ registerScreen("game", game);
 registerScreen("round-result", roundResult);
 registerScreen("final-result", finalResult);
 
-tryRestoreSession();
-initRouter();
+// 언어가 바뀌면 지금 보고 있는 화면을 같은 상태로 다시 그린다 (라우터의 replace 재진입 재사용).
+onLangChange(() => {
+  const screenId = getCurrentScreenId();
+  if (screenId) navigate(screenId, { replace: true });
+});
+
+async function bootstrap() {
+  await initI18n();
+  tryRestoreSession();
+  initRouter();
+}
+
+bootstrap();

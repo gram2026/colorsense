@@ -1,8 +1,13 @@
-/** 오른쪽 패널 - "마스크" 탭: 브러시/스마트선택 설정 + 전체 마스크 후처리 도구 */
+/**
+ * 오른쪽 패널 - "마스크" 탭: 브러시/스마트선택 설정.
+ * 전체선택/해제/반전/확장/축소/페더/구멍채우기/고립픽셀제거 버튼은 왼쪽 도구 모음으로 옮겼고,
+ * 여기서는 확장/축소/페더/구멍채우기/고립픽셀제거에 쓸 수치만 미리 조절해둔다
+ * (왼쪽 버튼과 단축키 모두 이 수치를 그대로 읽어서 실행한다).
+ */
 
-import { qs, iconSvg } from "../utils/dom-utils.js";
+import { qs } from "../utils/dom-utils.js";
 
-export function renderMaskPanel(root, { tool, view, onToolPatch, onViewPatch, onMaskOp }) {
+export function renderMaskPanel(root, { tool, view, onToolPatch, onViewPatch }) {
   root.innerHTML = `
     <div class="field">
       <label class="field__label">브러시 / 지우개 크기</label>
@@ -64,17 +69,12 @@ export function renderMaskPanel(root, { tool, view, onToolPatch, onViewPatch, on
 
     <hr style="border:0;border-top:var(--border-width) solid var(--border-color);margin:var(--space-2) 0;" />
 
-    <label class="field__label">전체 / 보조 기능</label>
-    <div class="stack" style="gap:var(--space-2)">
-      ${maskOpButton("selectAll", "selectAll", "전체 선택")}
-      ${maskOpButton("selectNone", "selectNone", "전체 해제")}
-      ${maskOpButton("invert", "invert", "마스크 반전")}
-      ${maskOpRangeButton("expand", "expand", "선택 영역 확장", 6)}
-      ${maskOpRangeButton("contract", "contract", "선택 영역 축소", 6)}
-      ${maskOpRangeButton("feather", "feather", "가장자리 부드럽게", 4)}
-      ${maskOpRangeButton("fillHoles", "fillHoles", "작은 구멍 채우기", 6)}
-      ${maskOpRangeButton("despeckle", "despeckle", "고립 픽셀 제거(최소 픽셀 수)", 24, 1, 500)}
-    </div>
+    <label class="field__label">선택 도구 수치 (왼쪽 도구 모음에서 실행)</label>
+    ${maskOpAmountField("expand", "선택 영역 확장 (Shift+])", 6)}
+    ${maskOpAmountField("contract", "선택 영역 축소 (Shift+[)", 6)}
+    ${maskOpAmountField("feather", "가장자리 부드럽게 (F)", 4)}
+    ${maskOpAmountField("fillHoles", "작은 구멍 채우기 (H)", 6)}
+    ${maskOpAmountField("despeckle", "고립 픽셀 제거 최소 픽셀 수 (X)", 24, 1, 500)}
   `;
 
   root.querySelectorAll("[data-field]").forEach((fieldEl) => {
@@ -109,32 +109,13 @@ export function renderMaskPanel(root, { tool, view, onToolPatch, onViewPatch, on
   root.querySelectorAll('input[name="tool-op"]').forEach((radio) => {
     radio.addEventListener("change", () => radio.checked && onToolPatch({ op: radio.value }));
   });
-
-  root.querySelectorAll("[data-mask-op]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const op = btn.dataset.maskOp;
-      const rangeInput = root.querySelector(`[data-mask-op-value="${op}"]`);
-      const amount = rangeInput ? Number(rangeInput.value) : undefined;
-      onMaskOp(op, amount);
-    });
-  });
 }
 
-function maskOpButton(op, iconName, label) {
+function maskOpAmountField(op, label, defaultValue, min = 1, max = 60) {
   return `
-    <button type="button" class="btn btn--secondary btn--block" data-mask-op="${op}">
-      ${iconSvg(iconName, 18)}<span>${label}</span>
-    </button>
-  `;
-}
-
-function maskOpRangeButton(op, iconName, label, defaultValue, min = 1, max = 60) {
-  return `
-    <div class="field-row" style="align-items:center;">
-      <button type="button" class="btn btn--secondary" style="flex:1" data-mask-op="${op}">
-        ${iconSvg(iconName, 18)}<span>${label}</span>
-      </button>
-      <input type="number" class="maker-input" style="width:64px" min="${min}" max="${max}" value="${defaultValue}" data-mask-op-value="${op}" />
+    <div class="field">
+      <label class="field__label" for="mk-maskop-${op}">${label}</label>
+      <input id="mk-maskop-${op}" type="number" class="maker-input" min="${min}" max="${max}" value="${defaultValue}" data-mask-op-value="${op}" />
     </div>
   `;
 }

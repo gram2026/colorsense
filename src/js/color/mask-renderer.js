@@ -3,9 +3,10 @@
  * - 원본/마스크 픽셀은 최초 1회만 읽는다.
  * - 매 프레임은 requestAnimationFrame으로만 그린다 (드래그 중 과도한 렌더링 방지).
  * - renderMode === "preserve-lightness"(현재 유일하게 지원하는 모드)에서는 원본 픽셀의
- *   명도(L)는 그대로 두고 선택한 색의 Hue를 입힌다. 채도(S)는 선택색 채도에 원본 픽셀의
- *   채도 비율을 곱해서 정한다. 그래야 사진의 하이라이트·그림자·질감뿐 아니라 반사광처럼
- *   원래 색이 옅던 부분의 "덜 물든" 느낌까지 살아있는 채로 물체의 "기본색"만 바뀐 것처럼 보인다.
+ *   명도(L)에 선택한 색의 명도를 "중간값(50) 기준 오프셋"으로 더해 넣고, Hue는 선택한 색을 그대로
+ *   입힌다. 채도(S)는 선택색 채도에 원본 픽셀의 채도 비율을 곱해서 정한다. 오프셋 방식이라 사진의
+ *   하이라이트·그림자·질감(상대적 명암 차이)뿐 아니라 반사광처럼 원래 색이 옅던 부분의 "덜 물든"
+ *   느낌까지 살아있는 채로, 피커에서 고른 밝기(어둡게/밝게)도 실제로 사진에 반영된다.
  */
 
 import { hexToRgb, rgbToHsl, hslToRgb, clamp } from "./color-convert.js";
@@ -42,6 +43,10 @@ export function resolveRenderMode(renderMode) {
  * @param {number} originalL 원본 픽셀의 명도 (0~100)
  * @param {number} originalS 원본 픽셀의 채도 (0~100). 선택색 채도에 곱해지는 비율로만 쓰인다.
  * @param {number} strength 마스크 합성 강도 (0~1). 원본과 결과색을 섞는 비율일 뿐, 명도 자체를 정하지 않는다.
+ * @param {number} [selectedL=50] 사용자가 고른 색의 Lightness (0~100). 중간값(50) 기준 오프셋만큼
+ *   원본 명도를 밀어서 반영한다 — 하이라이트/그림자 같은 사진의 상대적 명암(텍스처)은 그대로 유지하면서도
+ *   피커에서 어둡게/밝게 고르면 실제로 사진도 어두워지고/밝아지게 만든다. 기본값 50은 오프셋 0, 즉
+ *   기존 동작(원본 명도 그대로)과 동일하다.
  * @returns {{r:number, g:number, b:number}} 0~255 범위의 합성 결과
  */
 export function composePreserveLightnessPixel(
@@ -52,18 +57,74 @@ export function composePreserveLightnessPixel(
   selectedS,
   originalL,
   originalS,
-  strength
+  strength,
+  selectedL = 50
 ) {
   if (strength <= 0.004) {
     return { r: origR, g: origG, b: origB };
   }
   const effectiveS = clamp(selectedS * (originalS / 100), 0, 100);
-  const recolored = hslToRgb({ h: selectedH, s: effectiveS, l: originalL });
+  const effectiveL = clamp(originalL + (selectedL - 50), 0, 100);
+  const recolored = hslToRgb({ h: selectedH, s: effectiveS, l: effectiveL });
   return {
     r: origR * (1 - strength) + recolored.r * strength,
     g: origG * (1 - strength) + recolored.g * strength,
     b: origB * (1 - strength) + recolored.b * strength,
   };
+}
+
+/** preserve-lightness 합성 루프. 실시간(축소) 렌더링과 제출 시 원본 해상도 스냅샷이 같은 코드를 쓴다. */
+function paintPreserveLightnessBuffer(orig, out, lightness, saturation, maskStrength, total, selH, selS, selL) {
+  for (let i = 0; i < total; i++) {
+    const idx = i * 4;
+    const result = composePreserveLightnessPixel(
+      orig[idx],
+      orig[idx + 1],
+      orig[idx + 2],
+      selH,
+      selS,
+      lightness[i],
+      saturation[i],
+      maskStrength[i],
+      selL
+    );
+    out[idx] = result.r;
+    out[idx + 1] = result.g;
+    out[idx + 2] = result.b;
+    out[idx + 3] = orig[idx + 3];
+  }
+}
+
+/** flat 합성 루프. 실시간(축소) 렌더링과 제출 시 원본 해상도 스냅샷이 같은 코드를 쓴다. */
+function paintFlatBuffer(orig, out, maskStrength, total, r, g, b) {
+  for (let i = 0; i < total; i++) {
+    const strength = maskStrength[i];
+    const idx = i * 4;
+    if (strength <= 0.004) {
+      out[idx] = orig[idx];
+      out[idx + 1] = orig[idx + 1];
+      out[idx + 2] = orig[idx + 2];
+      out[idx + 3] = orig[idx + 3];
+      continue;
+    }
+    out[idx] = orig[idx] * (1 - strength) + r * strength;
+    out[idx + 1] = orig[idx + 1] * (1 - strength) + g * strength;
+    out[idx + 2] = orig[idx + 2] * (1 - strength) + b * strength;
+    out[idx + 3] = orig[idx + 3];
+  }
+}
+
+/** 원본 이미지의 픽셀별 명도(L)/채도(S)를 뽑는다 (preserve-lightness 합성용). */
+function extractLightnessSaturation(rgba, total) {
+  const l = new Float32Array(total);
+  const s = new Float32Array(total);
+  for (let i = 0; i < total; i++) {
+    const idx = i * 4;
+    const hsl = rgbToHsl({ r: rgba[idx], g: rgba[idx + 1], b: rgba[idx + 2] });
+    l[i] = hsl.l;
+    s[i] = hsl.s;
+  }
+  return { l, s };
 }
 
 export class MaskRenderer {
@@ -79,6 +140,11 @@ export class MaskRenderer {
     this.originalS = null; // preserve-lightness용: 원본 픽셀별 채도(0~100) 캐시
     this._rafId = null;
     this._pendingHex = null;
+    this._currentHex = null; // snapshotDataURL()에서 원본 해상도로 다시 합성할 때 쓸 마지막 선택색
+    this._originalImageEl = null; // 원본 해상도 스냅샷용으로 디코딩된 이미지 엘리먼트를 계속 들고 있는다
+    this._maskImageEl = null;
+    this._naturalW = 0;
+    this._naturalH = 0;
   }
 
   /**
@@ -106,6 +172,10 @@ export class MaskRenderer {
     const w = Math.max(1, Math.round(naturalW * scale));
     const h = Math.max(1, Math.round(naturalH * scale));
 
+    this._originalImageEl = originalResult.image;
+    this._naturalW = naturalW;
+    this._naturalH = naturalH;
+
     this.width = w;
     this.height = h;
     this.canvas.width = w;
@@ -126,27 +196,18 @@ export class MaskRenderer {
 
     if (this.renderMode === "preserve-lightness") {
       // 원본 픽셀별 명도(L)/채도(S)는 색을 바꿀 때마다 다시 계산할 필요가 없으므로 로딩 시 1회만 뽑아둔다.
-      const l = new Float32Array(w * h);
-      const s = new Float32Array(w * h);
-      for (let i = 0; i < w * h; i++) {
-        const idx = i * 4;
-        const hsl = rgbToHsl({
-          r: this.originalRGBA[idx],
-          g: this.originalRGBA[idx + 1],
-          b: this.originalRGBA[idx + 2],
-        });
-        l[i] = hsl.l;
-        s[i] = hsl.s;
-      }
+      const { l, s } = extractLightnessSaturation(this.originalRGBA, w * h);
       this.originalL = l;
       this.originalS = s;
     }
 
     this.maskStrength = new Float32Array(w * h);
+    this._maskImageEl = null;
     let sizeMismatch = false;
 
     if (maskResult.ok) {
       this.hasMask = true;
+      this._maskImageEl = maskResult.image;
       sizeMismatch =
         maskResult.image.naturalWidth !== naturalW || maskResult.image.naturalHeight !== naturalH;
       if (sizeMismatch) {
@@ -177,6 +238,7 @@ export class MaskRenderer {
   /** 색상 변경을 요청한다. 실제 그리기는 requestAnimationFrame에 맞춰 한 번만 실행된다. */
   setColor(hex) {
     if (!this.ready || !this.hasMask) return;
+    this._currentHex = hex;
     this._pendingHex = hex;
     if (this._rafId) return;
     this._rafId = requestAnimationFrame(() => {
@@ -195,61 +257,32 @@ export class MaskRenderer {
   }
 
   /**
-   * 원본 픽셀의 명도(L)는 그대로 두고, 선택한 색의 Hue를 입힌다. 채도(S)는 선택색 채도에
-   * 원본 픽셀의 채도 비율을 곱해서 정하므로, 하이라이트는 밝고 옅은 버전, 그림자는 어둡고
-   * 진한 버전으로 자연스럽게 바뀐다. 마스크 알파(strength)는 "원본과 이 결과색을 얼마나
-   * 섞을지"에만 쓰인다 — 명도 자체를 strength로 결정하지 않는다.
+   * 원본 픽셀의 명도(L)에 선택한 색의 명도를 오프셋으로 더하고, 선택한 색의 Hue를 입힌다.
+   * 채도(S)는 선택색 채도에 원본 픽셀의 채도 비율을 곱해서 정하므로, 하이라이트는 밝고 옅은
+   * 버전, 그림자는 어둡고 진한 버전으로 자연스럽게 바뀐다. 오프셋 방식이라 상대적 명암(텍스처)은
+   * 유지하면서도 피커에서 어둡게/밝게 고르면 실제로 사진도 어두워지고/밝아진다. 마스크 알파
+   * (strength)는 "원본과 이 결과색을 얼마나 섞을지"에만 쓰인다 — 명도 자체를 strength로 결정하지 않는다.
    */
   _paintPreserveLightness(hex) {
     const { r, g, b } = hexToRgb(hex);
-    const { h: selH, s: selS } = rgbToHsl({ r, g, b }); // 프레임당 1회만 계산
-    const total = this.width * this.height;
-    const out = this.outputBuffer;
-    const orig = this.originalRGBA;
-    const lightness = this.originalL;
-    const saturation = this.originalS;
-
-    for (let i = 0; i < total; i++) {
-      const idx = i * 4;
-      const result = composePreserveLightnessPixel(
-        orig[idx],
-        orig[idx + 1],
-        orig[idx + 2],
-        selH,
-        selS,
-        lightness[i],
-        saturation[i],
-        this.maskStrength[i]
-      );
-      out[idx] = result.r;
-      out[idx + 1] = result.g;
-      out[idx + 2] = result.b;
-      out[idx + 3] = orig[idx + 3];
-    }
+    const { h: selH, s: selS, l: selL } = rgbToHsl({ r, g, b }); // 프레임당 1회만 계산
+    paintPreserveLightnessBuffer(
+      this.originalRGBA,
+      this.outputBuffer,
+      this.originalL,
+      this.originalS,
+      this.maskStrength,
+      this.width * this.height,
+      selH,
+      selS,
+      selL
+    );
   }
 
   /** 레거시/미지원 renderMode 대비용: 마스크 영역을 고른 색 단색으로 그대로 덮는다. */
   _paintFlat(hex) {
     const { r, g, b } = hexToRgb(hex);
-    const total = this.width * this.height;
-    const out = this.outputBuffer;
-    const orig = this.originalRGBA;
-
-    for (let i = 0; i < total; i++) {
-      const strength = this.maskStrength[i];
-      const idx = i * 4;
-      if (strength <= 0.004) {
-        out[idx] = orig[idx];
-        out[idx + 1] = orig[idx + 1];
-        out[idx + 2] = orig[idx + 2];
-        out[idx + 3] = orig[idx + 3];
-        continue;
-      }
-      out[idx] = orig[idx] * (1 - strength) + r * strength;
-      out[idx + 1] = orig[idx + 1] * (1 - strength) + g * strength;
-      out[idx + 2] = orig[idx + 2] * (1 - strength) + b * strength;
-      out[idx + 3] = orig[idx + 3];
-    }
+    paintFlatBuffer(this.originalRGBA, this.outputBuffer, this.maskStrength, this.width * this.height, r, g, b);
   }
 
   /** 화면 전환 시 예약된 렌더링 프레임을 취소한다 */
@@ -261,13 +294,67 @@ export class MaskRenderer {
     this.ready = false;
   }
 
-  /** 결과 화면에 쓸 정지 이미지 데이터 URL */
+  /**
+   * 결과 화면에 쓸 정지 이미지 데이터 URL. 실시간 편집용 캔버스는 성능을 위해
+   * MAX_RENDER_SIZE로 축소되어 있으므로, 여기서는 원본 이미지 해상도로 딱 한 번 다시
+   * 합성해서 "Original"과 같은 픽셀 크기의 결과를 돌려준다 (제출 시 1회뿐이라 비용 문제 없음).
+   */
   snapshotDataURL() {
     try {
+      if (this._originalImageEl) {
+        return this._renderFullResolution(this._currentHex);
+      }
       return this.canvas.toDataURL("image/png");
     } catch (err) {
       console.error("[mask-renderer] 캔버스 스냅샷 실패", err);
       return null;
     }
+  }
+
+  /** 원본 이미지의 자연 해상도로 마스크 합성을 다시 실행해 데이터 URL을 만든다. */
+  _renderFullResolution(hex) {
+    const w = this._naturalW;
+    const h = this._naturalH;
+    const total = w * h;
+
+    const offscreen = document.createElement("canvas");
+    offscreen.width = w;
+    offscreen.height = h;
+    const offCtx = offscreen.getContext("2d");
+
+    offCtx.drawImage(this._originalImageEl, 0, 0, w, h);
+    const orig = offCtx.getImageData(0, 0, w, h).data;
+
+    if (!this.hasMask || !hex) {
+      return offscreen.toDataURL("image/png");
+    }
+
+    const maskStrength = new Float32Array(total);
+    if (this._maskImageEl) {
+      offCtx.clearRect(0, 0, w, h);
+      offCtx.drawImage(this._maskImageEl, 0, 0, w, h);
+      const maskData = offCtx.getImageData(0, 0, w, h).data;
+      for (let i = 0; i < total; i++) {
+        const idx = i * 4;
+        maskStrength[i] = (maskData[idx] / 255) * (maskData[idx + 3] / 255);
+      }
+    }
+
+    const out = new Uint8ClampedArray(orig);
+    const { r, g, b } = hexToRgb(hex);
+
+    if (this.renderMode === "preserve-lightness") {
+      const { l: lightness, s: saturation } = extractLightnessSaturation(orig, total);
+      const { h: selH, s: selS, l: selL } = rgbToHsl({ r, g, b });
+      paintPreserveLightnessBuffer(orig, out, lightness, saturation, maskStrength, total, selH, selS, selL);
+    } else {
+      paintFlatBuffer(orig, out, maskStrength, total, r, g, b);
+    }
+
+    const outCanvas = document.createElement("canvas");
+    outCanvas.width = w;
+    outCanvas.height = h;
+    outCanvas.getContext("2d").putImageData(new ImageData(out, w, h), 0, 0);
+    return outCanvas.toDataURL("image/png");
   }
 }

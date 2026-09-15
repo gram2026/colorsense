@@ -1,11 +1,12 @@
 /** 카테고리 상세 화면 (히어로 이미지 + 글래스 카드 스타일) */
 
-import { qs, iconSvg, formatNumber } from "../utils/dom.js";
-import { loadCategories, loadQuestionsForCategory } from "../data-loader.js";
+import { qs, iconSvg, formatScore } from "../utils/dom.js";
+import { loadCategories, loadQuestionsForCategory, getCategoryName, getCategoryDescription } from "../data-loader.js";
 import { getBestScore } from "../storage.js";
 import { getState, setState } from "../state.js";
 import { navigate } from "../router.js";
 import { showToast } from "../toast.js";
+import { t, getLang, setLang } from "../i18n.js";
 
 export async function mount(container) {
   const root = qs(".screen-inner", container);
@@ -13,16 +14,22 @@ export async function mount(container) {
 
   root.innerHTML = `
     <div class="top-bar">
-      <button type="button" class="back-link" data-action="home" aria-label="홈으로">
+      <button type="button" class="back-link" data-action="home" aria-label="${t("nav.home")}">
         <span class="logo-mark" aria-hidden="true"></span><span>ColorGuesser</span>
       </button>
+      <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">${
+        getLang() === "ko" ? "EN" : "한국어"
+      }</button>
     </div>
     <div data-role="content" style="flex:1; display:flex; align-items:center; justify-content:center;">
-      <div class="spinner" role="status" aria-label="불러오는 중"></div>
+      <div class="spinner" role="status" aria-label="${t("game.loading")}"></div>
     </div>
   `;
 
   root.querySelector('[data-action="home"]').addEventListener("click", () => navigate("home"));
+  root.querySelector('[data-action="lang"]').addEventListener("click", () => {
+    setLang(getLang() === "ko" ? "en" : "ko");
+  });
 
   const contentEl = root.querySelector('[data-role="content"]');
 
@@ -30,7 +37,7 @@ export async function mount(container) {
     const categories = await loadCategories();
     const category = categories.find((c) => c.id === categoryId);
     if (!category) {
-      contentEl.innerHTML = `<p class="empty-state">카테고리를 찾을 수 없어요.</p>`;
+      contentEl.innerHTML = `<p class="empty-state">${t("categoryDetail.notFound")}</p>`;
       return;
     }
 
@@ -47,18 +54,18 @@ export async function mount(container) {
              onerror="this.style.background='var(--bg-page-alt)'; this.removeAttribute('src');" />
         <div class="category-hero__scrim" aria-hidden="true"></div>
         <div class="category-hero__card">
-          <div class="category-hero__eyebrow">CATEGORY</div>
-          <h1 class="category-hero__title">${escapeHtml(category.name)}</h1>
-          <p class="category-hero__desc">${escapeHtml(category.description || "")}</p>
+          <div class="category-hero__eyebrow">${t("categoryDetail.eyebrow")}</div>
+          <h1 class="category-hero__title">${escapeHtml(getCategoryName(category))}</h1>
+          <p class="category-hero__desc">${escapeHtml(getCategoryDescription(category))}</p>
           <div class="category-hero__tags">
-            <span class="badge">${isEmpty ? "준비 중" : `문제 ${questions.length}개`}</span>
-            ${best > 0 ? `<span class="badge badge--primary">최고 ${formatNumber(best)}점</span>` : ""}
+            ${isEmpty ? `<span class="badge">${t("category.badge.comingSoon")}</span>` : ""}
+            ${best > 0 ? `<span class="badge badge--primary">${t("category.badge.bestAverage", { score: formatScore(best) })}</span>` : ""}
           </div>
           ${
             isEmpty
-              ? `<p class="text-muted" style="color:var(--text-muted); font-size:var(--font-size-sm);">이 카테고리는 아직 문제가 없어요.</p>`
-              : `<button type="button" class="btn btn--primary" data-action="start" aria-label="게임 시작">
-                   ${iconSvg("play", 18)}<span>시작하기</span>
+              ? `<p class="text-muted" style="color:var(--text-muted); font-size:var(--font-size-sm);">${t("categoryDetail.empty")}</p>`
+              : `<button type="button" class="btn btn--primary" data-action="start" aria-label="${t("categoryDetail.startAria")}">
+                   ${iconSvg("play", 18)}<span>${t("categoryDetail.start")}</span>
                  </button>`
           }
         </div>
@@ -76,8 +83,8 @@ export async function mount(container) {
     }
   } catch (err) {
     console.error("[category-detail] 로드 실패", err);
-    contentEl.innerHTML = `<p class="empty-state">문제를 불러오지 못했어요.</p>`;
-    showToast("문제를 불러오지 못했어요");
+    contentEl.innerHTML = `<p class="empty-state">${t("categoryDetail.loadErrorInline")}</p>`;
+    showToast(t("categoryDetail.loadErrorToast"));
   }
 }
 

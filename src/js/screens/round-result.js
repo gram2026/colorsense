@@ -1,9 +1,10 @@
 /** 문제 결과 화면 */
 
-import { qs, formatNumber } from "../utils/dom.js";
+import { qs, formatScore } from "../utils/dom.js";
 import { getState, setState } from "../state.js";
 import { navigate } from "../router.js";
 import { getScoreComment } from "../color/scoring.js";
+import { t } from "../i18n.js";
 
 export function mount(container) {
   const root = qs(".screen-inner", container);
@@ -16,42 +17,42 @@ export function mount(container) {
   }
 
   const isLast = state.currentQuestionIndex >= state.questions.length - 1;
-  const comment = getScoreComment(entry.score);
+  const comment = t(getScoreComment(entry.score));
 
   root.innerHTML = `
     <div class="round-result">
-      <div class="round-result__score-label">획득 점수</div>
+      <div class="round-result__score-label">${t("roundResult.scoreLabel")}</div>
       <div class="score-pop is-animating" data-role="score">0</div>
       <div class="round-result__comment">${comment}</div>
 
       <div class="round-result__colors">
         <div class="round-result__color-block">
           <div class="color-swatch color-swatch--lg" style="background:${entry.answerColor}"></div>
-          <div class="round-result__color-name">정답 · ${entry.answerColor}</div>
+          <div class="round-result__color-name">${t("roundResult.answer")} · ${entry.answerColor}</div>
         </div>
         <div class="round-result__color-block">
           <div class="color-swatch color-swatch--lg" style="background:${entry.userColor}"></div>
-          <div class="round-result__color-name">내 선택 · ${entry.userColor}</div>
+          <div class="round-result__color-name">${t("roundResult.myPick")} · ${entry.userColor}</div>
         </div>
       </div>
 
       <div class="round-result__compare">
         <div>
           <div class="round-result__photo">
-            <img src="${entry.originalImage}" alt="원본 사진" />
+            <img src="${entry.originalImage}" alt="${t("roundResult.original")}" />
           </div>
-          <div class="round-result__photo-label">원본</div>
+          <div class="round-result__photo-label">${t("roundResult.original")}</div>
         </div>
         <div>
           <div class="round-result__photo">
-            <img src="${entry.userSnapshot || entry.originalImage}" alt="내가 만든 사진" />
+            <img src="${entry.userSnapshot || entry.originalImage}" alt="${t("roundResult.myVersion")}" />
           </div>
-          <div class="round-result__photo-label">내가 만든 색</div>
+          <div class="round-result__photo-label">${t("roundResult.myVersion")}</div>
         </div>
       </div>
 
       <button type="button" class="btn btn--primary btn--block btn--lg" data-action="next">
-        ${isLast ? "결과 보기" : "다음 문제"}
+        ${isLast ? t("roundResult.viewFinal") : t("roundResult.next")}
       </button>
     </div>
   `;
@@ -70,7 +71,7 @@ export function mount(container) {
 
 function animateScore(el, target) {
   if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-    el.textContent = formatNumber(target);
+    el.textContent = formatScore(target);
     return;
   }
   const duration = 500;
@@ -78,7 +79,7 @@ function animateScore(el, target) {
   function tick(now) {
     const t = Math.min(1, (now - start) / duration);
     const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = formatNumber(target * eased);
+    el.textContent = formatScore(target * eased);
     if (t < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);

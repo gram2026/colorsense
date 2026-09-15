@@ -116,6 +116,101 @@
         "createdAt": "2026-08-02",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "pikachu",
+      "categoryId": "animation",
+      "title": "pikachu",
+      "originalImage": "assets/questions/animation/pikachu/original.webp",
+      "maskImage": "assets/questions/animation/pikachu/mask.png",
+      "thumbnail": "assets/questions/animation/pikachu/thumbnail.webp",
+      "answerColor": "#F9DA13",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "stich",
+      "categoryId": "animation",
+      "title": "stich",
+      "originalImage": "assets/questions/animation/stich/original.webp",
+      "maskImage": "assets/questions/animation/stich/mask.png",
+      "thumbnail": "assets/questions/animation/stich/thumbnail.webp",
+      "answerColor": "#257BE0",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "jurassic",
+      "categoryId": "animation",
+      "title": "jurassic",
+      "originalImage": "assets/questions/animation/jurassic/original.webp",
+      "maskImage": "assets/questions/animation/jurassic/mask.png",
+      "thumbnail": "assets/questions/animation/jurassic/thumbnail.webp",
+      "answerColor": "#F8E83A",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "batman",
+      "categoryId": "animation",
+      "title": "batman",
+      "originalImage": "assets/questions/animation/batman/original.webp",
+      "maskImage": "assets/questions/animation/batman/mask.png",
+      "thumbnail": "assets/questions/animation/batman/thumbnail.webp",
+      "answerColor": "#FFDE00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "superman",
+      "categoryId": "animation",
+      "title": "superman",
+      "originalImage": "assets/questions/animation/superman/original.webp",
+      "maskImage": "assets/questions/animation/superman/mask.png",
+      "thumbnail": "assets/questions/animation/superman/thumbnail.webp",
+      "answerColor": "#FFEC00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
     }
   ]
 }

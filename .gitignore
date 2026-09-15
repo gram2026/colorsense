@@ -2,6 +2,11 @@
 .DS_Store
 Thumbs.db
 .vscode/
+.claude/
+
+# 로컬 wrangler 개발 캐시 (배포에는 불필요)
+.wrangler/
+node_modules/.mf/
 
 # 문제 가져오기(import-question) 실패 시 남는 백업 스냅샷
 src/data/questions/*.bak-*.json

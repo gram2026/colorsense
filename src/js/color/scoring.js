@@ -12,7 +12,7 @@ import { deltaE76, deltaE2000 } from "./delta-e.js";
 
 /** src/data/config.json 의 scoring 항목과 동일한 기본값 */
 export const DEFAULT_SCORING_CONFIG = {
-  maxScore: 1000,
+  maxScore: 100,
   method: "ciede2000",
   perfectThreshold: 2,
   zeroScoreThreshold: 70,
@@ -47,29 +47,35 @@ export function calculateScore(userHex, answerHex, config = DEFAULT_SCORING_CONF
     score = maxScore * ratio;
   }
 
+  // 소수점 첫째 자리까지 표시하므로 여기서도 그 정밀도로만 반올림한다.
+  const rounded = Math.round(Math.max(0, Math.min(maxScore, score)) * 10) / 10;
+
   return {
-    score: Math.round(Math.max(0, Math.min(maxScore, score))),
+    score: rounded,
     deltaE,
     method: cfg.method,
   };
 }
 
-/** 점수 구간에 따른 짧은 평가 문구 */
-export function getScoreComment(score, maxScore = 1000) {
+/**
+ * 점수 구간에 따른 짧은 평가 문구의 i18n 키 (실제 문구는 화면에서 t()로 번역한다).
+ * @returns {string} "scoreComment.perfect" 같은 i18n 키
+ */
+export function getScoreComment(score, maxScore = 100) {
   const ratio = score / maxScore;
-  if (ratio >= 0.95) return "완벽해요";
-  if (ratio >= 0.85) return "거의 같아요";
-  if (ratio >= 0.7) return "꽤 비슷해요";
-  if (ratio >= 0.5) return "조금만 더";
-  return "색감이 꽤 달라요";
+  if (ratio >= 0.95) return "scoreComment.perfect";
+  if (ratio >= 0.85) return "scoreComment.great";
+  if (ratio >= 0.7) return "scoreComment.good";
+  if (ratio >= 0.5) return "scoreComment.okay";
+  return "scoreComment.different";
 }
 
-/** 최종 결과 화면에서 사용할 등급 */
-export function getGrade(averageScore, maxScore = 1000) {
+/** 최종 결과 화면에서 사용할 등급. desc는 i18n 키("grade.S" 등)이며 화면에서 t()로 번역한다. */
+export function getGrade(averageScore, maxScore = 100) {
   const ratio = averageScore / maxScore;
-  if (ratio >= 0.95) return { label: "S", desc: "색채 감각 최고" };
-  if (ratio >= 0.85) return { label: "A", desc: "훌륭해요" };
-  if (ratio >= 0.7) return { label: "B", desc: "좋아요" };
-  if (ratio >= 0.5) return { label: "C", desc: "괜찮아요" };
-  return { label: "D", desc: "다시 도전해봐요" };
+  if (ratio >= 0.95) return { label: "S", descKey: "grade.S" };
+  if (ratio >= 0.85) return { label: "A", descKey: "grade.A" };
+  if (ratio >= 0.7) return { label: "B", descKey: "grade.B" };
+  if (ratio >= 0.5) return { label: "C", descKey: "grade.C" };
+  return { label: "D", descKey: "grade.D" };
 }

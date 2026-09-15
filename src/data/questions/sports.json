@@ -59,6 +59,994 @@
         "createdAt": "2026-07-31",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "frankfurt",
+      "categoryId": "sports",
+      "title": "frankfurt",
+      "originalImage": "assets/questions/sports/frankfurt/original.webp",
+      "maskImage": "assets/questions/sports/frankfurt/mask.png",
+      "thumbnail": "assets/questions/sports/frankfurt/thumbnail.webp",
+      "answerColor": "#D90101",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "torino",
+      "categoryId": "sports",
+      "title": "torino",
+      "originalImage": "assets/questions/sports/torino/original.webp",
+      "maskImage": "assets/questions/sports/torino/mask.png",
+      "thumbnail": "assets/questions/sports/torino/thumbnail.webp",
+      "answerColor": "#7C1D23",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "leverkusen",
+      "categoryId": "sports",
+      "title": "leverkusen",
+      "originalImage": "assets/questions/sports/leverkusen/original.webp",
+      "maskImage": "assets/questions/sports/leverkusen/mask.png",
+      "thumbnail": "assets/questions/sports/leverkusen/thumbnail.webp",
+      "answerColor": "#FADE23",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bournemouth",
+      "categoryId": "sports",
+      "title": "borunemorth",
+      "originalImage": "assets/questions/sports/bournemouth/original.webp",
+      "maskImage": "assets/questions/sports/bournemouth/mask.png",
+      "thumbnail": "assets/questions/sports/bournemouth/thumbnail.webp",
+      "answerColor": "#C31116",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "europa",
+      "categoryId": "sports",
+      "title": "europa",
+      "originalImage": "assets/questions/sports/europa/original.webp",
+      "maskImage": "assets/questions/sports/europa/mask.png",
+      "thumbnail": "assets/questions/sports/europa/thumbnail.webp",
+      "answerColor": "#FA6E08",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "lyonnais",
+      "categoryId": "sports",
+      "title": "lyonnais",
+      "originalImage": "assets/questions/sports/lyonnais/original.webp",
+      "maskImage": "assets/questions/sports/lyonnais/mask.png",
+      "thumbnail": "assets/questions/sports/lyonnais/thumbnail.webp",
+      "answerColor": "#083F88",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "feyenoord",
+      "categoryId": "sports",
+      "title": "feyenoord",
+      "originalImage": "assets/questions/sports/feyenoord/original.webp",
+      "maskImage": "assets/questions/sports/feyenoord/mask.png",
+      "thumbnail": "assets/questions/sports/feyenoord/thumbnail.webp",
+      "answerColor": "#FFFFFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "ligue1",
+      "categoryId": "sports",
+      "title": "ligue1",
+      "originalImage": "assets/questions/sports/ligue1/original.webp",
+      "maskImage": "assets/questions/sports/ligue1/mask.png",
+      "thumbnail": "assets/questions/sports/ligue1/thumbnail.webp",
+      "answerColor": "#D0FB0C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "avfc",
+      "categoryId": "sports",
+      "title": "avfc",
+      "originalImage": "assets/questions/sports/avfc/original.webp",
+      "maskImage": "assets/questions/sports/avfc/mask.png",
+      "thumbnail": "assets/questions/sports/avfc/thumbnail.webp",
+      "answerColor": "#94BEE4",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "milwaukee",
+      "categoryId": "sports",
+      "title": "milwaukee",
+      "originalImage": "assets/questions/sports/milwaukee/original.webp",
+      "maskImage": "assets/questions/sports/milwaukee/mask.png",
+      "thumbnail": "assets/questions/sports/milwaukee/thumbnail.webp",
+      "answerColor": "#01471B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "leeds",
+      "categoryId": "sports",
+      "title": "leeds",
+      "originalImage": "assets/questions/sports/leeds/original.webp",
+      "maskImage": "assets/questions/sports/leeds/mask.png",
+      "thumbnail": "assets/questions/sports/leeds/thumbnail.webp",
+      "answerColor": "#FFED01",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bilbao",
+      "categoryId": "sports",
+      "title": "bilbao",
+      "originalImage": "assets/questions/sports/bilbao/original.webp",
+      "maskImage": "assets/questions/sports/bilbao/mask.png",
+      "thumbnail": "assets/questions/sports/bilbao/thumbnail.webp",
+      "answerColor": "#B7846F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "laliga",
+      "categoryId": "sports",
+      "title": "laliga",
+      "originalImage": "assets/questions/sports/laliga/original.webp",
+      "maskImage": "assets/questions/sports/laliga/mask.png",
+      "thumbnail": "assets/questions/sports/laliga/thumbnail.webp",
+      "answerColor": "#FF4B44",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "atlanta",
+      "categoryId": "sports",
+      "title": "atlanta",
+      "originalImage": "assets/questions/sports/atlanta/original.webp",
+      "maskImage": "assets/questions/sports/atlanta/mask.png",
+      "thumbnail": "assets/questions/sports/atlanta/thumbnail.webp",
+      "answerColor": "#0172BC",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "wolves",
+      "categoryId": "sports",
+      "title": "wolves",
+      "originalImage": "assets/questions/sports/wolves/original.webp",
+      "maskImage": "assets/questions/sports/wolves/mask.png",
+      "thumbnail": "assets/questions/sports/wolves/thumbnail.webp",
+      "answerColor": "#F89835",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bulls",
+      "categoryId": "sports",
+      "title": "bulls",
+      "originalImage": "assets/questions/sports/bulls/original.webp",
+      "maskImage": "assets/questions/sports/bulls/mask.png",
+      "thumbnail": "assets/questions/sports/bulls/thumbnail.webp",
+      "answerColor": "#CC2229",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "leicester",
+      "categoryId": "sports",
+      "title": "leicester",
+      "originalImage": "assets/questions/sports/leicester/original.webp",
+      "maskImage": "assets/questions/sports/leicester/mask.png",
+      "thumbnail": "assets/questions/sports/leicester/thumbnail.webp",
+      "answerColor": "#EFB511",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "italiafigc",
+      "categoryId": "sports",
+      "title": "italiafigc",
+      "originalImage": "assets/questions/sports/italiafigc/original.webp",
+      "maskImage": "assets/questions/sports/italiafigc/mask.png",
+      "thumbnail": "assets/questions/sports/italiafigc/thumbnail.webp",
+      "answerColor": "#C8B77F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "2022wc",
+      "categoryId": "sports",
+      "title": "2022wc",
+      "originalImage": "assets/questions/sports/2022wc/original.webp",
+      "maskImage": "assets/questions/sports/2022wc/mask.png",
+      "thumbnail": "assets/questions/sports/2022wc/thumbnail.webp",
+      "answerColor": "#8B173A",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "slb",
+      "categoryId": "sports",
+      "title": "slb",
+      "originalImage": "assets/questions/sports/slb/original.webp",
+      "maskImage": "assets/questions/sports/slb/mask.png",
+      "thumbnail": "assets/questions/sports/slb/thumbnail.webp",
+      "answerColor": "#028BCE",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "valencia",
+      "categoryId": "sports",
+      "title": "valencia",
+      "originalImage": "assets/questions/sports/valencia/original.webp",
+      "maskImage": "assets/questions/sports/valencia/mask.png",
+      "thumbnail": "assets/questions/sports/valencia/thumbnail.webp",
+      "answerColor": "#F6DE32",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bundesliga",
+      "categoryId": "sports",
+      "title": "bundesliga",
+      "originalImage": "assets/questions/sports/bundesliga/original.webp",
+      "maskImage": "assets/questions/sports/bundesliga/mask.png",
+      "thumbnail": "assets/questions/sports/bundesliga/thumbnail.webp",
+      "answerColor": "#D20515",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "betis",
+      "categoryId": "sports",
+      "title": "betis",
+      "originalImage": "assets/questions/sports/betis/original.webp",
+      "maskImage": "assets/questions/sports/betis/mask.png",
+      "thumbnail": "assets/questions/sports/betis/thumbnail.webp",
+      "answerColor": "#05964D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "westham",
+      "categoryId": "sports",
+      "title": "westham",
+      "originalImage": "assets/questions/sports/westham/original.webp",
+      "maskImage": "assets/questions/sports/westham/mask.png",
+      "thumbnail": "assets/questions/sports/westham/thumbnail.webp",
+      "answerColor": "#F4D34C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-05",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "marseille",
+      "categoryId": "sports",
+      "title": "marseille",
+      "originalImage": "assets/questions/sports/marseille/original.webp",
+      "maskImage": "assets/questions/sports/marseille/mask.png",
+      "thumbnail": "assets/questions/sports/marseille/thumbnail.webp",
+      "answerColor": "#00A1DF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "atm",
+      "categoryId": "sports",
+      "title": "atm",
+      "originalImage": "assets/questions/sports/atm/original.webp",
+      "maskImage": "assets/questions/sports/atm/mask.png",
+      "thumbnail": "assets/questions/sports/atm/thumbnail.webp",
+      "answerColor": "#AA2723",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "scp",
+      "categoryId": "sports",
+      "title": "scp",
+      "originalImage": "assets/questions/sports/scp/original.webp",
+      "maskImage": "assets/questions/sports/scp/mask.png",
+      "thumbnail": "assets/questions/sports/scp/thumbnail.webp",
+      "answerColor": "#058964",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "pl",
+      "categoryId": "sports",
+      "title": "pl",
+      "originalImage": "assets/questions/sports/pl/original.webp",
+      "maskImage": "assets/questions/sports/pl/mask.png",
+      "thumbnail": "assets/questions/sports/pl/thumbnail.webp",
+      "answerColor": "#371D54",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "inter",
+      "categoryId": "sports",
+      "title": "inter",
+      "originalImage": "assets/questions/sports/inter/original.webp",
+      "maskImage": "assets/questions/sports/inter/mask.png",
+      "thumbnail": "assets/questions/sports/inter/thumbnail.webp",
+      "answerColor": "#0132A3",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "manu",
+      "categoryId": "sports",
+      "title": "manu",
+      "originalImage": "assets/questions/sports/manu/original.webp",
+      "maskImage": "assets/questions/sports/manu/mask.png",
+      "thumbnail": "assets/questions/sports/manu/thumbnail.webp",
+      "answerColor": "#AB1B0B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "alnassr",
+      "categoryId": "sports",
+      "title": "alnassr",
+      "originalImage": "assets/questions/sports/alnassr/original.webp",
+      "maskImage": "assets/questions/sports/alnassr/mask.png",
+      "thumbnail": "assets/questions/sports/alnassr/thumbnail.webp",
+      "answerColor": "#23558E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "acm",
+      "categoryId": "sports",
+      "title": "acm",
+      "originalImage": "assets/questions/sports/acm/original.webp",
+      "maskImage": "assets/questions/sports/acm/mask.png",
+      "thumbnail": "assets/questions/sports/acm/thumbnail.webp",
+      "answerColor": "#EA272E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "intermaiami",
+      "categoryId": "sports",
+      "title": "intermiami",
+      "originalImage": "assets/questions/sports/intermaiami/original.webp",
+      "maskImage": "assets/questions/sports/intermaiami/mask.png",
+      "thumbnail": "assets/questions/sports/intermaiami/thumbnail.webp",
+      "answerColor": "#F4B4CB",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bvb",
+      "categoryId": "sports",
+      "title": "bvb",
+      "originalImage": "assets/questions/sports/bvb/original.webp",
+      "maskImage": "assets/questions/sports/bvb/mask.png",
+      "thumbnail": "assets/questions/sports/bvb/thumbnail.webp",
+      "answerColor": "#FCEA1C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "tottenhamhotsuper",
+      "categoryId": "sports",
+      "title": "tottenhamhotspurs",
+      "originalImage": "assets/questions/sports/tottenhamhotsuper/original.webp",
+      "maskImage": "assets/questions/sports/tottenhamhotsuper/mask.png",
+      "thumbnail": "assets/questions/sports/tottenhamhotsuper/thumbnail.webp",
+      "answerColor": "#011B58",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "nba",
+      "categoryId": "sports",
+      "title": "nba",
+      "originalImage": "assets/questions/sports/nba/original.webp",
+      "maskImage": "assets/questions/sports/nba/mask.png",
+      "thumbnail": "assets/questions/sports/nba/thumbnail.webp",
+      "answerColor": "#393185",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "lalakers",
+      "categoryId": "sports",
+      "title": "lalakers",
+      "originalImage": "assets/questions/sports/lalakers/original.webp",
+      "maskImage": "assets/questions/sports/lalakers/mask.png",
+      "thumbnail": "assets/questions/sports/lalakers/thumbnail.webp",
+      "answerColor": "#572485",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "usa",
+      "categoryId": "sports",
+      "title": "usa",
+      "originalImage": "assets/questions/sports/usa/original.webp",
+      "maskImage": "assets/questions/sports/usa/mask.png",
+      "thumbnail": "assets/questions/sports/usa/thumbnail.webp",
+      "answerColor": "#C72040",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bayern",
+      "categoryId": "sports",
+      "title": "bayern",
+      "originalImage": "assets/questions/sports/bayern/original.webp",
+      "maskImage": "assets/questions/sports/bayern/mask.png",
+      "thumbnail": "assets/questions/sports/bayern/thumbnail.webp",
+      "answerColor": "#ED1C24",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "riverplate",
+      "categoryId": "sports",
+      "title": "riverplate",
+      "originalImage": "assets/questions/sports/riverplate/original.webp",
+      "maskImage": "assets/questions/sports/riverplate/mask.png",
+      "thumbnail": "assets/questions/sports/riverplate/thumbnail.webp",
+      "answerColor": "#ED1C24",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "juventus",
+      "categoryId": "sports",
+      "title": "juventus",
+      "originalImage": "assets/questions/sports/juventus/original.webp",
+      "maskImage": "assets/questions/sports/juventus/mask.png",
+      "thumbnail": "assets/questions/sports/juventus/thumbnail.webp",
+      "answerColor": "#FEBE11",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "arsenal",
+      "categoryId": "sports",
+      "title": "arenal",
+      "originalImage": "assets/questions/sports/arsenal/original.webp",
+      "maskImage": "assets/questions/sports/arsenal/mask.png",
+      "thumbnail": "assets/questions/sports/arsenal/thumbnail.webp",
+      "answerColor": "#DD1638",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "brazilfc",
+      "categoryId": "sports",
+      "title": "brazilfc",
+      "originalImage": "assets/questions/sports/brazilfc/original.webp",
+      "maskImage": "assets/questions/sports/brazilfc/mask.png",
+      "thumbnail": "assets/questions/sports/brazilfc/thumbnail.webp",
+      "answerColor": "#02A752",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "flamango",
+      "categoryId": "sports",
+      "title": "falmango",
+      "originalImage": "assets/questions/sports/flamango/original.webp",
+      "maskImage": "assets/questions/sports/flamango/mask.png",
+      "thumbnail": "assets/questions/sports/flamango/thumbnail.webp",
+      "answerColor": "#ED1C24",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "liverpool",
+      "categoryId": "sports",
+      "title": "liverpool",
+      "originalImage": "assets/questions/sports/liverpool/original.webp",
+      "maskImage": "assets/questions/sports/liverpool/mask.png",
+      "thumbnail": "assets/questions/sports/liverpool/thumbnail.webp",
+      "answerColor": "#0D9D88",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "gala",
+      "categoryId": "sports",
+      "title": "gala",
+      "originalImage": "assets/questions/sports/gala/original.webp",
+      "maskImage": "assets/questions/sports/gala/mask.png",
+      "thumbnail": "assets/questions/sports/gala/thumbnail.webp",
+      "answerColor": "#A80632",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mancity",
+      "categoryId": "sports",
+      "title": "mancity",
+      "originalImage": "assets/questions/sports/mancity/original.webp",
+      "maskImage": "assets/questions/sports/mancity/mask.png",
+      "thumbnail": "assets/questions/sports/mancity/thumbnail.webp",
+      "answerColor": "#F4B33A",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "chelsea",
+      "categoryId": "sports",
+      "title": "chelsea",
+      "originalImage": "assets/questions/sports/chelsea/original.webp",
+      "maskImage": "assets/questions/sports/chelsea/mask.png",
+      "thumbnail": "assets/questions/sports/chelsea/thumbnail.webp",
+      "answerColor": "#0E358C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "paris",
+      "categoryId": "sports",
+      "title": "paris",
+      "originalImage": "assets/questions/sports/paris/original.webp",
+      "maskImage": "assets/questions/sports/paris/mask.png",
+      "thumbnail": "assets/questions/sports/paris/thumbnail.webp",
+      "answerColor": "#285582",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "realmadrid",
+      "categoryId": "sports",
+      "title": "realmadrid",
+      "originalImage": "assets/questions/sports/realmadrid/original.webp",
+      "maskImage": "assets/questions/sports/realmadrid/mask.png",
+      "thumbnail": "assets/questions/sports/realmadrid/thumbnail.webp",
+      "answerColor": "#F6C52D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "fcb",
+      "categoryId": "sports",
+      "title": "fcb",
+      "originalImage": "assets/questions/sports/fcb/original.webp",
+      "maskImage": "assets/questions/sports/fcb/mask.png",
+      "thumbnail": "assets/questions/sports/fcb/thumbnail.webp",
+      "answerColor": "#A21F4B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "fcb1",
+      "categoryId": "sports",
+      "title": "fcb1",
+      "originalImage": "assets/questions/sports/fcb1/original.webp",
+      "maskImage": "assets/questions/sports/fcb1/mask.png",
+      "thumbnail": "assets/questions/sports/fcb1/thumbnail.webp",
+      "answerColor": "#A21F4B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
     }
   ]
 }

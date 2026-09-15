@@ -5,6 +5,8 @@
  * 정답/문제 데이터는 절대 포함하지 않는다.
  */
 
+import { t } from "./i18n.js";
+
 function isDeployedUrl() {
   const { hostname, protocol } = location;
   if (protocol === "file:") return false;
@@ -12,8 +14,8 @@ function isDeployedUrl() {
   return true;
 }
 
-export function buildShareText({ categoryName, totalScore }) {
-  const base = `Color Guesser ${categoryName} 카테고리에서 ${totalScore}점을 기록했어요! 당신의 색감은 몇 점인가요?`;
+export function buildShareText({ categoryName, averageScore, roundCount }) {
+  const base = t("share.text", { categoryName, roundCount, averageScore: averageScore.toFixed(1) });
   return isDeployedUrl() ? `${base}\n${location.href}` : base;
 }
 

@@ -109,6 +109,15 @@
   height: 20px;
 }
 
+/* 언어 전환 버튼: icon-btn과 같은 높이/스타일이지만 텍스트 길이에 맞춰 너비가 늘어난다 */
+.lang-btn {
+  width: auto;
+  padding: 0 var(--space-3);
+  font-size: 13px;
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+}
+
 /* NFL.dc.html 헤더 스타일의 뒤로가기 링크 (아이콘 버튼 대신 사용) */
 .back-link {
   display: inline-flex;

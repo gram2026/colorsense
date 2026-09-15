@@ -7,6 +7,7 @@
 
 import { hslToHex, hexToHsl } from "./color-convert.js";
 import { iconSvg } from "../utils/dom.js";
+import { t } from "../i18n.js";
 
 const SV_RES = 64; // 채도/명도 패널 내부 렌더링 해상도 (Hue가 바뀔 때만 다시 그림)
 
@@ -25,15 +26,19 @@ export class ColorPicker {
 
   _buildDom() {
     this.root.innerHTML = `
-      <div class="sv-panel" tabindex="0" role="slider" aria-label="채도와 명도 선택"
+      <div class="sv-panel" tabindex="0" role="slider" aria-label="${t("colorPicker.svAria")}"
            aria-valuemin="0" aria-valuemax="100">
         <canvas></canvas>
         <div class="sv-panel__thumb"></div>
       </div>
-      <div class="hue-slider" tabindex="0" role="slider" aria-label="색상(Hue) 선택"
+      <div class="hue-slider" tabindex="0" role="slider" aria-label="${t("colorPicker.hueAria")}"
            aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="360"
            style="background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);">
         <div class="hue-slider__thumb"></div>
+      </div>
+      <div class="lightness-slider" tabindex="0" role="slider" aria-label="${t("colorPicker.lightnessAria")}"
+           aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100">
+        <div class="lightness-slider__thumb"></div>
       </div>
       <div class="color-picker__preview">
         <div class="color-swatch color-swatch--lg" aria-hidden="true"></div>
@@ -42,8 +47,8 @@ export class ColorPicker {
           <div class="color-picker__hex"></div>
         </div>
         <div class="spacer"></div>
-        <button type="button" class="btn btn--primary submit-color-btn" aria-label="색상 제출">
-          제출 ${iconSvg("check", 18)}
+        <button type="button" class="btn btn--primary submit-color-btn" aria-label="${t("colorPicker.submitAria")}">
+          ${t("colorPicker.submit")} ${iconSvg("check", 18)}
         </button>
       </div>
     `;
@@ -54,6 +59,8 @@ export class ColorPicker {
     this.svThumb = this.root.querySelector(".sv-panel__thumb");
     this.hueSlider = this.root.querySelector(".hue-slider");
     this.hueThumb = this.root.querySelector(".hue-slider__thumb");
+    this.lightnessSlider = this.root.querySelector(".lightness-slider");
+    this.lightnessThumb = this.root.querySelector(".lightness-slider__thumb");
     this.swatchEl = this.root.querySelector(".color-swatch--lg");
     this.hexEl = this.root.querySelector(".color-picker__hex");
     this.submitBtn = this.root.querySelector(".submit-color-btn");
@@ -78,6 +85,11 @@ export class ColorPicker {
       this._setHsl({ h });
     });
 
+    this._bindDrag(this.lightnessSlider, (x, _y, rect) => {
+      const l = clamp01(x / rect.width) * 100;
+      this._setHsl({ l });
+    });
+
     this.svPanel.addEventListener("keydown", (e) => {
       const step = e.shiftKey ? 10 : 3;
       if (e.key === "ArrowRight") this._setHsl({ s: clamp(this.hsl.s + step, 0, 100) });
@@ -93,6 +105,15 @@ export class ColorPicker {
       if (e.key === "ArrowRight" || e.key === "ArrowUp") this._setHsl({ h: (this.hsl.h + step) % 360 });
       else if (e.key === "ArrowLeft" || e.key === "ArrowDown")
         this._setHsl({ h: (this.hsl.h - step + 360) % 360 });
+      else return;
+      e.preventDefault();
+    });
+
+    this.lightnessSlider.addEventListener("keydown", (e) => {
+      const step = e.shiftKey ? 20 : 5;
+      if (e.key === "ArrowRight" || e.key === "ArrowUp") this._setHsl({ l: clamp(this.hsl.l + step, 0, 100) });
+      else if (e.key === "ArrowLeft" || e.key === "ArrowDown")
+        this._setHsl({ l: clamp(this.hsl.l - step, 0, 100) });
       else return;
       e.preventDefault();
     });
@@ -179,10 +200,20 @@ export class ColorPicker {
     this.svThumb.style.left = `${s}%`;
     this.svThumb.style.top = `${100 - l}%`;
     this.hueThumb.style.left = `${(h / 360) * 100}%`;
+    this.lightnessThumb.style.left = `${l}%`;
+    this.lightnessSlider.style.background = `linear-gradient(to right, #000000, ${hslToHex({
+      h,
+      s,
+      l: 50,
+    })}, #ffffff)`;
 
     this.svPanel.setAttribute("aria-valuenow", Math.round(s));
-    this.svPanel.setAttribute("aria-valuetext", `채도 ${Math.round(s)}, 명도 ${Math.round(l)}`);
+    this.svPanel.setAttribute(
+      "aria-valuetext",
+      t("colorPicker.svValueText", { s: Math.round(s), l: Math.round(l) })
+    );
     this.hueSlider.setAttribute("aria-valuenow", Math.round(h));
+    this.lightnessSlider.setAttribute("aria-valuenow", Math.round(l));
   }
 
   _updatePreview() {

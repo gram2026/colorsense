@@ -21,6 +21,63 @@
         "createdAt": "2026-08-02",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "malyisia",
+      "categoryId": "country",
+      "title": "malyisia",
+      "originalImage": "assets/questions/country/malyisia/original.webp",
+      "maskImage": "assets/questions/country/malyisia/mask.png",
+      "thumbnail": "assets/questions/country/malyisia/thumbnail.webp",
+      "answerColor": "#2E2B71",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "brazil",
+      "categoryId": "country",
+      "title": "brazil",
+      "originalImage": "assets/questions/country/brazil/original.webp",
+      "maskImage": "assets/questions/country/brazil/mask.png",
+      "thumbnail": "assets/questions/country/brazil/thumbnail.webp",
+      "answerColor": "#2F3292",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "turkey",
+      "categoryId": "country",
+      "title": "turkey",
+      "originalImage": "assets/questions/country/turkey/original.webp",
+      "maskImage": "assets/questions/country/turkey/mask.png",
+      "thumbnail": "assets/questions/country/turkey/thumbnail.webp",
+      "answerColor": "#ED1C24",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
     }
   ]
 }

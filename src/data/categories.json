@@ -4,7 +4,9 @@
     {
       "id": "brand-logo",
       "name": "기업로고",
+      "nameEn": "Brand Logos",
       "description": "유명 기업 로고의 시그니처 컬러를 맞혀보세요.",
+      "descriptionEn": "Guess the signature color of famous brand logos.",
       "thumbnail": "assets/categories/brand-logo/cover.png",
       "heroImage": "assets/categories/brand-logo/hero.png",
       "questionFile": "src/data/questions/brand-logo.json",
@@ -14,7 +16,9 @@
     {
       "id": "sports",
       "name": "스포츠",
+      "nameEn": "Sports",
       "description": "스포츠 팀과 선수를 상징하는 색을 맞혀보세요.",
+      "descriptionEn": "Guess the colors that represent sports teams and athletes.",
       "thumbnail": "assets/categories/sports/cover.png",
       "heroImage": "assets/categories/sports/hero.png",
       "questionFile": "src/data/questions/sports.json",
@@ -24,7 +28,9 @@
     {
       "id": "country",
       "name": "국가",
+      "nameEn": "Countries",
       "description": "국기와 국가를 상징하는 색을 맞혀보세요.",
+      "descriptionEn": "Guess the colors that represent flags and countries.",
       "thumbnail": "assets/categories/country/cover.png",
       "heroImage": "assets/categories/country/hero.png",
       "questionFile": "src/data/questions/country.json",
@@ -34,7 +40,9 @@
     {
       "id": "animation",
       "name": "애니메이션",
+      "nameEn": "Animation",
       "description": "애니메이션 캐릭터의 시그니처 컬러를 맞혀보세요.",
+      "descriptionEn": "Guess the signature colors of animated characters.",
       "thumbnail": "assets/categories/animation/cover.png",
       "heroImage": "assets/categories/animation/hero.png",
       "questionFile": "src/data/questions/animation.json",
@@ -44,7 +52,9 @@
     {
       "id": "meme",
       "name": "밈",
+      "nameEn": "Memes",
       "description": "인터넷 밈 속 색을 맞혀보세요.",
+      "descriptionEn": "Guess the colors found in internet memes.",
       "thumbnail": "assets/categories/meme/cover.png",
       "heroImage": "assets/categories/meme/hero.png",
       "questionFile": "src/data/questions/meme.json",
@@ -54,7 +64,9 @@
     {
       "id": "dev1",
       "name": "개발중",
+      "nameEn": "Coming Soon",
       "description": "새로운 카테고리를 준비하고 있어요.",
+      "descriptionEn": "A new category is on the way.",
       "thumbnail": "assets/categories/dev1/cover.png",
       "heroImage": "assets/categories/dev1/hero.png",
       "questionFile": "src/data/questions/dev1.json",
@@ -65,7 +77,9 @@
     {
       "id": "dev2",
       "name": "개발중",
+      "nameEn": "Coming Soon",
       "description": "새로운 카테고리를 준비하고 있어요.",
+      "descriptionEn": "A new category is on the way.",
       "thumbnail": "assets/categories/dev2/cover.png",
       "heroImage": "assets/categories/dev2/hero.png",
       "questionFile": "src/data/questions/dev2.json",

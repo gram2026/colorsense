@@ -1,7 +1,7 @@
 /** 메인 화면 (colorguesserdesign-referencemain-reference.html 레이아웃) */
 
-import { qs, iconSvg, formatNumber } from "../utils/dom.js";
-import { loadCategoriesWithMeta, loadConfig } from "../data-loader.js";
+import { qs, iconSvg, formatScore } from "../utils/dom.js";
+import { loadCategoriesWithMeta, loadConfig, getCategoryName } from "../data-loader.js";
 import {
   getOverallBestScore,
   getSoundEnabled,
@@ -12,6 +12,7 @@ import {
 import { setState, resetGame } from "../state.js";
 import { navigate } from "../router.js";
 import { showToast } from "../toast.js";
+import { t, getLang, setLang } from "../i18n.js";
 
 let onMouseMove = null;
 
@@ -22,15 +23,18 @@ export function mount(container) {
 
   root.innerHTML = `
     <div class="home-topbar">
-      <button type="button" class="topbar-brand" data-action="home" aria-label="홈으로">
+      <button type="button" class="topbar-brand" data-action="home" aria-label="${t("nav.home")}">
         <span class="logo-mark" aria-hidden="true"></span>
         <span class="topbar-brand__name">ColorGuesser</span>
       </button>
       <div class="row" style="gap: var(--space-2)">
+        <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">${
+          getLang() === "ko" ? "EN" : "한국어"
+        }</button>
         <button type="button" class="icon-btn" data-action="sound" aria-label="${
-          soundOn ? "소리 끄기" : "소리 켜기"
+          soundOn ? t("nav.sound.on") : t("nav.sound.off")
         }">${iconSvg(soundOn ? "soundOn" : "soundOff")}</button>
-        <button type="button" class="icon-btn" data-action="settings" aria-label="설정 열기">${iconSvg(
+        <button type="button" class="icon-btn" data-action="settings" aria-label="${t("nav.settings")}">${iconSvg(
           "settings"
         )}</button>
       </div>
@@ -39,9 +43,9 @@ export function mount(container) {
     <section class="home-hero">
       <div class="home-hero__content">
         <h1 class="home-logo">ColorGuesser</h1>
-        <p class="home-hero__meta">색을 맞혀보세요 · 최고 기록 <strong>${formatNumber(bestScore)}점</strong></p>
-        <button type="button" class="btn btn--play" data-action="play" aria-label="게임 시작">
-          ${iconSvg("play", 18)}<span>PLAY</span>
+        <p class="home-hero__meta">${t("home.tagline", { score: formatScore(bestScore) })}</p>
+        <button type="button" class="btn btn--play" data-action="play" aria-label="${t("categoryDetail.startAria")}">
+          ${iconSvg("play", 18)}<span>${t("home.play")}</span>
         </button>
       </div>
       <div class="home-hero__visual" aria-hidden="true">
@@ -62,16 +66,16 @@ export function mount(container) {
     <hr class="home-divider" />
 
     <section class="home-categories-section" data-role="categories-section">
-      <h2 class="home-categories-section__title">카테고리</h2>
+      <h2 class="home-categories-section__title">${t("home.categoriesTitle")}</h2>
       <div class="grid-categories" data-role="category-list">
-        <div class="spinner" role="status" aria-label="불러오는 중"></div>
+        <div class="spinner" role="status" aria-label="${t("game.loading")}"></div>
       </div>
     </section>
 
     <hr class="home-divider" />
 
     <footer class="home-footer">
-      <span>© ${new Date().getFullYear()} ColorGuesser</span>
+      <span>${t("home.footer", { year: new Date().getFullYear() })}</span>
     </footer>
 
     <div class="overlay" data-role="tutorial-overlay" hidden>
@@ -80,26 +84,30 @@ export function mount(container) {
         <p data-role="tutorial-desc"></p>
         <div class="tutorial-card__step-dots" data-role="tutorial-dots"></div>
         <div class="stack" style="margin-top: var(--space-5)">
-          <button type="button" class="btn btn--primary btn--block" data-role="tutorial-next">다음</button>
+          <button type="button" class="btn btn--primary btn--block" data-role="tutorial-next">${t("tutorial.next")}</button>
         </div>
       </div>
     </div>
 
     <div class="overlay" data-role="settings-overlay" hidden>
       <div class="tutorial-card">
-        <h2>설정</h2>
+        <h2>${t("settings.title")}</h2>
         <div class="row" style="justify-content: center; margin-top: var(--space-4)">
-          <span>소리</span>
+          <span>${t("settings.sound")}</span>
           <button type="button" class="btn btn--secondary" data-role="settings-sound-toggle"></button>
         </div>
         <div class="stack" style="margin-top: var(--space-5)">
-          <button type="button" class="btn btn--ghost" data-role="settings-close">닫기</button>
+          <button type="button" class="btn btn--ghost" data-role="settings-close">${t("settings.close")}</button>
         </div>
       </div>
     </div>
   `;
 
   root.querySelector('[data-action="home"]').addEventListener("click", () => navigate("home"));
+
+  root.querySelector('[data-action="lang"]').addEventListener("click", () => {
+    setLang(getLang() === "ko" ? "en" : "ko");
+  });
 
   root.querySelector('[data-action="sound"]').addEventListener("click", () => {
     const next = !getSoundEnabled();
@@ -115,7 +123,7 @@ export function mount(container) {
   root.querySelector('[data-action="play"]').addEventListener("click", async () => {
     resetGame();
     const config = await loadConfig();
-    const steps = config.app?.tutorialSteps || [];
+    const steps = config.app?.tutorialSteps?.[getLang()] || [];
     if (!hasSeenTutorial() && steps.length > 0) {
       showTutorial(root, steps, () => scrollToCategories(root));
     } else {
@@ -165,7 +173,7 @@ async function loadHomeCategories(root) {
   try {
     const categories = await loadCategoriesWithMeta();
     if (categories.length === 0) {
-      listEl.innerHTML = `<p class="empty-state" style="padding: var(--space-2)">카테고리를 불러올 수 없어요</p>`;
+      listEl.innerHTML = `<p class="empty-state" style="padding: var(--space-2)">${t("home.categoriesLoadError")}</p>`;
       return;
     }
     listEl.innerHTML = categories.map((c) => renderCategoryCard(c)).join("");
@@ -175,7 +183,7 @@ async function loadHomeCategories(root) {
         const categoryId = card.dataset.categoryId;
         const category = categories.find((c) => c.id === categoryId);
         if (category.questionCount === 0) {
-          showToast("아직 준비 중인 카테고리예요");
+          showToast(t("category.toast.comingSoon"));
           return;
         }
         resetGame();
@@ -185,19 +193,20 @@ async function loadHomeCategories(root) {
     }
   } catch (err) {
     console.error("[home] 카테고리 로드 실패", err);
-    listEl.innerHTML = `<p class="empty-state" style="padding: var(--space-2)">카테고리를 불러올 수 없어요</p>`;
-    showToast("카테고리를 불러오지 못했어요");
+    listEl.innerHTML = `<p class="empty-state" style="padding: var(--space-2)">${t("home.categoriesLoadError")}</p>`;
+    showToast(t("home.categoriesLoadError"));
   }
 }
 
 function renderCategoryCard(category) {
   const empty = category.questionCount === 0;
+  const name = getCategoryName(category);
   return `
     <button type="button" class="category-card${empty ? " category-card--disabled" : ""}" data-category-id="${category.id}"
-      aria-label="${category.name}${empty ? ", 준비 중" : ""}">
-      <img class="category-card__thumb" src="${category.thumbnail}" alt="${category.name}" loading="lazy"
+      aria-label="${name}${empty ? ", " + t("category.badge.comingSoon") : ""}">
+      <img class="category-card__thumb" src="${category.thumbnail}" alt="${name}" loading="lazy"
            onerror="this.style.background='var(--bg-page-alt)'; this.removeAttribute('src');" />
-      ${empty ? `<span class="category-card__badge">준비 중</span>` : ""}
+      ${empty ? `<span class="category-card__badge">${t("category.badge.comingSoon")}</span>` : ""}
     </button>
   `;
 }
@@ -217,7 +226,7 @@ function showTutorial(root, steps, onDone) {
     dotsEl.innerHTML = steps
       .map((_, i) => `<span class="tutorial-card__dot${i === index ? " is-active" : ""}"></span>`)
       .join("");
-    nextBtn.textContent = index === steps.length - 1 ? "시작하기" : "다음";
+    nextBtn.textContent = index === steps.length - 1 ? t("tutorial.start") : t("tutorial.next");
   }
 
   nextBtn.onclick = () => {
@@ -241,7 +250,7 @@ function openSettings(root) {
   const closeBtn = root.querySelector('[data-role="settings-close"]');
 
   function renderToggle() {
-    toggleBtn.textContent = getSoundEnabled() ? "켜짐" : "꺼짐";
+    toggleBtn.textContent = getSoundEnabled() ? t("settings.on") : t("settings.off");
   }
 
   toggleBtn.onclick = () => {

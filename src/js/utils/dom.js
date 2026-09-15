@@ -30,6 +30,11 @@ export function formatNumber(n) {
   return Math.round(n).toLocaleString("ko-KR");
 }
 
+/** 100점 만점 점수를 소수점 첫째 자리까지 표시 (예: 87.3) */
+export function formatScore(n) {
+  return n.toFixed(1);
+}
+
 /**
  * 획일적인 라인 스타일 아이콘. 이모지를 주 아이콘으로 쓰지 않기 위해
  * 필요한 최소한의 아이콘만 인라인 SVG로 직접 그린다.

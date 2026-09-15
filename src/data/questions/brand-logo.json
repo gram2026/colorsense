@@ -21,6 +21,1241 @@
         "createdAt": "2026-08-02",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "fila",
+      "categoryId": "brand-logo",
+      "title": "flia",
+      "originalImage": "assets/questions/brand-logo/fila/original.webp",
+      "maskImage": "assets/questions/brand-logo/fila/mask.png",
+      "thumbnail": "assets/questions/brand-logo/fila/thumbnail.webp",
+      "answerColor": "#131F63",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "brawlstars",
+      "categoryId": "brand-logo",
+      "title": "brawlstars",
+      "originalImage": "assets/questions/brand-logo/brawlstars/original.webp",
+      "maskImage": "assets/questions/brand-logo/brawlstars/mask.png",
+      "thumbnail": "assets/questions/brand-logo/brawlstars/thumbnail.webp",
+      "answerColor": "#FDC435",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "jbl",
+      "categoryId": "brand-logo",
+      "title": "jbl",
+      "originalImage": "assets/questions/brand-logo/jbl/original.webp",
+      "maskImage": "assets/questions/brand-logo/jbl/mask.png",
+      "thumbnail": "assets/questions/brand-logo/jbl/thumbnail.webp",
+      "answerColor": "#F4793E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "pornhub",
+      "categoryId": "brand-logo",
+      "title": "pornhub",
+      "originalImage": "assets/questions/brand-logo/pornhub/original.webp",
+      "maskImage": "assets/questions/brand-logo/pornhub/mask.png",
+      "thumbnail": "assets/questions/brand-logo/pornhub/thumbnail.webp",
+      "answerColor": "#F8981E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "valorant",
+      "categoryId": "brand-logo",
+      "title": "valorant",
+      "originalImage": "assets/questions/brand-logo/valorant/original.webp",
+      "maskImage": "assets/questions/brand-logo/valorant/mask.png",
+      "thumbnail": "assets/questions/brand-logo/valorant/thumbnail.webp",
+      "answerColor": "#FF4655",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bitcoin",
+      "categoryId": "brand-logo",
+      "title": "bitcoin",
+      "originalImage": "assets/questions/brand-logo/bitcoin/original.webp",
+      "maskImage": "assets/questions/brand-logo/bitcoin/mask.png",
+      "thumbnail": "assets/questions/brand-logo/bitcoin/thumbnail.webp",
+      "answerColor": "#F7931A",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "python",
+      "categoryId": "brand-logo",
+      "title": "python",
+      "originalImage": "assets/questions/brand-logo/python/original.webp",
+      "maskImage": "assets/questions/brand-logo/python/mask.png",
+      "thumbnail": "assets/questions/brand-logo/python/thumbnail.webp",
+      "answerColor": "#3773A5",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "spotify",
+      "categoryId": "brand-logo",
+      "title": "spotify",
+      "originalImage": "assets/questions/brand-logo/spotify/original.webp",
+      "maskImage": "assets/questions/brand-logo/spotify/mask.png",
+      "thumbnail": "assets/questions/brand-logo/spotify/thumbnail.webp",
+      "answerColor": "#1ED761",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "nvidia",
+      "categoryId": "brand-logo",
+      "title": "nvidia",
+      "originalImage": "assets/questions/brand-logo/nvidia/original.webp",
+      "maskImage": "assets/questions/brand-logo/nvidia/mask.png",
+      "thumbnail": "assets/questions/brand-logo/nvidia/thumbnail.webp",
+      "answerColor": "#8DC63F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "excel",
+      "categoryId": "brand-logo",
+      "title": "excel",
+      "originalImage": "assets/questions/brand-logo/excel/original.webp",
+      "maskImage": "assets/questions/brand-logo/excel/mask.png",
+      "thumbnail": "assets/questions/brand-logo/excel/thumbnail.webp",
+      "answerColor": "#19754C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "xiaomi",
+      "categoryId": "brand-logo",
+      "title": "xiaomi",
+      "originalImage": "assets/questions/brand-logo/xiaomi/original.webp",
+      "maskImage": "assets/questions/brand-logo/xiaomi/mask.png",
+      "thumbnail": "assets/questions/brand-logo/xiaomi/thumbnail.webp",
+      "answerColor": "#FF4A00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "minecraft",
+      "categoryId": "brand-logo",
+      "title": "minecraft",
+      "originalImage": "assets/questions/brand-logo/minecraft/original.webp",
+      "maskImage": "assets/questions/brand-logo/minecraft/mask.png",
+      "thumbnail": "assets/questions/brand-logo/minecraft/thumbnail.webp",
+      "answerColor": "#6BAA48",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "pepsi",
+      "categoryId": "brand-logo",
+      "title": "pepsi",
+      "originalImage": "assets/questions/brand-logo/pepsi/original.webp",
+      "maskImage": "assets/questions/brand-logo/pepsi/mask.png",
+      "thumbnail": "assets/questions/brand-logo/pepsi/thumbnail.webp",
+      "answerColor": "#EB1D39",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "discord",
+      "categoryId": "brand-logo",
+      "title": "discord",
+      "originalImage": "assets/questions/brand-logo/discord/original.webp",
+      "maskImage": "assets/questions/brand-logo/discord/mask.png",
+      "thumbnail": "assets/questions/brand-logo/discord/thumbnail.webp",
+      "answerColor": "#7289DA",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "gmap",
+      "categoryId": "brand-logo",
+      "title": "gamp",
+      "originalImage": "assets/questions/brand-logo/gmap/original.webp",
+      "maskImage": "assets/questions/brand-logo/gmap/mask.png",
+      "thumbnail": "assets/questions/brand-logo/gmap/thumbnail.webp",
+      "answerColor": "#D3483C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "fedex",
+      "categoryId": "brand-logo",
+      "title": "fedex",
+      "originalImage": "assets/questions/brand-logo/fedex/original.webp",
+      "maskImage": "assets/questions/brand-logo/fedex/mask.png",
+      "thumbnail": "assets/questions/brand-logo/fedex/thumbnail.webp",
+      "answerColor": "#3E2F83",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "gmail",
+      "categoryId": "brand-logo",
+      "title": "gmail",
+      "originalImage": "assets/questions/brand-logo/gmail/original.webp",
+      "maskImage": "assets/questions/brand-logo/gmail/mask.png",
+      "thumbnail": "assets/questions/brand-logo/gmail/thumbnail.webp",
+      "answerColor": "#E03B2F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cocacola",
+      "categoryId": "brand-logo",
+      "title": "cocacola",
+      "originalImage": "assets/questions/brand-logo/cocacola/original.webp",
+      "maskImage": "assets/questions/brand-logo/cocacola/mask.png",
+      "thumbnail": "assets/questions/brand-logo/cocacola/thumbnail.webp",
+      "answerColor": "#E51E2A",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "landrover",
+      "categoryId": "brand-logo",
+      "title": "landrover",
+      "originalImage": "assets/questions/brand-logo/landrover/original.webp",
+      "maskImage": "assets/questions/brand-logo/landrover/mask.png",
+      "thumbnail": "assets/questions/brand-logo/landrover/thumbnail.webp",
+      "answerColor": "#014827",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "fone",
+      "categoryId": "brand-logo",
+      "title": "fone",
+      "originalImage": "assets/questions/brand-logo/fone/original.webp",
+      "maskImage": "assets/questions/brand-logo/fone/mask.png",
+      "thumbnail": "assets/questions/brand-logo/fone/thumbnail.webp",
+      "answerColor": "#EE2A26",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "seveneleven",
+      "categoryId": "brand-logo",
+      "title": "seveneleven",
+      "originalImage": "assets/questions/brand-logo/seveneleven/original.webp",
+      "maskImage": "assets/questions/brand-logo/seveneleven/mask.png",
+      "thumbnail": "assets/questions/brand-logo/seveneleven/thumbnail.webp",
+      "answerColor": "#FFFFFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "burgerking",
+      "categoryId": "brand-logo",
+      "title": "burgerking",
+      "originalImage": "assets/questions/brand-logo/burgerking/original.webp",
+      "maskImage": "assets/questions/brand-logo/burgerking/mask.png",
+      "thumbnail": "assets/questions/brand-logo/burgerking/thumbnail.webp",
+      "answerColor": "#FEBE10",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "volkswagen",
+      "categoryId": "brand-logo",
+      "title": "volkswagen",
+      "originalImage": "assets/questions/brand-logo/volkswagen/original.webp",
+      "maskImage": "assets/questions/brand-logo/volkswagen/mask.png",
+      "thumbnail": "assets/questions/brand-logo/volkswagen/thumbnail.webp",
+      "answerColor": "#1451A4",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "firelli",
+      "categoryId": "brand-logo",
+      "title": "firelli",
+      "originalImage": "assets/questions/brand-logo/firelli/original.webp",
+      "maskImage": "assets/questions/brand-logo/firelli/mask.png",
+      "thumbnail": "assets/questions/brand-logo/firelli/thumbnail.webp",
+      "answerColor": "#FFF200",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "nintendo",
+      "categoryId": "brand-logo",
+      "title": "nintendo",
+      "originalImage": "assets/questions/brand-logo/nintendo/original.webp",
+      "maskImage": "assets/questions/brand-logo/nintendo/mask.png",
+      "thumbnail": "assets/questions/brand-logo/nintendo/thumbnail.webp",
+      "answerColor": "#ED1C2F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "photoshop",
+      "categoryId": "brand-logo",
+      "title": "photoshop",
+      "originalImage": "assets/questions/brand-logo/photoshop/original.webp",
+      "maskImage": "assets/questions/brand-logo/photoshop/mask.png",
+      "thumbnail": "assets/questions/brand-logo/photoshop/thumbnail.webp",
+      "answerColor": "#1A1A33",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "lego",
+      "categoryId": "brand-logo",
+      "title": "lego",
+      "originalImage": "assets/questions/brand-logo/lego/original.webp",
+      "maskImage": "assets/questions/brand-logo/lego/mask.png",
+      "thumbnail": "assets/questions/brand-logo/lego/thumbnail.webp",
+      "answerColor": "#FEFD00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "allianz",
+      "categoryId": "brand-logo",
+      "title": "allianz",
+      "originalImage": "assets/questions/brand-logo/allianz/original.webp",
+      "maskImage": "assets/questions/brand-logo/allianz/mask.png",
+      "thumbnail": "assets/questions/brand-logo/allianz/thumbnail.webp",
+      "answerColor": "#01529B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "unicef",
+      "categoryId": "brand-logo",
+      "title": "unicef",
+      "originalImage": "assets/questions/brand-logo/unicef/original.webp",
+      "maskImage": "assets/questions/brand-logo/unicef/mask.png",
+      "thumbnail": "assets/questions/brand-logo/unicef/thumbnail.webp",
+      "answerColor": "#0EB0EF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "renault",
+      "categoryId": "brand-logo",
+      "title": "renault",
+      "originalImage": "assets/questions/brand-logo/renault/original.webp",
+      "maskImage": "assets/questions/brand-logo/renault/mask.png",
+      "thumbnail": "assets/questions/brand-logo/renault/thumbnail.webp",
+      "answerColor": "#D2D1CE",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "3m",
+      "categoryId": "brand-logo",
+      "title": "3m",
+      "originalImage": "assets/questions/brand-logo/3m/original.webp",
+      "maskImage": "assets/questions/brand-logo/3m/mask.png",
+      "thumbnail": "assets/questions/brand-logo/3m/thumbnail.webp",
+      "answerColor": "#E92327",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "marvel",
+      "categoryId": "brand-logo",
+      "title": "marvel",
+      "originalImage": "assets/questions/brand-logo/marvel/original.webp",
+      "maskImage": "assets/questions/brand-logo/marvel/mask.png",
+      "thumbnail": "assets/questions/brand-logo/marvel/thumbnail.webp",
+      "answerColor": "#ED1B24",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mcsoft",
+      "categoryId": "brand-logo",
+      "title": "mcsoft",
+      "originalImage": "assets/questions/brand-logo/mcsoft/original.webp",
+      "maskImage": "assets/questions/brand-logo/mcsoft/mask.png",
+      "thumbnail": "assets/questions/brand-logo/mcsoft/thumbnail.webp",
+      "answerColor": "#FFB903",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "volvo",
+      "categoryId": "brand-logo",
+      "title": "volvo",
+      "originalImage": "assets/questions/brand-logo/volvo/original.webp",
+      "maskImage": "assets/questions/brand-logo/volvo/mask.png",
+      "thumbnail": "assets/questions/brand-logo/volvo/thumbnail.webp",
+      "answerColor": "#676865",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "canon",
+      "categoryId": "brand-logo",
+      "title": "canon",
+      "originalImage": "assets/questions/brand-logo/canon/original.webp",
+      "maskImage": "assets/questions/brand-logo/canon/mask.png",
+      "thumbnail": "assets/questions/brand-logo/canon/thumbnail.webp",
+      "answerColor": "#ED1D24",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mcdonald",
+      "categoryId": "brand-logo",
+      "title": "mcdonald",
+      "originalImage": "assets/questions/brand-logo/mcdonald/original.webp",
+      "maskImage": "assets/questions/brand-logo/mcdonald/mask.png",
+      "thumbnail": "assets/questions/brand-logo/mcdonald/thumbnail.webp",
+      "answerColor": "#F8AF26",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "line",
+      "categoryId": "brand-logo",
+      "title": "line",
+      "originalImage": "assets/questions/brand-logo/line/original.webp",
+      "maskImage": "assets/questions/brand-logo/line/mask.png",
+      "thumbnail": "assets/questions/brand-logo/line/thumbnail.webp",
+      "answerColor": "#3ACE01",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "shell",
+      "categoryId": "brand-logo",
+      "title": "shell",
+      "originalImage": "assets/questions/brand-logo/shell/original.webp",
+      "maskImage": "assets/questions/brand-logo/shell/mask.png",
+      "thumbnail": "assets/questions/brand-logo/shell/thumbnail.webp",
+      "answerColor": "#FFF200",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "lacoste",
+      "categoryId": "brand-logo",
+      "title": "lacoste",
+      "originalImage": "assets/questions/brand-logo/lacoste/original.webp",
+      "maskImage": "assets/questions/brand-logo/lacoste/mask.png",
+      "thumbnail": "assets/questions/brand-logo/lacoste/thumbnail.webp",
+      "answerColor": "#02A652",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "hp",
+      "categoryId": "brand-logo",
+      "title": "hp",
+      "originalImage": "assets/questions/brand-logo/hp/original.webp",
+      "maskImage": "assets/questions/brand-logo/hp/mask.png",
+      "thumbnail": "assets/questions/brand-logo/hp/thumbnail.webp",
+      "answerColor": "#0DA1DC",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "hyundai",
+      "categoryId": "brand-logo",
+      "title": "hyundai",
+      "originalImage": "assets/questions/brand-logo/hyundai/original.webp",
+      "maskImage": "assets/questions/brand-logo/hyundai/mask.png",
+      "thumbnail": "assets/questions/brand-logo/hyundai/thumbnail.webp",
+      "answerColor": "#0271AF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "nasa",
+      "categoryId": "brand-logo",
+      "title": "nasa",
+      "originalImage": "assets/questions/brand-logo/nasa/original.webp",
+      "maskImage": "assets/questions/brand-logo/nasa/mask.png",
+      "thumbnail": "assets/questions/brand-logo/nasa/thumbnail.webp",
+      "answerColor": "#2E3192",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "telegram",
+      "categoryId": "brand-logo",
+      "title": "telegram",
+      "originalImage": "assets/questions/brand-logo/telegram/original.webp",
+      "maskImage": "assets/questions/brand-logo/telegram/mask.png",
+      "thumbnail": "assets/questions/brand-logo/telegram/thumbnail.webp",
+      "answerColor": "#29B3E3",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "twitter",
+      "categoryId": "brand-logo",
+      "title": "twitter",
+      "originalImage": "assets/questions/brand-logo/twitter/original.webp",
+      "maskImage": "assets/questions/brand-logo/twitter/mask.png",
+      "thumbnail": "assets/questions/brand-logo/twitter/thumbnail.webp",
+      "answerColor": "#28AAE1",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "toyota",
+      "categoryId": "brand-logo",
+      "title": "toyota",
+      "originalImage": "assets/questions/brand-logo/toyota/original.webp",
+      "maskImage": "assets/questions/brand-logo/toyota/mask.png",
+      "thumbnail": "assets/questions/brand-logo/toyota/thumbnail.webp",
+      "answerColor": "#E2E5E8",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "lg",
+      "categoryId": "brand-logo",
+      "title": "lg",
+      "originalImage": "assets/questions/brand-logo/lg/original.webp",
+      "maskImage": "assets/questions/brand-logo/lg/mask.png",
+      "thumbnail": "assets/questions/brand-logo/lg/thumbnail.webp",
+      "answerColor": "#C40552",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "zoom",
+      "categoryId": "brand-logo",
+      "title": "zoom",
+      "originalImage": "assets/questions/brand-logo/zoom/original.webp",
+      "maskImage": "assets/questions/brand-logo/zoom/mask.png",
+      "thumbnail": "assets/questions/brand-logo/zoom/thumbnail.webp",
+      "answerColor": "#4A8CFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "ferarri",
+      "categoryId": "brand-logo",
+      "title": "ferarri",
+      "originalImage": "assets/questions/brand-logo/ferarri/original.webp",
+      "maskImage": "assets/questions/brand-logo/ferarri/mask.png",
+      "thumbnail": "assets/questions/brand-logo/ferarri/thumbnail.webp",
+      "answerColor": "#049947",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "starbuck",
+      "categoryId": "brand-logo",
+      "title": "starbuck",
+      "originalImage": "assets/questions/brand-logo/starbuck/original.webp",
+      "maskImage": "assets/questions/brand-logo/starbuck/mask.png",
+      "thumbnail": "assets/questions/brand-logo/starbuck/thumbnail.webp",
+      "answerColor": "#017755",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "youtube",
+      "categoryId": "brand-logo",
+      "title": "youtube",
+      "originalImage": "assets/questions/brand-logo/youtube/original.webp",
+      "maskImage": "assets/questions/brand-logo/youtube/mask.png",
+      "thumbnail": "assets/questions/brand-logo/youtube/thumbnail.webp",
+      "answerColor": "#D51D29",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "shopee",
+      "categoryId": "brand-logo",
+      "title": "shopee",
+      "originalImage": "assets/questions/brand-logo/shopee/original.webp",
+      "maskImage": "assets/questions/brand-logo/shopee/mask.png",
+      "thumbnail": "assets/questions/brand-logo/shopee/thumbnail.webp",
+      "answerColor": "#EA501F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "porshe",
+      "categoryId": "brand-logo",
+      "title": "porshe",
+      "originalImage": "assets/questions/brand-logo/porshe/original.webp",
+      "maskImage": "assets/questions/brand-logo/porshe/mask.png",
+      "thumbnail": "assets/questions/brand-logo/porshe/thumbnail.webp",
+      "answerColor": "#F7D67B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "ford",
+      "categoryId": "brand-logo",
+      "title": "ford",
+      "originalImage": "assets/questions/brand-logo/ford/original.webp",
+      "maskImage": "assets/questions/brand-logo/ford/mask.png",
+      "thumbnail": "assets/questions/brand-logo/ford/thumbnail.webp",
+      "answerColor": "#2C5F9D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bmw",
+      "categoryId": "brand-logo",
+      "title": "bmw",
+      "originalImage": "assets/questions/brand-logo/bmw/original.webp",
+      "maskImage": "assets/questions/brand-logo/bmw/mask.png",
+      "thumbnail": "assets/questions/brand-logo/bmw/thumbnail.webp",
+      "answerColor": "#000000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "monster",
+      "categoryId": "brand-logo",
+      "title": "monster",
+      "originalImage": "assets/questions/brand-logo/monster/original.webp",
+      "maskImage": "assets/questions/brand-logo/monster/mask.png",
+      "thumbnail": "assets/questions/brand-logo/monster/thumbnail.webp",
+      "answerColor": "#ADC80B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "snapchat",
+      "categoryId": "brand-logo",
+      "title": "snapchat",
+      "originalImage": "assets/questions/brand-logo/snapchat/original.webp",
+      "maskImage": "assets/questions/brand-logo/snapchat/mask.png",
+      "thumbnail": "assets/questions/brand-logo/snapchat/thumbnail.webp",
+      "answerColor": "#FFFC00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "tiktok",
+      "categoryId": "brand-logo",
+      "title": "tiktok",
+      "originalImage": "assets/questions/brand-logo/tiktok/original.webp",
+      "maskImage": "assets/questions/brand-logo/tiktok/mask.png",
+      "thumbnail": "assets/questions/brand-logo/tiktok/thumbnail.webp",
+      "answerColor": "#1BF7EF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "suzuki",
+      "categoryId": "brand-logo",
+      "title": "suzuki",
+      "originalImage": "assets/questions/brand-logo/suzuki/original.webp",
+      "maskImage": "assets/questions/brand-logo/suzuki/mask.png",
+      "thumbnail": "assets/questions/brand-logo/suzuki/thumbnail.webp",
+      "answerColor": "#025CD0",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "samsung",
+      "categoryId": "brand-logo",
+      "title": "samsung",
+      "originalImage": "assets/questions/brand-logo/samsung/original.webp",
+      "maskImage": "assets/questions/brand-logo/samsung/mask.png",
+      "thumbnail": "assets/questions/brand-logo/samsung/thumbnail.webp",
+      "answerColor": "#25279D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "whatsapp",
+      "categoryId": "brand-logo",
+      "title": "whatsapp",
+      "originalImage": "assets/questions/brand-logo/whatsapp/original.webp",
+      "maskImage": "assets/questions/brand-logo/whatsapp/mask.png",
+      "thumbnail": "assets/questions/brand-logo/whatsapp/thumbnail.webp",
+      "answerColor": "#47DA52",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "honda",
+      "categoryId": "brand-logo",
+      "title": "honda",
+      "originalImage": "assets/questions/brand-logo/honda/original.webp",
+      "maskImage": "assets/questions/brand-logo/honda/mask.png",
+      "thumbnail": "assets/questions/brand-logo/honda/thumbnail.webp",
+      "answerColor": "#FF0201",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "apple",
+      "categoryId": "brand-logo",
+      "title": "apple",
+      "originalImage": "assets/questions/brand-logo/apple/original.webp",
+      "maskImage": "assets/questions/brand-logo/apple/mask.png",
+      "thumbnail": "assets/questions/brand-logo/apple/thumbnail.webp",
+      "answerColor": "#A7A9AC",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "adidas",
+      "categoryId": "brand-logo",
+      "title": "adidas",
+      "originalImage": "assets/questions/brand-logo/adidas/original.webp",
+      "maskImage": "assets/questions/brand-logo/adidas/mask.png",
+      "thumbnail": "assets/questions/brand-logo/adidas/thumbnail.webp",
+      "answerColor": "#000000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "nike",
+      "categoryId": "brand-logo",
+      "title": "nike",
+      "originalImage": "assets/questions/brand-logo/nike/original.webp",
+      "maskImage": "assets/questions/brand-logo/nike/mask.png",
+      "thumbnail": "assets/questions/brand-logo/nike/thumbnail.webp",
+      "answerColor": "#000000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "instagram",
+      "categoryId": "brand-logo",
+      "title": "instagram",
+      "originalImage": "assets/questions/brand-logo/instagram/original.webp",
+      "maskImage": "assets/questions/brand-logo/instagram/mask.png",
+      "thumbnail": "assets/questions/brand-logo/instagram/thumbnail.webp",
+      "answerColor": "#E93B6A",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-08",
+        "makerVersion": "1.0.0"
+      }
     }
   ]
 }

@@ -40,6 +40,82 @@
         "createdAt": "2026-08-02",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "woo",
+      "categoryId": "meme",
+      "title": "woo",
+      "originalImage": "assets/questions/meme/woo/original.webp",
+      "maskImage": "assets/questions/meme/woo/mask.png",
+      "thumbnail": "assets/questions/meme/woo/thumbnail.webp",
+      "answerColor": "#707B94",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-03",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "sweat",
+      "categoryId": "meme",
+      "title": "sweat",
+      "originalImage": "assets/questions/meme/sweat/original.webp",
+      "maskImage": "assets/questions/meme/sweat/mask.png",
+      "thumbnail": "assets/questions/meme/sweat/thumbnail.webp",
+      "answerColor": "#4B2920",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-08-07",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "beaber",
+      "categoryId": "meme",
+      "title": "beaber",
+      "originalImage": "assets/questions/meme/beaber/original.webp",
+      "maskImage": "assets/questions/meme/beaber/mask.png",
+      "thumbnail": "assets/questions/meme/beaber/thumbnail.webp",
+      "answerColor": "#826B55",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-12",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "monkey",
+      "categoryId": "meme",
+      "title": "monkey",
+      "originalImage": "assets/questions/meme/monkey/original.webp",
+      "maskImage": "assets/questions/meme/monkey/mask.png",
+      "thumbnail": "assets/questions/meme/monkey/thumbnail.webp",
+      "answerColor": "#8D210C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-12",
+        "makerVersion": "1.0.0"
+      }
     }
   ]
 }
