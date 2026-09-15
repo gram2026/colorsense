@@ -185,7 +185,7 @@
       "answerColor": "#FFFFFF",
       "startColor": null,
       "renderMode": "preserve-lightness",
-      "enabled": true,
+      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {
@@ -1021,7 +1021,7 @@
       "answerColor": "#A21F4B",
       "startColor": null,
       "renderMode": "preserve-lightness",
-      "enabled": true,
+      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {

@@ -14,7 +14,7 @@
       "answerColor": "#CF9060",
       "startColor": null,
       "renderMode": "preserve-lightness",
-      "enabled": true,
+      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {
@@ -33,7 +33,7 @@
       "answerColor": "#FCEDBA",
       "startColor": null,
       "renderMode": "preserve-lightness",
-      "enabled": true,
+      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {
@@ -71,7 +71,7 @@
       "answerColor": "#6F0FD4",
       "startColor": null,
       "renderMode": "preserve-lightness",
-      "enabled": true,
+      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {
@@ -90,7 +90,7 @@
       "answerColor": "#6F0FD4",
       "startColor": null,
       "renderMode": "preserve-lightness",
-      "enabled": true,
+      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {
@@ -109,7 +109,7 @@
       "answerColor": "#32211C",
       "startColor": null,
       "renderMode": "preserve-lightness",
-      "enabled": true,
+      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {

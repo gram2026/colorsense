@@ -2,7 +2,7 @@
   "name": "color-guesser",
   "version": "1.0.0",
   "private": true,
-  "description": "색을 맞히는 캐주얼 웹 게임 (정적 사이트, 빌드 과정 없음)",
+  "description": "색을 맞히는 웹 게임과 문제 제작기 — Cloudflare Pages",
   "type": "module",
   "scripts": {
     "dev": "node scripts/start-local.js",
@@ -11,12 +11,20 @@
     "import-question": "node scripts/import-question.js",
     "test": "node scripts/test-color.js",
     "test:problem-maker": "node scripts/test-problem-maker.js",
-    "generate-sample-assets": "node scripts/generate-sample-assets.js"
+    "generate-sample-assets": "node scripts/generate-sample-assets.js",
+    "build": "npm run validate-data && node scripts/build.js",
+    "predev": "node scripts/prepare-vendor.js",
+    "prestart": "node scripts/prepare-vendor.js",
+    "deploy": "npm run build && wrangler deploy",
+    "preview:cloudflare": "npm run build && wrangler dev"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
     "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "wrangler": "4.132.0"
   }
 }

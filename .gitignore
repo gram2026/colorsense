@@ -1,16 +1,16 @@
-# OS/에디터 잡파일
+# Dependencies and generated files
+node_modules/
+dist/
+vendor/
+.wrangler/
+.claude/
+.vscode/
 .DS_Store
 Thumbs.db
-.vscode/
-.claude/
-
-# 로컬 wrangler 개발 캐시 (배포에는 불필요)
-.wrangler/
-node_modules/.mf/
-
-# 문제 가져오기(import-question) 실패 시 남는 백업 스냅샷
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.log
 src/data/questions/*.bak-*.json
-
-# node_modules는 보통 제외하지만, problem-maker/index.html이
-# ../node_modules/jszip/dist/jszip.min.js 를 직접 서빙해서 쓰기 때문에
-# 여기서는 예외적으로 커밋 대상에 포함한다 (제외하면 배포 후 ZIP 내보내기가 깨짐).

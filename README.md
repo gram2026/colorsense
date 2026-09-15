@@ -1,9 +1,8 @@
 # Color Guesser
 
 사진 속 색이 지워진(엉뚱한 색으로 바뀐) 영역을 직접 색을 조절해서 정답 색에 최대한
-가깝게 맞히는 캐주얼 웹 게임입니다. 빌드 과정이 없는 정적 웹사이트라서
-`index.html`과 로컬 서버만 있으면 바로 실행할 수 있고, Cloudflare Pages 같은 곳에
-그대로 배포할 수 있습니다.
+가깝게 맞히는 캐주얼 웹 게임입니다. 정적 웹 게임과 브라우저 문제 제작기로 구성됩니다. 로컬에서는 `npm run dev`,
+Cloudflare Pages 배포 시에는 `npm run build`로 필요한 파일만 `dist/`에 모읍니다.
 
 ## 목차
 
@@ -19,7 +18,7 @@
 10. [문제 가져오기 명령](#문제-가져오기-명령)
 11. [배포 방법](#배포-방법-cloudflare-pages)
 12. [자주 생기는 오류](#자주-생기는-오류)
-13. [문제 제작기 연결 예정 사항](#문제-제작기-연결-예정-사항)
+13. [문제 제작기 안내](#문제-제작기-연결-예정-사항)
 
 ---
 
@@ -49,7 +48,7 @@ C:\colorguesser
 ├─ assets/
 │  ├─ categories/<id>/cover.png   카테고리 대표 이미지
 │  └─ questions/<categoryId>/<questionId>/original.png, mask.png, thumbnail.png
-├─ problem-maker/                 (미래에 만들 문제 제작기와 공유할 스키마/규격만 존재)
+├─ problem-maker/                 브라우저 문제 제작기와 공유 스키마
 └─ scripts/
    ├─ start-local.js               의존성 없는 정적 서버
    ├─ validate-data.js              데이터 검증
@@ -71,8 +70,7 @@ cd /d C:\colorguesser
 npm install
 ```
 
-> 이 프로젝트는 외부 npm 패키지를 하나도 쓰지 않습니다. `npm install`은 사실상
-> 아무것도 설치하지 않지만, 습관대로 실행해도 안전합니다.
+> 문제 제작기의 ZIP 내보내기에 JSZip을 사용합니다. 재현 가능한 설치에는 `npm ci`를 사용하세요.
 
 ## VS Code에서 열기
 
@@ -121,7 +119,7 @@ set PORT=8080 && npm run dev
 
 4. 브라우저를 새로고침합니다.
 
-문제 제작기(추후 별도 앱)를 쓴다면 [문제 가져오기 명령](#문제-가져오기-명령)을 그대로
+문제 제작기(`/problem-maker/`)를 쓴다면 [문제 가져오기 명령](#문제-가져오기-명령)을 그대로
 쓰면 됩니다. **HTML/JS 코드는 전혀 수정할 필요가 없습니다.**
 
 ## 새 카테고리 추가하기
@@ -195,7 +193,7 @@ Hue/명도를 얼마나 어긋나게 할지의 범위입니다.
 
 ## 문제 가져오기 명령
 
-문제 제작기(추후 개발 예정)가 아래 형식으로 폴더를 내보내면:
+문제 제작기가 아래 형식으로 폴더를 내보내면:
 
 ```text
 export/
@@ -216,17 +214,70 @@ npm run import-question -- "C:\경로\export"
 JSON 파일에 문제를 자동으로 추가합니다. 중간에 실패하면 복사한 파일까지
 되돌리고 아무 것도 바꾸지 않습니다.
 
+## GitHub → Cloudflare Workers 자동 배포 (현재 연결)
+
+- 저장소: https://github.com/gram2026/colorsense
+- Cloudflare Worker: colorguesser
+- 운영 브랜치: main
+- Build command: npm run build
+- Deploy command: npx wrangler deploy
+- Root directory: /
+
+Cloudflare의 기존 Workers Git 연결을 사용합니다. 위 빌드 명령을 저장하면 이후 main에 push할 때
+자동으로 빌드·배포합니다. wrangler.jsonc가 dist 정적 파일과 worker/index.js API를 함께 배포합니다.
+Pages 프로젝트를 새로 만들 필요는 없습니다. 아래 Pages 안내는 선택 가능한 별도 배포 방법입니다.
+
+로컬 Cloudflare 실행: npm run preview:cloudflare
+수동 배포(Cloudflare 인증 필요): npm run deploy
+
+기존 실패 원인은 Build command에 실행 파일이 아닌 colorguesser가 들어가 있던 것입니다.
+공식 설정: https://developers.cloudflare.com/workers/static-assets/binding/
+
 ## 배포 방법 (Cloudflare Pages)
 
-이 프로젝트는 빌드 과정이 없으므로 배포 설정이 매우 단순합니다.
+GitHub 저장소: https://github.com/gram2026/colorsense
 
-1. Cloudflare Pages에서 새 프로젝트 생성 → 이 저장소(또는 폴더) 연결
-2. **Build command**: 비워둠 (없음)
-3. **Build output directory**: `/` (프로젝트 루트)
-4. 배포 완료 후 발급되는 주소로 접속하면 바로 동작합니다.
+1. Cloudflare 대시보드 → Workers & Pages → Pages 프로젝트에서 GitHub 저장소를 연결합니다.
+2. 기존 연결이 있다면 해당 프로젝트의 Builds & deployments 설정을 수정합니다.
+3. 아래 값을 저장하고 배포합니다.
 
-다른 정적 호스팅(Netlify, GitHub Pages 등)도 동일하게 "빌드 없음, 루트 폴더
-그대로 배포"로 설정하면 됩니다.
+| 설정 | 값 |
+|---|---|
+| Production branch | main |
+| Framework preset | None |
+| Build command | npm run build |
+| Build output directory | dist |
+| Root directory | 저장소 루트 (비워둠) |
+| NODE_VERSION | 22 |
+
+Cloudflare가 npm 의존성을 설치한 뒤 빌드합니다. GitHub에 push하면 연결된 Pages가 자동 배포합니다.
+빌드 설정 변경 후 새 배포를 실행해야 합니다. 정적 파일 폴더만 드래그해 올리는 방식은
+국가 감지 API를 포함하지 않으므로 Git 연동을 사용하세요.
+
+### 배포 파일 구성
+
+- dist/: 게임, 이미지, 데이터, 문제 제작기, JSZip 배포용 파일만 생성됩니다.
+- functions/api/geo.js: 저장소 루트에 유지하며 Pages가 별도로 함수로 배포합니다.
+- dist/_routes.json: /api/* 요청에만 함수를 실행합니다.
+- node_modules/, vendor/, dist/, 로컬 캐시 및 환경변수 파일은 Git에 포함하지 않습니다.
+- npm run dev 또는 npm start는 JSZip을 로컬 vendor/에 준비합니다.
+- .github/workflows/ci.yml에서 색상 테스트, 제작기 테스트, 데이터 검증 및 빌드를 실행합니다.
+
+### 배포 전 확인
+
+```bash
+npm ci
+npm test
+npm run test:problem-maker
+npm run build
+```
+
+배포 후 /, /problem-maker/, /api/geo 를 확인하세요. 제작기의 ZIP 내보내기도 확인합니다.
+현재 원본 이미지가 없는 sports의 feyenoord/fcb, animation의 rb/rb2/rainbow/r1/dog는
+데이터를 보존하고 enabled: false로 출제에서 제외했습니다. 이미지 3종을 복구한 뒤
+다시 활성화하고 npm run validate-data로 확인하세요.
+
+공식 안내: https://developers.cloudflare.com/pages/configuration/build-configuration/
 
 ## 자주 생기는 오류
 
