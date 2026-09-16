@@ -11,7 +11,7 @@ export async function mount(container) {
   const root = qs(".screen-inner", container);
   root.innerHTML = `
     <div class="top-bar">
-      <button type="button" class="back-link" data-action="back" aria-label="${t("nav.backToMain")}">${iconSvg("back")}<span class="logo-mark" aria-hidden="true"></span><span>ColorGuesser</span></button>
+      <button type="button" class="back-link" data-action="back" aria-label="${t("nav.backToMain")}">${iconSvg("back")}<span class="logo-mark" aria-hidden="true"></span><span>ColorsGuesser</span></button>
       <span class="top-bar__title">${t("categories.title")}</span>
     </div>
     <div data-role="content">

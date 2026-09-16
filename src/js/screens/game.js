@@ -32,7 +32,7 @@ export async function mount(container) {
     <div class="game-header">
       <div class="top-bar">
         <button type="button" class="back-link" data-action="exit" aria-label="${t("game.exitAria")}">
-          <span class="logo-mark" aria-hidden="true"></span><span>ColorGuesser</span>
+          <span class="logo-mark" aria-hidden="true"></span><span>ColorsGuesser</span>
         </button>
       </div>
 
@@ -40,23 +40,14 @@ export async function mount(container) {
         <button type="button" class="icon-btn" data-action="exit" aria-label="${t("game.exitAria")}">${iconSvg(
           "back"
         )}</button>
-        <span class="game-progress-text">${state.currentQuestionIndex + 1}</span>
-        <div class="progress-bar" style="flex:1" role="progressbar"
-             aria-valuemin="0" aria-valuemax="${state.questions.length}"
-             aria-valuenow="${state.currentQuestionIndex + 1}">
-          <div class="progress-bar__fill" style="width:${
-            ((state.currentQuestionIndex + 1) / state.questions.length) * 100
-          }%"></div>
-        </div>
         <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">${
-          getLang() === "ko" ? "EN" : "한국어"
+          getLang() === "en" ? "EN" : "KO"
         }</button>
       </div>
     </div>
 
     <div class="game-layout">
       <div class="game-photo-pane">
-        <p class="game-question-title">${escapeHtml(question.title || "")}</p>
         <div class="game-photo-frame" data-role="photo-frame">
           <canvas data-role="canvas" aria-label="${t("game.canvasAria")}"></canvas>
           <div class="game-photo-frame__loading" data-role="loading">
@@ -172,6 +163,7 @@ async function handleSubmit(question, config, { imageFailed = false } = {}) {
   const entry = {
     questionId: question.id,
     title: question.title,
+    titleEn: question.titleEn,
     thumbnail: question.thumbnail,
     originalImage: question.originalImage,
     score,

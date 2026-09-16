@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Patrick+Hand&display=swap");
+
+/* Game-only theme: the maker keeps its existing editing interface. */
+:root {
+  --bg-page: #fdfcf8;
+  --bg-page-alt: #f5f3ed;
+  --bg-card: #fffefa;
+  --bg-card-muted: #faf9f5;
+  --text-primary: #34332f;
+  --text-secondary: #64625b;
+  --text-muted: #77736b;
+  --border-color: #73716a;
+  --border-width: 1px;
+  --border-width-thick: 1px;
+  --color-primary: #f9e89d;
+  --color-primary-dark: #eed77f;
+  --color-secondary: #b6a16a;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 7px;
+  --font-family: "Patrick Hand", "Gaegu", cursive;
+  --font-heading: "Patrick Hand", "Gaegu", cursive;
+  --font-size-md: 19px;
+  --font-size-sm: 17px;
+  --font-size-xs: 14px;
+  --font-weight-black: 700;
+}
+
+/* Slightly fuller handwriting without jumping to a heavy bold weight. */
+#app { -webkit-text-stroke: 0.16px currentColor; }
+.home-logo, .category-hero__title { font-weight: 400; rotate: -0.6deg; }
+.home-categories-section__title { rotate: 0.4deg; transform-origin: left center; }
+.topbar-brand__name, .back-link { font-size: 24px; font-weight: 400; }
+.home-hero { background-image: none; }
+.home-hero__visual { background: transparent; backdrop-filter: none; }
+.home-divider { height: 1px; transform: rotate(-0.15deg); }
+.logo-mark {
+  background: var(--color-primary);
+  border: 1px solid var(--text-primary);
+  border-radius: 2px 4px 3px 1px;
+  transform: rotate(-5deg);
+}
+
+.btn, .badge, .tutorial-card, .toast,
+.game-photo-frame, .color-picker, .category-hero__card,
+.home-hero__visual, .home-hero__cell, .category-card,
+.round-result__photo, .color-swatch {
+  border: 1px solid var(--border-color);
+  border-radius: 2px 11px 3px 9px / 9px 3px 13px 4px;
+  box-shadow: none;
+}
+.btn--primary, .btn--play {
+  background-image: repeating-linear-gradient(115deg, transparent 0 5px, #77622b0a 5px 6px);
+}
+.btn--ghost { border-color: transparent; }
+.btn--primary, .btn--play { rotate: -0.7deg; }
+.home-hero__cell:nth-child(3n + 1) { rotate: -2deg; }
+.home-hero__cell:nth-child(3n + 2) { rotate: 1.4deg; }
+.home-hero__cell:nth-child(3n) { rotate: -0.6deg; }
+.icon-btn {
+  border-radius: 47% 53% 49% 51% / 53% 46% 54% 47%;
+  box-shadow: none;
+}
+.lang-btn { border-radius: 43% 35% 39% 31% / 48% 42% 51% 46%; }
+.btn:focus-visible, .icon-btn:focus-visible, [role="slider"]:focus-visible {
+  outline: 2px dashed #605944;
+  outline-offset: 5px;
+}
+.game-photo-frame { background: #fff; }
+.color-picker { background: transparent; gap: 18px; }
+.sv-panel { border-radius: 2px 4px 2px 3px; }
+.sv-panel__thumb, .hue-slider__thumb, .lightness-slider__thumb {
+  border-radius: 45% 55% 48% 52% / 54% 45% 55% 46%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px #49463e;
+}
+
+/* Only the painted track is irregular; the full 32px hit area stays usable.
+   Inherit the JS-controlled gradient so the displayed colors stay accurate. */
+.hue-slider, .lightness-slider {
+  height: 32px;
+  border: 0;
+  border-radius: 0;
+  background-size: 0 0 !important;
+  background-repeat: no-repeat !important;
+  overflow: visible;
+}
+.hue-slider::before, .lightness-slider::before {
+  content: "";
+  position: absolute;
+  inset: 5px 0;
+  pointer-events: none;
+  background-image: inherit;
+  background-size: 100% 100%;
+  clip-path: polygon(0 44%, 3% 30%, 6% 37%, 9% 23%, 12% 39%, 16% 31%, 20% 39%, 24% 21%, 28% 35%, 32% 28%, 36% 40%, 40% 26%, 44% 34%, 48% 20%, 52% 34%, 56% 30%, 60% 40%, 64% 27%, 68% 34%, 72% 24%, 76% 37%, 80% 30%, 84% 42%, 88% 29%, 92% 37%, 96% 30%, 100% 39%, 100% 61%, 96% 53%, 92% 61%, 88% 53%, 84% 66%, 80% 54%, 76% 61%, 72% 48%, 68% 58%, 64% 51%, 60% 64%, 56% 54%, 52% 58%, 48% 44%, 44% 58%, 40% 50%, 36% 64%, 32% 52%, 28% 59%, 24% 45%, 20% 63%, 16% 55%, 12% 63%, 9% 47%, 6% 61%, 3% 54%, 0 68%);
+}
+.lightness-slider::before { transform: scaleY(-1); }
+.hue-slider__thumb, .lightness-slider__thumb {
+  width: 18px;
+  height: 20px;
+  background: #fffefa;
+  border: 1px solid #56534c;
+  box-shadow: none;
+  z-index: 1;
+}
+.color-picker__hex { font-weight: 400; font-size: 23px; }
+
+.game-photo-frame {
+  overflow: visible;
+  border-radius: 0;
+}
+.game-photo-frame canvas { border-radius: 0; }
+.color-picker {
+  position: relative;
+  border-color: transparent;
+  border-radius: 0;
+}
+.game-photo-frame::after, .color-picker::after {
+  content: "";
+  position: absolute;
+  inset: -17px;
+  background: url("./sketch-frame.svg") center / 100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 2;
+}
+.color-picker::after { transform: scaleX(-1); inset: -12px; }
+
+/* Pencil outline sits outside the square photo like a loose hand sketch. */
+.grid-categories { gap: 36px; padding: 16px 12px; }
+.category-card {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  isolation: isolate;
+}
+.category-card__thumb { border-radius: 0; }
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: -23px -24px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' preserveAspectRatio='none'%3E%3Cpath d='M12 30 L39 28 L52 24 L68 23 L87 12 L105 10 L131 15 L153 14 L183 18 L219 16 M265 20 L282 17 L274 32 L280 53 L276 74 L282 96 L278 121 L282 142 L276 164 L280 187 L275 215 L281 242 L274 268 L252 274 L223 273 L198 280 L168 278 L143 287 L115 291 L88 285 L63 281' fill='none' stroke='%23716f69' stroke-width='1'/%3E%3Cpath d='M88 285 L63 281 L42 279 L17 271 L20 250 L14 230 L18 205 L13 180 L17 153 L12 126 L17 100 L12 75 L16 49 L12 30' fill='none' stroke='%23716f69' stroke-width='1'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 3;
+}
+.category-card:nth-child(even)::before { transform: rotate(2.4deg) scale(-1.02, 0.98); }
+.category-card:nth-child(3n)::before { transform: rotate(-1.8deg) scale(0.98, -1.02); }
+.category-card:nth-child(3n + 1) { rotate: -0.65deg; }
+.category-card:nth-child(3n + 2) { rotate: 0.8deg; }
+.category-card:nth-child(3n) { rotate: -0.3deg; }
+.category-card::after { background: rgba(0, 0, 0, 0.12); }
+.category-card:hover { transform: translateY(-3px) rotate(-0.4deg); }
+.category-card:focus-visible { outline: 2px dashed #605944; outline-offset: 20px; }
+
+@media (max-width: 600px) {
+  .color-picker { padding: 16px; gap: 14px; }
+  .topbar-brand__name, .back-link { font-size: 21px; }
+}

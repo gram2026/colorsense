@@ -70,7 +70,7 @@
       "thumbnail": "assets/categories/dev1/cover.png",
       "heroImage": "assets/categories/dev1/hero.png",
       "questionFile": "src/data/questions/dev1.json",
-      "enabled": true,
+      "enabled": false,
       "comingSoon": true,
       "order": 6
     },
@@ -83,7 +83,7 @@
       "thumbnail": "assets/categories/dev2/cover.png",
       "heroImage": "assets/categories/dev2/hero.png",
       "questionFile": "src/data/questions/dev2.json",
-      "enabled": true,
+      "enabled": false,
       "comingSoon": true,
       "order": 7
     }

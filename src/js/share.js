@@ -43,7 +43,7 @@ export async function shareResult(payload) {
 
   if (navigator.share) {
     try {
-      await navigator.share({ title: "Color Guesser", text });
+      await navigator.share({ title: "ColorsGuesser", text });
       return { method: "share", text };
     } catch (err) {
       if (err && err.name === "AbortError") {

@@ -1,7 +1,7 @@
 /** 카테고리 상세 화면 (히어로 이미지 + 글래스 카드 스타일) */
 
 import { qs, iconSvg, formatScore } from "../utils/dom.js";
-import { loadCategories, loadQuestionsForCategory, getCategoryName, getCategoryDescription } from "../data-loader.js";
+import { loadCategories, loadQuestionsForCategory, getCategoryName } from "../data-loader.js";
 import { getBestScore } from "../storage.js";
 import { getState, setState } from "../state.js";
 import { navigate } from "../router.js";
@@ -15,10 +15,10 @@ export async function mount(container) {
   root.innerHTML = `
     <div class="top-bar">
       <button type="button" class="back-link" data-action="home" aria-label="${t("nav.home")}">
-        <span class="logo-mark" aria-hidden="true"></span><span>ColorGuesser</span>
+        <span class="logo-mark" aria-hidden="true"></span><span>ColorsGuesser</span>
       </button>
       <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">${
-        getLang() === "ko" ? "EN" : "한국어"
+        getLang() === "en" ? "EN" : "KO"
       }</button>
     </div>
     <div data-role="content" style="flex:1; display:flex; align-items:center; justify-content:center;">
@@ -56,7 +56,6 @@ export async function mount(container) {
         <div class="category-hero__card">
           <div class="category-hero__eyebrow">${t("categoryDetail.eyebrow")}</div>
           <h1 class="category-hero__title">${escapeHtml(getCategoryName(category))}</h1>
-          <p class="category-hero__desc">${escapeHtml(getCategoryDescription(category))}</p>
           <div class="category-hero__tags">
             ${isEmpty ? `<span class="badge">${t("category.badge.comingSoon")}</span>` : ""}
             ${best > 0 ? `<span class="badge badge--primary">${t("category.badge.bestAverage", { score: formatScore(best) })}</span>` : ""}

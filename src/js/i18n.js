@@ -14,7 +14,7 @@ const DEFAULT_LANG = "ko";
 
 const dict = {
   ko: {
-    "meta.title": "Color Guesser · 색을 맞혀보세요",
+    "meta.title": "ColorsGuesser",
     "meta.description": "사진 속 색을 직접 맞춰보는 캐주얼 컬러 게임",
 
     "screen.home": "메인 화면",
@@ -24,7 +24,7 @@ const dict = {
     "screen.roundResult": "문제 결과 화면",
     "screen.finalResult": "최종 결과 화면",
 
-    "app.name": "ColorGuesser",
+    "app.name": "ColorsGuesser",
     "nav.home": "홈으로",
     "nav.backToMain": "메인으로",
     "nav.langButton": "언어 변경",
@@ -36,7 +36,7 @@ const dict = {
     "home.play": "PLAY",
     "home.categoriesTitle": "카테고리",
     "home.categoriesLoadError": "카테고리를 불러올 수 없어요",
-    "home.footer": "© {year} ColorGuesser",
+    "home.footer": "© {year} ColorsGuesser",
 
     "tutorial.next": "다음",
     "tutorial.start": "시작하기",
@@ -114,11 +114,11 @@ const dict = {
     "finalResult.shareClipboard": "결과 문구를 클립보드에 복사했어요",
     "finalResult.shareFail": "공유에 실패했어요. 직접 캡처해서 공유해보세요",
 
-    "share.text": "Color Guesser {categoryName} 카테고리에서 {roundCount} Round 평균 {averageScore}점을 기록했어요! 당신의 색감은 몇 점인가요?",
+    "share.text": "ColorsGuesser {categoryName} 카테고리에서 {roundCount} Round 평균 {averageScore}점을 기록했어요! 당신의 색감은 몇 점인가요?",
   },
 
   en: {
-    "meta.title": "Color Guesser · Guess the color",
+    "meta.title": "ColorsGuesser",
     "meta.description": "A casual color game where you match the color hidden in a photo",
 
     "screen.home": "Home screen",
@@ -128,7 +128,7 @@ const dict = {
     "screen.roundResult": "Round result screen",
     "screen.finalResult": "Final result screen",
 
-    "app.name": "ColorGuesser",
+    "app.name": "ColorsGuesser",
     "nav.home": "Home",
     "nav.backToMain": "Back to home",
     "nav.langButton": "Change language",
@@ -140,7 +140,7 @@ const dict = {
     "home.play": "PLAY",
     "home.categoriesTitle": "Categories",
     "home.categoriesLoadError": "Couldn't load categories",
-    "home.footer": "© {year} ColorGuesser",
+    "home.footer": "© {year} ColorsGuesser",
 
     "tutorial.next": "Next",
     "tutorial.start": "Start",
@@ -218,7 +218,7 @@ const dict = {
     "finalResult.shareClipboard": "Copied your result to the clipboard",
     "finalResult.shareFail": "Couldn't share. Try taking a screenshot instead",
 
-    "share.text": "I scored an average of {averageScore} over {roundCount} rounds in Color Guesser's {categoryName} category! How good is your color sense?",
+    "share.text": "I scored an average of {averageScore} over {roundCount} rounds in ColorsGuesser's {categoryName} category! How good is your color sense?",
   },
 };
 
@@ -255,6 +255,14 @@ export function setLang(lang, { persist = true } = {}) {
   currentLang = lang;
   document.documentElement.lang = lang;
   document.title = t("meta.title");
+  const screenKeys = {
+    home: "screen.home", categories: "screen.categories",
+    "category-detail": "screen.categoryDetail", game: "screen.game",
+    "round-result": "screen.roundResult", "final-result": "screen.finalResult",
+  };
+  for (const [id, key] of Object.entries(screenKeys)) {
+    document.querySelector(`[data-screen-id="${id}"]`)?.setAttribute("aria-label", t(key));
+  }
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) metaDesc.setAttribute("content", t("meta.description"));
   if (persist) {

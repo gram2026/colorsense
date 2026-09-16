@@ -8,7 +8,7 @@ import { getGrade } from "../color/scoring.js";
 import { shareResult } from "../share.js";
 import { showToast } from "../toast.js";
 import { loadCategories, loadQuestionsForCategory, getCategoryName } from "../data-loader.js";
-import { t } from "../i18n.js";
+import { t, getLang } from "../i18n.js";
 
 export async function mount(container) {
   const root = qs(".screen-inner", container);
@@ -47,10 +47,10 @@ export async function mount(container) {
       <div class="final-result__list">
         ${roundScores
           .map(
-            (r) => `
+            (r, index) => `
           <div class="final-result__row">
             <img class="final-result__row-thumb" src="${r.thumbnail}" alt="" />
-            <div class="final-result__row-title">${escapeHtml(r.title || "")}</div>
+            <div class="final-result__row-title">${escapeHtml(getLang() === "en" ? (r.titleEn || (/[^\x00-\x7F]/.test(r.title || "") ? `Round ${index + 1}` : r.title || `Round ${index + 1}`)) : r.title || "")}</div>
             <div class="final-result__row-score">${formatScore(r.score)}</div>
           </div>`
           )

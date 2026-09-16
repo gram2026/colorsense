@@ -1,7 +1,7 @@
 {
   "version": 1,
   "app": {
-    "name": "Color Guesser",
+    "name": "ColorsGuesser",
     "defaultSoundEnabled": true,
     "tutorialSteps": {
       "ko": [
