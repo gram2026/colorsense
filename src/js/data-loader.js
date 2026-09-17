@@ -29,15 +29,16 @@ export async function loadConfig() {
       scoring: {
         maxScore: 100,
         method: "ciede2000",
-        perfectThreshold: 2,
-        zeroScoreThreshold: 70,
-        curveExponent: 1.35,
+        perfectThreshold: 4,
+        zeroScoreThreshold: 85,
+        curveExponent: 0.9,
       },
       startColor: {
-        minHueOffsetDeg: 50,
-        maxHueOffsetDeg: 170,
-        minLightnessOffset: 8,
-        maxLightnessOffset: 26,
+        minHueOffsetDeg: 18,
+        maxHueOffsetDeg: 38,
+        minSaturationOffset: 10,
+        maxSaturationOffset: 22,
+        startValue: 93,
       },
       randomCategory: { id: "random", maxQuestions: 6 },
       app: { defaultSoundEnabled: true, tutorialSteps: { ko: [], en: [] } },
@@ -148,7 +149,8 @@ export async function loadQuestionsForCategory(categoryId) {
     return [];
   }
 
-  return loadQuestionFile(category.questionFile);
+  const questions = await loadQuestionFile(category.questionFile);
+  return shuffle(questions);
 }
 
 async function loadRandomMixQuestions(categories, randomCategory) {

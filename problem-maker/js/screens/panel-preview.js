@@ -5,7 +5,7 @@
  */
 
 import { qs, iconSvg } from "../utils/dom-utils.js";
-import { hexToHsl, hslToHex } from "../utils/color-utils.js";
+import { hexToHsv, hsvToHex } from "../utils/color-utils.js";
 import { loadGameConfig } from "../project-loader.js";
 
 export function renderPreviewPanel(root, { view, color, onSetPreviewHex, onToggleCompare }) {
@@ -60,24 +60,24 @@ export function renderPreviewPanel(root, { view, color, onSetPreviewHex, onToggl
   qs('[data-role="compare-toggle"]', root).addEventListener("change", (e) => onToggleCompare(e.target.checked));
 }
 
-/** 게임 game.js의 generateStartColor()와 같은 방식(설정값 기반 Hue/명도 오프셋)으로 임의 시작색을 만든다 */
+/** 게임 game.js의 generateStartColor()와 같은 방식(HSV 기준 색상/채도 오프셋 + 고정 밝기)으로 임의 시작색을 만든다 */
 async function randomStartColor(answerHex) {
   const config = await loadGameConfig().catch(() => null);
   const cfg = config?.startColor || {};
-  const minHue = cfg.minHueOffsetDeg ?? 50;
-  const maxHue = cfg.maxHueOffsetDeg ?? 170;
-  const minLight = cfg.minLightnessOffset ?? 8;
-  const maxLight = cfg.maxLightnessOffset ?? 26;
+  const minHue = cfg.minHueOffsetDeg ?? 18;
+  const maxHue = cfg.maxHueOffsetDeg ?? 38;
+  const minSat = cfg.minSaturationOffset ?? 10;
+  const maxSat = cfg.maxSaturationOffset ?? 22;
+  const startValue = cfg.startValue ?? 93;
 
-  const { h, s, l } = hexToHsl(answerHex);
+  const { h, s } = hexToHsv(answerHex);
   const hueOffset = randomBetween(minHue, maxHue) * (Math.random() < 0.5 ? -1 : 1);
-  const lightOffset = randomBetween(minLight, maxLight) * (Math.random() < 0.5 ? -1 : 1);
+  const satOffset = randomBetween(minSat, maxSat) * (Math.random() < 0.5 ? -1 : 1);
 
   const newHue = (h + hueOffset + 360) % 360;
-  const newLight = clamp(l + lightOffset, 15, 85);
-  const newSat = clamp(s + randomBetween(-20, 20), 20, 90);
+  const newSat = clamp(s + satOffset, 15, 100);
 
-  return hslToHex({ h: newHue, s: newSat, l: newLight });
+  return hsvToHex({ h: newHue, s: newSat, v: startValue });
 }
 
 function randomBetween(min, max) {

@@ -3,7 +3,8 @@
 import { qs, formatScore } from "../utils/dom.js";
 import { getState, setState, resetGame } from "../state.js";
 import { navigate } from "../router.js";
-import { getScoreComment } from "../color/scoring.js";
+import { getScoreComment, getScoreTier } from "../color/scoring.js";
+import { scoreLaunchMarkup, playScoreLaunch } from "../utils/score-launch.js";
 import { t, getLang, setLang } from "../i18n.js";
 
 export function mount(container) {
@@ -18,6 +19,7 @@ export function mount(container) {
 
   const isLast = state.currentQuestionIndex >= state.questions.length - 1;
   const comment = t(getScoreComment(entry.score));
+  const tier = getScoreTier(entry.score);
 
   root.innerHTML = `
     <header class="result-header">
@@ -30,9 +32,10 @@ export function mount(container) {
       </button>
     </header>
 
-    <div class="round-result">
+    <div class="round-result score-tier--${tier}">
       <div class="round-result__score-label">${t("roundResult.scoreLabel")}</div>
-      <div class="score-pop is-animating" data-role="score">0</div>
+      <div class="score-pop" data-role="score">0</div>
+      ${scoreLaunchMarkup()}
       <div class="round-result__comment">${comment}</div>
 
       <div class="round-result__colors">
@@ -67,7 +70,20 @@ export function mount(container) {
     </div>
   `;
 
-  animateScore(root.querySelector('[data-role="score"]'), entry.score);
+  const scoreEl = root.querySelector('[data-role="score"]');
+  const resultEl = root.querySelector(".round-result");
+  resultEl.classList.add("is-launching");
+  playScoreLaunch(root, {
+    score: entry.score,
+    tier,
+    onProgress: (value) => {
+      scoreEl.textContent = formatScore(value);
+    },
+    onLand: () => {
+      scoreEl.classList.add("is-landed");
+      resultEl.classList.remove("is-launching");
+    },
+  });
 
   root.querySelector('[data-action="lang"]').addEventListener("click", () => {
     setLang(getLang() === "ko" ? "en" : "ko");
@@ -86,22 +102,6 @@ export function mount(container) {
       navigate("game");
     }
   });
-}
-
-function animateScore(el, target) {
-  if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-    el.textContent = formatScore(target);
-    return;
-  }
-  const duration = 500;
-  const start = performance.now();
-  function tick(now) {
-    const t = Math.min(1, (now - start) / duration);
-    const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = formatScore(target * eased);
-    if (t < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
 }
 
 export function unmount() {}

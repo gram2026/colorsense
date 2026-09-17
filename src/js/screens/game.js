@@ -6,7 +6,7 @@ import { navigate } from "../router.js";
 import { loadConfig } from "../data-loader.js";
 import { MaskRenderer } from "../color/mask-renderer.js";
 import { ColorPicker } from "../color/color-picker.js";
-import { hexToHsl, hslToHex } from "../color/color-convert.js";
+import { hexToHsv, hsvToHex } from "../color/color-convert.js";
 import { calculateScore } from "../color/scoring.js";
 import { showToast } from "../toast.js";
 import { t, getLang, setLang } from "../i18n.js";
@@ -130,21 +130,26 @@ function resolveStartColor(question, config) {
   return generateStartColor(question.answerColor, config.startColor || {});
 }
 
+/**
+ * 시작 색상은 컬러 피커와 같은 HSV 좌표계로 만든다.
+ * 밝기(v)는 항상 같은 값이라 오른쪽 바가 매번 맨 위 살짝 아래에서 시작하고,
+ * 색상/채도는 정답에서 조금만 떨어뜨려 왼쪽 패널이 정답 근처에서 시작한다.
+ */
 function generateStartColor(answerHex, cfg) {
-  const { h, s, l } = hexToHsl(answerHex);
-  const minHue = cfg.minHueOffsetDeg ?? 50;
-  const maxHue = cfg.maxHueOffsetDeg ?? 170;
-  const minLight = cfg.minLightnessOffset ?? 8;
-  const maxLight = cfg.maxLightnessOffset ?? 26;
+  const { h, s } = hexToHsv(answerHex);
+  const minHue = cfg.minHueOffsetDeg ?? 18;
+  const maxHue = cfg.maxHueOffsetDeg ?? 38;
+  const minSat = cfg.minSaturationOffset ?? 10;
+  const maxSat = cfg.maxSaturationOffset ?? 22;
+  const startValue = cfg.startValue ?? 93;
 
   const hueOffset = randomBetween(minHue, maxHue) * (Math.random() < 0.5 ? -1 : 1);
-  const lightOffset = randomBetween(minLight, maxLight) * (Math.random() < 0.5 ? -1 : 1);
+  const satOffset = randomBetween(minSat, maxSat) * (Math.random() < 0.5 ? -1 : 1);
 
   const newHue = (h + hueOffset + 360) % 360;
-  const newLight = clamp(l + lightOffset, 15, 85);
-  const newSat = clamp(s + randomBetween(-20, 20), 20, 90);
+  const newSat = clamp(s + satOffset, 15, 100);
 
-  return hslToHex({ h: newHue, s: newSat, l: newLight });
+  return hsvToHex({ h: newHue, s: newSat, v: startValue });
 }
 
 function randomBetween(min, max) {

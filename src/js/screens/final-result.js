@@ -4,7 +4,8 @@ import { qs, iconSvg, formatScore } from "../utils/dom.js";
 import { getState, setState, resetGame } from "../state.js";
 import { navigate } from "../router.js";
 import { submitBestScore } from "../storage.js";
-import { getGrade } from "../color/scoring.js";
+import { getGrade, getScoreTier } from "../color/scoring.js";
+import { burstConfetti, TIER_COLORS } from "../utils/effects.js";
 import { shareResult } from "../share.js";
 import { showToast } from "../toast.js";
 import { loadCategories, loadQuestionsForCategory, getCategoryName } from "../data-loader.js";
@@ -39,9 +40,11 @@ export async function mount(container) {
       </button>
     </header>
 
-    <div class="final-result">
+    <div class="final-result score-tier--${grade.tier}">
       <h1 class="top-bar__title">${t("finalResult.title", { categoryName })}</h1>
-      <div class="grade-badge">${grade.label}</div>
+      <div class="score-stage" data-role="grade-stage">
+        <div class="grade-badge grade-badge--pop">${grade.label}</div>
+      </div>
       <div>
         <div class="final-result__total">${t("finalResult.totalScore", { score: formatScore(average) })}</div>
         <div class="row" style="justify-content:center; gap: var(--space-2); margin-top: var(--space-2)">
@@ -58,7 +61,7 @@ export async function mount(container) {
         ${roundScores
           .map(
             (r, index) => `
-          <div class="final-result__row">
+          <div class="final-result__row score-tier--${getScoreTier(r.score)}" style="--row-delay:${index * 70}ms">
             <img class="final-result__row-thumb" src="${r.thumbnail}" alt="" />
             <div class="final-result__row-title">${escapeHtml(getLang() === "en" ? (r.titleEn || (/[^\x00-\x7F]/.test(r.title || "") ? `Round ${index + 1}` : r.title || `Round ${index + 1}`)) : r.title || "")}</div>
             <div class="final-result__row-score">${formatScore(r.score)}</div>
@@ -81,6 +84,16 @@ export async function mount(container) {
       </div>
     </div>
   `;
+
+  if (grade.tier === "perfect" || grade.tier === "great") {
+    setTimeout(() => {
+      burstConfetti(root.querySelector('[data-role="grade-stage"]'), {
+        colors: TIER_COLORS[grade.tier],
+        count: grade.tier === "perfect" ? 60 : 40,
+        spread: 260,
+      });
+    }, 350);
+  }
 
   root.querySelector('[data-action="lang"]').addEventListener("click", () => {
     setLang(getLang() === "ko" ? "en" : "ko");
