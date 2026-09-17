@@ -14,9 +14,11 @@ import { deltaE76, deltaE2000 } from "./delta-e.js";
 export const DEFAULT_SCORING_CONFIG = {
   maxScore: 100,
   method: "ciede2000",
-  perfectThreshold: 4,
-  zeroScoreThreshold: 85,
-  curveExponent: 0.9,
+  perfectThreshold: 1,
+  zeroScoreThreshold: 80,
+  curveExponent: 1.1,
+  hardTopFrom: 96,
+  hardTopExponent: 3,
 };
 
 /**
@@ -34,7 +36,7 @@ export function calculateScore(userHex, answerHex, config = DEFAULT_SCORING_CONF
   const deltaE =
     cfg.method === "deltaE76" ? deltaE76(labUser, labAnswer) : deltaE2000(labUser, labAnswer);
 
-  const { maxScore, perfectThreshold, zeroScoreThreshold, curveExponent } = cfg;
+  const { maxScore, perfectThreshold, zeroScoreThreshold, curveExponent, hardTopFrom, hardTopExponent } = cfg;
 
   let score;
   if (deltaE <= perfectThreshold) {
@@ -45,6 +47,12 @@ export function calculateScore(userHex, answerHex, config = DEFAULT_SCORING_CONF
     const t = (deltaE - perfectThreshold) / (zeroScoreThreshold - perfectThreshold);
     const ratio = Math.pow(1 - t, curveExponent);
     score = maxScore * ratio;
+  }
+
+  // hardTopFrom 이상 구간은 한 번 더 눌러서, 그 위로 올라가려면 훨씬 정확해야 하게 만든다.
+  if (score > hardTopFrom && score < maxScore) {
+    const topRange = maxScore - hardTopFrom;
+    score = hardTopFrom + topRange * Math.pow((score - hardTopFrom) / topRange, hardTopExponent);
   }
 
   // 소수점 첫째 자리까지 표시하므로 여기서도 그 정밀도로만 반올림한다.

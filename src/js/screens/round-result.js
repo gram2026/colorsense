@@ -4,7 +4,8 @@ import { qs, formatScore } from "../utils/dom.js";
 import { getState, setState, resetGame } from "../state.js";
 import { navigate } from "../router.js";
 import { getScoreComment, getScoreTier } from "../color/scoring.js";
-import { scoreLaunchMarkup, playScoreLaunch } from "../utils/score-launch.js";
+import { scoreLaunchMarkup, playScoreLaunch, pickFlyerKind } from "../utils/score-launch.js";
+import { scoreColorVars, applyScoreColorVars } from "../utils/score-colors.js";
 import { t, getLang, setLang } from "../i18n.js";
 
 export function mount(container) {
@@ -32,10 +33,10 @@ export function mount(container) {
       </button>
     </header>
 
-    <div class="round-result score-tier--${tier}">
+    <div class="round-result score-tier--${tier}" style="${scoreColorVars(entry.score)}">
       <div class="round-result__score-label">${t("roundResult.scoreLabel")}</div>
       <div class="score-pop" data-role="score">0</div>
-      ${scoreLaunchMarkup()}
+      ${scoreLaunchMarkup(pickFlyerKind())}
       <div class="round-result__comment">${comment}</div>
 
       <div class="round-result__colors">
@@ -78,6 +79,7 @@ export function mount(container) {
     tier,
     onProgress: (value) => {
       scoreEl.textContent = formatScore(value);
+      applyScoreColorVars(resultEl, value);
     },
     onLand: () => {
       scoreEl.classList.add("is-landed");

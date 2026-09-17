@@ -6,6 +6,7 @@ import { navigate } from "../router.js";
 import { submitBestScore } from "../storage.js";
 import { getGrade, getScoreTier } from "../color/scoring.js";
 import { burstConfetti, TIER_COLORS } from "../utils/effects.js";
+import { scoreColorVars } from "../utils/score-colors.js";
 import { shareResult } from "../share.js";
 import { showToast } from "../toast.js";
 import { loadCategories, loadQuestionsForCategory, getCategoryName } from "../data-loader.js";
@@ -40,7 +41,7 @@ export async function mount(container) {
       </button>
     </header>
 
-    <div class="final-result score-tier--${grade.tier}">
+    <div class="final-result score-tier--${grade.tier}" style="${scoreColorVars(average)}">
       <h1 class="top-bar__title">${t("finalResult.title", { categoryName })}</h1>
       <div class="score-stage" data-role="grade-stage">
         <div class="grade-badge grade-badge--pop">${grade.label}</div>
@@ -61,7 +62,7 @@ export async function mount(container) {
         ${roundScores
           .map(
             (r, index) => `
-          <div class="final-result__row score-tier--${getScoreTier(r.score)}" style="--row-delay:${index * 70}ms">
+          <div class="final-result__row score-tier--${getScoreTier(r.score)}" style="--row-delay:${index * 70}ms;${scoreColorVars(r.score)}">
             <img class="final-result__row-thumb" src="${r.thumbnail}" alt="" />
             <div class="final-result__row-title">${escapeHtml(getLang() === "en" ? (r.titleEn || (/[^\x00-\x7F]/.test(r.title || "") ? `Round ${index + 1}` : r.title || `Round ${index + 1}`)) : r.title || "")}</div>
             <div class="final-result__row-score">${formatScore(r.score)}</div>

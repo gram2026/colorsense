@@ -137,14 +137,17 @@ function resolveStartColor(question, config) {
  */
 function generateStartColor(answerHex, cfg) {
   const { h, s } = hexToHsv(answerHex);
-  const minHue = cfg.minHueOffsetDeg ?? 18;
-  const maxHue = cfg.maxHueOffsetDeg ?? 38;
-  const minSat = cfg.minSaturationOffset ?? 10;
-  const maxSat = cfg.maxSaturationOffset ?? 22;
+  const minHue = cfg.minHueOffsetDeg ?? 35;
+  const maxHue = cfg.maxHueOffsetDeg ?? 65;
+  const minSat = cfg.minSaturationOffset ?? 16;
+  const maxSat = cfg.maxSaturationOffset ?? 30;
   const startValue = cfg.startValue ?? 93;
 
   const hueOffset = randomBetween(minHue, maxHue) * (Math.random() < 0.5 ? -1 : 1);
-  const satOffset = randomBetween(minSat, maxSat) * (Math.random() < 0.5 ? -1 : 1);
+  const satMagnitude = randomBetween(minSat, maxSat);
+  // 패널 가장자리에 걸려 잘리면 정답 쪽으로 도로 붙으므로, 그럴 때는 반대 방향으로 뺀다.
+  let satOffset = satMagnitude * (Math.random() < 0.5 ? -1 : 1);
+  if (s + satOffset > 100 || s + satOffset < 15) satOffset = -satOffset;
 
   const newHue = (h + hueOffset + 360) % 360;
   const newSat = clamp(s + satOffset, 15, 100);

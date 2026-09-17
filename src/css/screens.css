@@ -585,11 +585,7 @@
 
 /* ---------- 점수 구간별 색상 + 이펙트 ---------- */
 
-.score-tier--perfect { --score-color: #d99a00; --score-glow: rgba(242, 183, 5, 0.45); }
-.score-tier--great { --score-color: #2e9e4f; --score-glow: rgba(46, 158, 79, 0.35); }
-.score-tier--good { --score-color: #2f6fd6; --score-glow: rgba(47, 111, 214, 0.3); }
-.score-tier--okay { --score-color: #e07b1a; --score-glow: rgba(224, 123, 26, 0.3); }
-.score-tier--low { --score-color: #d64545; --score-glow: rgba(214, 69, 69, 0.3); }
+/* 색은 화면 JS가 점수 바 위치 색으로 --score-color/--score-stroke 를 style에 넣어준다 (score-colors.js) */
 
 .score-tier--perfect .score-pop,
 .score-tier--great .score-pop,
@@ -598,8 +594,11 @@
 .score-tier--low .score-pop,
 .round-result[class*="score-tier--"] .round-result__comment,
 .final-result[class*="score-tier--"] .final-result__total,
-.final-result__row[class*="score-tier--"] .final-result__row-score {
+.final-result__row[class*="score-tier--"] .final-result__row-score,
+.score-launch__tag {
   color: var(--score-color);
+  -webkit-text-stroke: var(--score-stroke, 0.16px currentColor);
+  paint-order: stroke fill;
 }
 
 .score-stage {
@@ -620,7 +619,7 @@
 }
 
 .score-tier--perfect .score-pop.is-landed {
-  background: linear-gradient(100deg, #d99a00 20%, #fff3b0 45%, #d99a00 70%);
+  background: linear-gradient(100deg, var(--score-color) 20%, #fff6d6 45%, var(--score-color) 70%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -656,7 +655,7 @@
 
 .final-result[class*="score-tier--"] .grade-badge {
   background: var(--score-color);
-  color: #ffffff;
+  color: var(--score-on-color, #ffffff);
   box-shadow: 0 0 0 6px var(--score-glow), var(--shadow-md);
 }
 
@@ -717,7 +716,7 @@
   .score-pop.is-landed,
   .grade-badge--pop,
   .final-result__row[class*="score-tier--"],
-  .score-launch__chick.is-landed,
+  .score-launch__flyer.is-landed,
   .score-launch__tag.is-visible,
   .score-launch__cannon.is-firing .score-launch__barrel,
   .score-launch__cannon.is-firing .score-launch__smoke {
@@ -725,9 +724,10 @@
   }
 }
 
-/* ---------- 점수 공개: 대포 → 병아리 → 무지개 점수 바 ---------- */
+/* ---------- 점수 공개: 대포 → 병아리/기계체조 선수 → 무지개 점수 바 ---------- */
 
 .score-launch {
+  --tag-clearance: 40px;
   position: relative;
   width: 100%;
   height: 190px;
@@ -825,17 +825,6 @@
   bottom: 30px;
   height: 14px;
   border-radius: 999px 7px 999px 6px / 8px 999px 6px 999px;
-  background: linear-gradient(
-    90deg,
-    #9c4fb0 0 12.5%,
-    #4b52c9 12.5% 25%,
-    #1ea2e3 25% 37.5%,
-    #2aa84f 37.5% 50%,
-    #b5d52a 50% 62.5%,
-    #f5dc1f 62.5% 75%,
-    #f28a24 75% 87.5%,
-    #e53a2f 87.5% 100%
-  );
   rotate: -0.6deg;
 }
 
@@ -850,7 +839,7 @@
 .score-launch__tick--start { left: 0; }
 .score-launch__tick--end { right: 0; }
 
-.score-launch__chick {
+.score-launch__flyer {
   position: absolute;
   left: 18%;
   top: 30%;
@@ -863,11 +852,11 @@
   pointer-events: none;
 }
 
-.score-launch__chick.is-flying {
+.score-launch__flyer.is-flying {
   opacity: 1;
 }
 
-.score-launch__chick svg {
+.score-launch__pose {
   display: block;
   width: 100%;
   height: 100%;
@@ -899,7 +888,7 @@
   fill: var(--text-primary);
 }
 
-.score-launch__chick.is-landed {
+.score-launch__flyer.is-landed {
   transform: translate(-50%, -100%);
   animation: chick-land 520ms cubic-bezier(0.3, 1.6, 0.5, 1);
 }
@@ -912,7 +901,7 @@
 
 .score-launch__tag {
   position: absolute;
-  transform: translate(-50%, calc(-100% - 40px));
+  transform: translate(-50%, calc(-100% - var(--tag-clearance)));
   font-size: 34px;
   line-height: 1;
   font-weight: var(--font-weight-black);
@@ -930,5 +919,247 @@
 
 @keyframes tag-pop {
   0% { opacity: 0; transform: translate(-50%, calc(-100% - 22px)) scale(0.4) rotate(-12deg); }
-  100% { opacity: 1; transform: translate(-50%, calc(-100% - 40px)) scale(1) rotate(0); }
+  100% { opacity: 1; transform: translate(-50%, calc(-100% - var(--tag-clearance))) scale(1) rotate(0); }
+}
+
+/* ---------- 기계체조 선수 (옆모습: 공중 턱 자세 → 착지 자세) ---------- */
+
+.score-launch--gymnast {
+  --tag-clearance: 84px;
+}
+
+.score-launch__flyer--gymnast {
+  width: 58px;
+  height: 58px;
+}
+
+.score-launch__flyer--gymnast.is-landed {
+  width: 50px;
+  height: 80px;
+  transform-origin: 50% 100%;
+  animation: gymnast-stick 620ms cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+/* 공중 자세/착지 자세가 따로 있는 캐릭터(기계체조 선수, 개)는 착지하면 그림을 바꾼다 */
+.score-launch__pose--land {
+  display: none;
+}
+
+.score-launch__flyer.is-landed .score-launch__pose--air {
+  display: none;
+}
+
+.score-launch__flyer.is-landed .score-launch__pose--land {
+  display: block;
+}
+
+/* 착지 순간 무릎을 굽혔다가(scaleY) 두 팔을 든 채로 곧게 선다 */
+@keyframes gymnast-stick {
+  0% { transform: translate(-50%, -100%) scale(1.12, 0.72); }
+  40% { transform: translate(-50%, -100%) scale(0.96, 1.06); }
+  70% { transform: translate(-50%, -100%) scale(1.02, 0.98); }
+  100% { transform: translate(-50%, -100%) scale(1, 1); }
+}
+
+.gym-head {
+  fill: #ffd9b3;
+  stroke: var(--text-primary);
+  stroke-width: 2;
+}
+
+.gym-nose {
+  fill: #ffd9b3;
+  stroke: var(--text-primary);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.gym-hair {
+  fill: none;
+  stroke: #5b3a24;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+}
+
+.gym-leotard {
+  fill: none;
+  stroke: #e5484d;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.gym-limb {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.gym-limb--thin {
+  stroke-width: 3;
+}
+
+.gym-limb--back {
+  stroke: #8a877f;
+}
+
+/* ---------- 개 (옆모습: 네 다리 쫙 → 멍하니 앉기) ---------- */
+
+.score-launch--dog {
+  --tag-clearance: 70px;
+}
+
+.score-launch__flyer--dog {
+  width: 70px;
+  height: 55px;
+}
+
+.score-launch__flyer--dog.is-landed {
+  width: 64px;
+  height: 64px;
+  transform-origin: 50% 100%;
+  animation: dog-plop 640ms cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+@keyframes dog-plop {
+  0% { transform: translate(-50%, -100%) scale(1.25, 0.65) rotate(-6deg); }
+  45% { transform: translate(-50%, -100%) scale(0.9, 1.12) rotate(4deg); }
+  75% { transform: translate(-50%, -100%) scale(1.04, 0.97) rotate(-2deg); }
+  100% { transform: translate(-50%, -100%) scale(1, 1) rotate(0); }
+}
+
+.dog-fur {
+  fill: #e0b07a;
+  stroke: var(--text-primary);
+  stroke-width: 2;
+}
+
+.dog-spot,
+.dog-ear {
+  fill: #8a5a33;
+  stroke: var(--text-primary);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+.dog-nose {
+  fill: var(--text-primary);
+}
+
+.dog-leg,
+.dog-line {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.dog-leg--thick {
+  stroke: #e0b07a;
+  stroke-width: 6;
+}
+
+.dog-tail--wag {
+  transform-origin: 12px 42px;
+  transform-box: view-box;
+  animation: dog-wag 260ms ease-in-out infinite alternate;
+}
+
+@keyframes dog-wag {
+  from { transform: rotate(-14deg); }
+  to { transform: rotate(16deg); }
+}
+
+/* ---------- 귀여운 표정 (기계체조 선수·개·고양이 공용) ---------- */
+
+.cute-eye {
+  fill: var(--text-primary);
+}
+
+.cute-shine {
+  fill: #ffffff;
+}
+
+.cute-blush {
+  fill: #ff9fb3;
+  opacity: 0.6;
+}
+
+.cute-mouth {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.derp-tongue {
+  fill: #ff7b9c;
+  stroke: var(--text-primary);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dog-tail--wag,
+  .score-launch__flyer--dog.is-landed {
+    animation: none;
+  }
+}
+
+/* ---------- 고양이 (옆모습: 슈퍼맨 자세 → 갸웃하며 앉기) ---------- */
+
+.score-launch--cat {
+  --tag-clearance: 72px;
+}
+
+.score-launch__flyer--cat {
+  width: 70px;
+  height: 55px;
+}
+
+.score-launch__flyer--cat.is-landed {
+  width: 62px;
+  height: 66px;
+  transform-origin: 50% 100%;
+  animation: dog-plop 640ms cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.cat-fur {
+  fill: #f2a65a;
+  stroke: var(--text-primary);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.cat-stripe {
+  fill: none;
+  stroke: #b8621f;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.cat-nose {
+  fill: #ff8fa8;
+  stroke: var(--text-primary);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.cat-whisker {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+}
+
+.cat-leg--thick {
+  stroke: #f2a65a;
+  stroke-width: 6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .score-launch__flyer--cat.is-landed {
+    animation: none;
+  }
 }

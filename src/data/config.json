@@ -19,15 +19,17 @@
   "scoring": {
     "maxScore": 100,
     "method": "ciede2000",
-    "perfectThreshold": 4,
-    "zeroScoreThreshold": 85,
-    "curveExponent": 0.9
+    "perfectThreshold": 1,
+    "zeroScoreThreshold": 80,
+    "curveExponent": 1.1,
+    "hardTopFrom": 96,
+    "hardTopExponent": 3
   },
   "startColor": {
-    "minHueOffsetDeg": 18,
-    "maxHueOffsetDeg": 38,
-    "minSaturationOffset": 10,
-    "maxSaturationOffset": 22,
+    "minHueOffsetDeg": 35,
+    "maxHueOffsetDeg": 65,
+    "minSaturationOffset": 16,
+    "maxSaturationOffset": 30,
     "startValue": 93
   },
   "randomCategory": {
