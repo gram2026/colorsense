@@ -33,7 +33,7 @@ import * as draftStorage from "./draft-storage.js";
 import { loadUsableCategories, isValidQuestionId } from "./project-loader.js";
 
 import { renderStartScreen } from "./screens/start-screen.js";
-import { renderInfoPanel } from "./screens/panel-info.js";
+import { renderInfoPanel, updateAnswerSwatch } from "./screens/panel-info.js";
 import { renderMaskPanel } from "./screens/panel-mask.js";
 import { renderColorPanel } from "./screens/panel-color.js";
 import { renderPreviewPanel } from "./screens/panel-preview.js";
@@ -363,7 +363,7 @@ const TOOL_DEFS = [
   { id: "brush", icon: "brush", label: "브러시", key: "B" },
   { id: "eraser", icon: "eraser", label: "지우개", key: "E" },
   { id: "polygon", icon: "polygon", label: "다각형", key: "P" },
-  { id: "smart", icon: "wand", label: "스마트 선택", key: "W" },
+  { id: "smart", icon: "wand", label: "스마트 선택", key: "Ctrl+Q" },
   { id: "eyedropper", icon: "eyedropper", label: "스포이드", key: "I" },
 ];
 
@@ -794,7 +794,11 @@ function renderAllPanels() {
 
 function renderInfoTab() {
   renderInfoPanel(el.panelSections.info, {
+    color: getState().color,
+    onExtract: runExtraction,
+    onDirectAdd: handleDirectAdd,
     project: getState().project,
+    sourceFileName: getState().sourceFileName,
     onPatch: (partial) => {
       patchSlice("project", partial);
       updateFilenameDisplay();
@@ -859,6 +863,7 @@ function runMaskOpFromShortcut(op) {
 }
 
 function renderColorTab() {
+  updateAnswerSwatch(el.panelSections.info, getState().color.answerColor);
   renderColorPanel(el.panelSections.color, {
     color: getState().color,
     tool: getState().tool,
@@ -1279,6 +1284,12 @@ window.addEventListener("keydown", (e) => {
   if (isTypingInField()) return;
 
   const ctrlOrCmd = e.ctrlKey || e.metaKey;
+
+  if (e.ctrlKey && !e.altKey && !e.shiftKey && e.code === "KeyQ") {
+    e.preventDefault();
+    setActiveTool("smart");
+    return;
+  }
 
   if (ctrlOrCmd && e.key.toLowerCase() === "z" && e.shiftKey) {
     e.preventDefault();

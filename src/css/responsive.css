@@ -31,13 +31,14 @@ html {
     padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
   }
 
-  .round-result__compare {
-    flex-direction: column;
-  }
 }
 
 /* ---------- 좁은 모바일 ---------- */
 @media (max-width: 480px) {
+  .round-result {
+    padding-inline: clamp(12px, 4vw, 24px);
+  }
+
   .screen-inner {
     padding-left: var(--space-4);
     padding-right: var(--space-4);
@@ -78,8 +79,8 @@ html {
 }
 
 /* ---------- 터치 드래그 중 페이지 스크롤 방지 ---------- */
-.sv-panel,
-.hue-slider {
+.hs-panel,
+.value-slider {
   touch-action: none;
 }
 

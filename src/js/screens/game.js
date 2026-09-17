@@ -27,6 +27,7 @@ export async function mount(container) {
   }
 
   submitting = false;
+  const isCountry = state.selectedCategoryId === "country";
 
   root.innerHTML = `
     <div class="game-header">
@@ -46,7 +47,7 @@ export async function mount(container) {
       </div>
     </div>
 
-    <div class="game-layout">
+    <div class="game-layout${isCountry ? " game-layout--country" : ""}">
       <div class="game-photo-pane">
         <div class="game-photo-frame" data-role="photo-frame">
           <canvas data-role="canvas" aria-label="${t("game.canvasAria")}"></canvas>
@@ -55,6 +56,7 @@ export async function mount(container) {
             <span>${t("game.loading")}</span>
           </div>
         </div>
+        ${isCountry ? `<div class="game-country-name">${escapeHtml(question.id)}</div>` : ""}
       </div>
       <div class="game-control-pane">
         <div class="color-picker" data-role="color-picker"></div>

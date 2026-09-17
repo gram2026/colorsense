@@ -1,12 +1,13 @@
 /**
- * 아주 단순한 해시 기반 라우터
- * 화면 이름(#home, #categories ...)만 URL에 남기고, 실제 데이터(선택한 카테고리 등)는
- * state.js가 들고 있는다. 그래야 새로고침/뒤로가기에도 안전하게 대응할 수 있다.
+ * 화면 라우터
+ * 일반 화면은 기존 해시 주소를 유지하고, 게임 화면은 선택한 카테고리명을
+ * 경로로 표시한다. 예: 국가 게임 -> /contryflag
  */
 
 import { qs, qsa } from "./utils/dom.js";
 import { getState, setState } from "./state.js";
 import { t } from "./i18n.js";
+import { loadQuestionsForCategory } from "./data-loader.js";
 
 const VALID_SCREENS = [
   "home",
@@ -26,6 +27,20 @@ const SCREEN_ARIA_KEYS = {
   "final-result": "screen.finalResult",
 };
 
+const CATEGORY_PATHS = {
+  "brand-logo": "brandlogo",
+  sports: "sports",
+  country: "contryflag",
+  animation: "animation",
+  meme: "meme",
+};
+
+const PATH_CATEGORIES = new Map(
+  Object.entries(CATEGORY_PATHS).map(([categoryId, pathname]) => [pathname, categoryId])
+);
+// 올바른 영문 철자로 들어와도 요청한 주소로 정규화한다.
+PATH_CATEGORIES.set("countryflag", "country");
+
 const screenModules = new Map(); // screenId -> { mount, unmount }
 let currentModule = null;
 let currentScreenId = null;
@@ -34,9 +49,23 @@ export function registerScreen(screenId, module) {
   screenModules.set(screenId, module);
 }
 
-function screenIdFromHash() {
+function screenIdFromLocation() {
   const raw = (location.hash || "").replace(/^#\/?/, "").trim();
-  return VALID_SCREENS.includes(raw) ? raw : null;
+  if (VALID_SCREENS.includes(raw)) return raw;
+  return categoryIdFromPath() ? "game" : null;
+}
+
+function categoryIdFromPath() {
+  const pathname = location.pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
+  return PATH_CATEGORIES.get(pathname) || null;
+}
+
+function urlForScreen(screenId) {
+  if (screenId === "game") {
+    const categoryPath = CATEGORY_PATHS[getState().selectedCategoryId];
+    if (categoryPath) return `/${categoryPath}`;
+  }
+  return `/#${screenId}`;
 }
 
 /** 잘못된 경로(존재하지 않는 화면, 데이터 없이 진입 등)를 안전한 화면으로 보정한다. */
@@ -58,12 +87,12 @@ function resolveSafeScreen(requestedId) {
 }
 
 export function navigate(screenId, { replace = false } = {}) {
-  const target = `#${screenId}`;
+  const target = urlForScreen(screenId);
+  const current = `${location.pathname}${location.hash}`;
   if (replace) {
-    history.replaceState(null, "", target);
-  } else if (location.hash !== target) {
-    location.hash = target;
-    return; // hashchange 이벤트가 실제 렌더링을 담당한다
+    history.replaceState({ screenId }, "", target);
+  } else if (current !== target) {
+    history.pushState({ screenId }, "", target);
   }
   renderScreen(screenId);
 }
@@ -106,12 +135,34 @@ function renderScreen(screenId) {
   window.scrollTo(0, 0);
 }
 
-export function initRouter() {
-  window.addEventListener("hashchange", () => {
-    renderScreen(screenIdFromHash());
+export async function initRouter() {
+  window.addEventListener("popstate", () => {
+    renderScreen(screenIdFromLocation());
   });
 
-  const initialScreen = screenIdFromHash() || getState().currentScreen || "home";
+  const pathCategoryId = categoryIdFromPath();
+  if (pathCategoryId) {
+    const state = getState();
+    if (state.selectedCategoryId !== pathCategoryId || !state.questions?.length) {
+      try {
+        const questions = await loadQuestionsForCategory(pathCategoryId);
+        setState(
+          {
+            selectedCategoryId: pathCategoryId,
+            questions,
+            currentQuestionIndex: 0,
+            roundScores: [],
+            totalScore: 0,
+          },
+          { persist: false }
+        );
+      } catch (err) {
+        console.error(`[router] "${pathCategoryId}" 카테고리 로드 실패`, err);
+      }
+    }
+  }
+
+  const initialScreen = screenIdFromLocation() || getState().currentScreen || "home";
   navigate(initialScreen, { replace: true });
 }
 

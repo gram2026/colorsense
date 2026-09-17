@@ -11,22 +11,22 @@ import { SUPPORTED_RENDER_MODES } from "../../../src/js/utils/validation.js";
 
 let categoriesCache = null;
 
-export async function renderInfoPanel(root, { project, onPatch }) {
+export async function renderInfoPanel(root, { project, sourceFileName, color, onPatch, onExtract, onDirectAdd }) {
   if (!categoriesCache) categoriesCache = await loadUsableCategories();
   const categories = categoriesCache;
 
   root.innerHTML = `
     <div class="field">
-      <label class="field__label" for="mk-category">카테고리</label>
-      <select id="mk-category" class="maker-select" data-field="categoryId">
-        <option value="">선택하세요</option>
+      <span class="field__label" id="mk-category-label">카테고리</span>
+      <input type="hidden" id="mk-category" value="${escapeAttr(project.categoryId)}" />
+      <div class="maker-category-buttons" role="group" aria-labelledby="mk-category-label">
         ${categories
           .map(
             (c) =>
-              `<option value="${c.id}" ${c.id === project.categoryId ? "selected" : ""}>${escapeHtml(c.name)}</option>`
+              `<button type="button" class="btn btn--sm ${c.id === project.categoryId ? "btn--primary" : "btn--secondary"}" data-category="${escapeAttr(c.id)}" aria-pressed="${c.id === project.categoryId}">${escapeHtml(c.name)}</button>`
           )
           .join("")}
-      </select>
+      </div>
       <span class="field__hint">게임의 categories.json에서 자동으로 불러온 목록입니다.</span>
     </div>
 
@@ -44,6 +44,12 @@ export async function renderInfoPanel(root, { project, onPatch }) {
       <label class="field__label" for="mk-title">문제 제목</label>
       <input id="mk-title" class="maker-input" type="text" data-field="title" value="${escapeAttr(project.title)}" placeholder="예: 신호등" />
     </div>
+
+    <div class="maker-answer-row">
+      <button type="button" class="btn btn--secondary btn--sm" data-action="extract-answer">마스크에서 정답 추출</button>
+      <span class="maker-answer-swatch" data-role="answer-swatch" role="img"></span>
+    </div>
+    <button type="button" class="btn btn--primary btn--block" data-action="direct-add">게임 프로젝트에 바로 추가</button>
 
     <div class="field-row">
       <div class="field">
@@ -99,6 +105,23 @@ export async function renderInfoPanel(root, { project, onPatch }) {
   `;
 
   renderTags(root, project.tags || [], onPatch);
+  updateAnswerSwatch(root, color?.answerColor);
+  qs('[data-action="extract-answer"]', root).addEventListener("click", onExtract);
+  qs('[data-action="direct-add"]', root).addEventListener("click", onDirectAdd);
+  root.querySelectorAll('[data-category]').forEach((button) => {
+    button.addEventListener("click", () => {
+      const categoryId = button.dataset.category;
+      qs("#mk-category", root).value = categoryId;
+      root.querySelectorAll('[data-category]').forEach((option) => {
+        const selected = option === button;
+        option.setAttribute("aria-pressed", String(selected));
+        option.classList.toggle("btn--primary", selected);
+        option.classList.toggle("btn--secondary", !selected);
+      });
+      onPatch({ categoryId });
+      validateIdField(root, { ...project, categoryId, id: qs("#mk-id", root).value });
+    });
+  });
 
   root.querySelectorAll("[data-field]").forEach((fieldEl) => {
     const field = fieldEl.dataset.field;
@@ -108,7 +131,7 @@ export async function renderInfoPanel(root, { project, onPatch }) {
       if (fieldEl.type === "checkbox") value = fieldEl.checked;
       if (field === "difficulty") value = Number(value);
       onPatch({ [field]: value });
-      if (field === "id" || field === "categoryId") validateIdField(root, { ...project, [field]: value });
+      if (field === "id") validateIdField(root, { ...project, categoryId: qs("#mk-category", root).value, id: value });
     });
   });
 
@@ -122,11 +145,13 @@ export async function renderInfoPanel(root, { project, onPatch }) {
   });
 
   qs('[data-action="suggest-id"]', root).addEventListener("click", async () => {
-    if (!project.categoryId) return;
-    const suggestion = await suggestQuestionId(project.categoryId);
+    const categoryId = qs("#mk-category", root).value;
+    const suggestion = await suggestQuestionId(categoryId, sourceFileName || "", { excludeId: project.editingOriginalId });
+    const title = sourceFileName ? sourceFileName.replace(/\.[^.]+$/, "") : qs("#mk-title", root).value;
     qs("#mk-id", root).value = suggestion;
-    onPatch({ id: suggestion });
-    validateIdField(root, { ...project, id: suggestion });
+    qs("#mk-title", root).value = title;
+    onPatch({ id: suggestion, title });
+    validateIdField(root, { ...project, categoryId, id: suggestion });
   });
 
   const tagInput = qs('[data-role="tag-input"]', root);
@@ -142,6 +167,16 @@ export async function renderInfoPanel(root, { project, onPatch }) {
   });
 
   await validateIdField(root, project);
+}
+
+export function updateAnswerSwatch(root, hex) {
+  const swatch = qs('[data-role="answer-swatch"]', root);
+  if (!swatch) return;
+  const valid = /^#[0-9a-f]{6}$/i.test(hex || "");
+  swatch.style.backgroundColor = valid ? hex : "transparent";
+  swatch.textContent = valid ? "" : "—";
+  swatch.title = valid ? `정답 색상 ${hex}` : "아직 정답 색상이 없습니다";
+  swatch.setAttribute("aria-label", swatch.title);
 }
 
 function renderTags(root, tags, onPatch) {

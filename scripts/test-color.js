@@ -5,7 +5,7 @@
 import { hexToRgb, rgbToHex, rgbToHsl, hslToRgb, hexToLab } from "../src/js/color/color-convert.js";
 import { deltaE2000, deltaE76 } from "../src/js/color/delta-e.js";
 import { calculateScore, DEFAULT_SCORING_CONFIG } from "../src/js/color/scoring.js";
-import { composePreserveLightnessPixel, resolveRenderMode } from "../src/js/color/mask-renderer.js";
+import { composePreserveLightnessPixel, paintPreserveLightnessBuffer, resolveRenderMode } from "../src/js/color/mask-renderer.js";
 
 let pass = 0;
 let fail = 0;
@@ -318,6 +318,19 @@ console.log(
       `selectedL=${selL} 극단값에서도 결과가 0~255 범위 안의 유한한 값`
     );
   }
+}
+
+console.log("\n검정 마스크 영역도 선택한 색으로 바뀌어야 함");
+for (const hex of ["#FF0000", "#00FF00", "#245BCD", "#FFFFFF", "#000000"]) {
+  const rgb = hexToRgb(hex);
+  const { h, s, l } = rgbToHsl(rgb);
+  const pixel = composePreserveLightnessPixel(0, 0, 0, h, s, 0, 0, 1, l);
+  assert(approx(pixel.r, rgb.r) && approx(pixel.g, rgb.g) && approx(pixel.b, rgb.b), `검정 → ${hex}`);
+  const out = new Uint8ClampedArray(8);
+  paintPreserveLightnessBuffer(new Uint8ClampedArray([0, 0, 0, 255, 12, 15, 18, 255]), out,
+    new Float32Array([0, 0]), new Float32Array([0, 0]), new Float32Array([1, 0]), 2, h, s, l);
+  assert(approx(out[0], rgb.r) && approx(out[1], rgb.g) && approx(out[2], rgb.b), `렌더 버퍼 검정 → ${hex}`);
+  assert(out[4] === 12 && out[5] === 15 && out[6] === 18, "마스크 밖 원본 유지");
 }
 
 console.log("\n----------------------------------------");

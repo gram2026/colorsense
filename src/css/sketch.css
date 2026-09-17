@@ -65,44 +65,37 @@
   box-shadow: none;
 }
 .lang-btn { border-radius: 43% 35% 39% 31% / 48% 42% 51% 46%; }
-.btn:focus-visible, .icon-btn:focus-visible, [role="slider"]:focus-visible {
+.btn:focus-visible, .icon-btn:focus-visible {
   outline: 2px dashed #605944;
   outline-offset: 5px;
 }
+.color-picker [role="slider"]:focus {
+  outline: none;
+}
 .game-photo-frame { background: #fff; }
 .color-picker { background: transparent; gap: 18px; }
-.sv-panel { border-radius: 2px 4px 2px 3px; }
-.sv-panel__thumb, .hue-slider__thumb, .lightness-slider__thumb {
+.hs-panel { border-radius: 2px 4px 2px 3px; }
+.hs-panel__thumb, .value-slider__thumb {
   border-radius: 45% 55% 48% 52% / 54% 45% 55% 46%;
   border: 2px solid white;
   box-shadow: 0 0 0 1px #49463e;
 }
 
-/* Only the painted track is irregular; the full 32px hit area stays usable.
-   Inherit the JS-controlled gradient so the displayed colors stay accurate. */
-.hue-slider, .lightness-slider {
-  height: 32px;
-  border: 0;
-  border-radius: 0;
-  background-size: 0 0 !important;
-  background-repeat: no-repeat !important;
-  overflow: visible;
-}
-.hue-slider::before, .lightness-slider::before {
+.value-slider { border: 0; border-radius: 0; }
+.value-slider::before {
   content: "";
   position: absolute;
-  inset: 5px 0;
+  inset: 0;
+  background: url("./sketch-frame.svg") center / 100% 100% no-repeat;
   pointer-events: none;
-  background-image: inherit;
-  background-size: 100% 100%;
-  clip-path: polygon(0 44%, 3% 30%, 6% 37%, 9% 23%, 12% 39%, 16% 31%, 20% 39%, 24% 21%, 28% 35%, 32% 28%, 36% 40%, 40% 26%, 44% 34%, 48% 20%, 52% 34%, 56% 30%, 60% 40%, 64% 27%, 68% 34%, 72% 24%, 76% 37%, 80% 30%, 84% 42%, 88% 29%, 92% 37%, 96% 30%, 100% 39%, 100% 61%, 96% 53%, 92% 61%, 88% 53%, 84% 66%, 80% 54%, 76% 61%, 72% 48%, 68% 58%, 64% 51%, 60% 64%, 56% 54%, 52% 58%, 48% 44%, 44% 58%, 40% 50%, 36% 64%, 32% 52%, 28% 59%, 24% 45%, 20% 63%, 16% 55%, 12% 63%, 9% 47%, 6% 61%, 3% 54%, 0 68%);
 }
-.lightness-slider::before { transform: scaleY(-1); }
-.hue-slider__thumb, .lightness-slider__thumb {
-  width: 18px;
+.value-slider__thumb {
+  width: 25px;
   height: 20px;
   background: #fffefa;
-  border: 1px solid #56534c;
+  border: 4px solid #292823;
+  border-radius: 39% 54% 35% 45% / 52% 37% 49% 32%;
+  transform: translate(-50%, -50%) rotate(12deg);
   box-shadow: none;
   z-index: 1;
 }
@@ -165,4 +158,88 @@
 @media (max-width: 600px) {
   .color-picker { padding: 16px; gap: 14px; }
   .topbar-brand__name, .back-link { font-size: 21px; }
+}
+
+/* Side by side by default, sized by both viewport dimensions. */
+.game-screen .screen-inner {
+  --panel-size: min(420px, calc((100vw - 112px) / 2), calc(100svh - 205px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
+  padding: calc(8px + env(safe-area-inset-top, 0px)) 24px calc(20px + env(safe-area-inset-bottom, 0px));
+  gap: 24px;
+}
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  position: static;
+}
+.game-header .top-bar { padding: 0; margin: 0; border: 0; }
+.game-topbar { padding: 0 0 5px; gap: 8px; }
+.game-header .back-link { font-size: 21px; }
+.result-header { border-bottom-width: 1px; }
+.game-layout { flex: none; flex-direction: row; justify-content: center; align-items: center; gap: 40px; }
+.game-photo-pane, .game-control-pane {
+  flex: 0 0 var(--panel-size);
+  width: var(--panel-size);
+  max-width: none;
+  min-width: 0;
+  align-self: center;
+  padding: 0;
+}
+.game-photo-frame {
+  flex: none;
+  width: 100%;
+  height: var(--panel-size);
+  min-height: 0;
+  max-height: none;
+  max-width: none;
+}
+.game-photo-frame canvas { min-width: 0; min-height: 0; }
+.game-layout--country .game-photo-frame {
+  height: auto;
+  aspect-ratio: 3 / 2;
+}
+.game-layout--country .game-photo-frame canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.game-country-name {
+  text-align: center;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+  margin-top: 6px;
+}
+.game-screen .color-picker { padding: 10px; gap: 8px; }
+.game-screen .color-picker__preview { gap: 7px; }
+.game-screen .color-swatch--lg { width: 44px; height: 44px; flex: 0 0 44px; }
+.game-screen .color-picker__hex { font-size: 16px; }
+.game-screen .color-picker__hex-label { font-size: 11px; }
+.game-screen .submit-color-btn { min-height: 44px; padding: 6px 9px; font-size: 16px; gap: 4px; }
+.game-screen .submit-color-btn svg { width: 14px; height: 14px; }
+
+/* Only a phone-sized portrait viewport stacks the two panels. */
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-screen .screen-inner {
+    --panel-size: min(320px, calc(100vw - 64px), calc((100svh - 245px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) / 2));
+    gap: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .game-layout { flex-direction: column; gap: 26px; }
+  .game-photo-pane, .game-control-pane { flex: none; }
+}
+
+/* Narrow panels need two rows to keep HEX and Submit within the frame. */
+.game-control-pane { container-type: inline-size; }
+@container (max-width: 215px) {
+  .game-screen .color-picker__controls { grid-template-columns: minmax(0, 1fr) 42px; gap: 5px; }
+  .game-screen .color-picker__preview { display: grid; grid-template-columns: 34px 1fr; }
+  .game-screen .color-swatch--lg { width: 34px; height: 34px; }
+  .game-screen .color-picker__preview .spacer { display: none; }
+  .game-screen .submit-color-btn { grid-column: 1 / -1; width: 100%; }
 }

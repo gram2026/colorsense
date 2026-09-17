@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 const PORT = Number(process.env.PORT) || 5173;
+const GAME_PATHS = new Set(["/brandlogo", "/sports", "/contryflag", "/countryflag", "/animation", "/meme"]);
 
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -35,7 +36,8 @@ function safeJoin(root, urlPath) {
 }
 
 const server = http.createServer((req, res) => {
-  const urlPath = req.url === "/" ? "/index.html" : req.url;
+  const requestPath = new URL(req.url, `http://${req.headers.host || "localhost"}`).pathname;
+  const urlPath = req.url === "/" || GAME_PATHS.has(requestPath) ? "/index.html" : req.url;
   let filePath = safeJoin(ROOT, urlPath);
 
   fs.stat(filePath, (err, stat) => {

@@ -74,12 +74,12 @@ const dict = {
     "game.loadErrorSkip": "다음 문제로",
     "game.maskMissingToast": "이 문제는 색상 미리보기를 사용할 수 없어요",
 
-    "colorPicker.svAria": "채도와 명도 선택",
+    "colorPicker.svAria": "색상과 채도 선택",
     "colorPicker.hueAria": "색상(Hue) 선택",
-    "colorPicker.lightnessAria": "명도 선택",
+    "colorPicker.lightnessAria": "밝기 선택",
     "colorPicker.submit": "제출",
     "colorPicker.submitAria": "색상 제출",
-    "colorPicker.svValueText": "채도 {s}, 명도 {l}",
+    "colorPicker.svValueText": "색상 {h}, 채도 {s}",
 
     "roundResult.scoreLabel": "획득 점수",
     "roundResult.myPick": "내 선택",
@@ -178,12 +178,12 @@ const dict = {
     "game.loadErrorSkip": "Next question",
     "game.maskMissingToast": "Color preview isn't available for this question",
 
-    "colorPicker.svAria": "Choose saturation and lightness",
+    "colorPicker.svAria": "Choose hue and saturation",
     "colorPicker.hueAria": "Choose hue",
-    "colorPicker.lightnessAria": "Choose lightness",
+    "colorPicker.lightnessAria": "Choose brightness",
     "colorPicker.submit": "Submit",
     "colorPicker.submitAria": "Submit color",
-    "colorPicker.svValueText": "Saturation {s}, Lightness {l}",
+    "colorPicker.svValueText": "Hue {h}, Saturation {s}",
 
     "roundResult.scoreLabel": "Score",
     "roundResult.myPick": "My pick",

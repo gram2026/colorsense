@@ -75,7 +75,7 @@ export function isValidQuestionId(id) {
 }
 
 /** "objects-20260730-001" 형태의 안전한 기본 id를 제안한다 (사용자가 자유롭게 고칠 수 있음) */
-export async function suggestQuestionId(categoryId) {
+export async function suggestQuestionId(categoryId, sourceFileName = "", { excludeId = null } = {}) {
   const today = new Date();
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -86,7 +86,17 @@ export async function suggestQuestionId(categoryId) {
   const categories = await loadCategories();
   const category = categories.find((c) => c.id === categoryId);
   const existing = category ? await loadExistingQuestions(category) : [];
-  const existingIds = new Set(existing.map((q) => q.id));
+  const existingIds = new Set(existing.map((q) => q.id).filter((id) => id !== excludeId));
+
+  const filenameBase = sourceFileName.replace(/\.[^.]+$/, "").normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  if (filenameBase) {
+    let candidate = filenameBase;
+    let suffix = 2;
+    while (existingIds.has(candidate)) candidate = `${filenameBase}-${suffix++}`;
+    return candidate;
+  }
 
   let seq = 1;
   let candidate = `${safeCategoryId}-${datePart}-${String(seq).padStart(3, "0")}`;

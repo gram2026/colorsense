@@ -176,25 +176,6 @@
     },
     {
       "schemaVersion": 1,
-      "id": "feyenoord",
-      "categoryId": "sports",
-      "title": "feyenoord",
-      "originalImage": "assets/questions/sports/feyenoord/original.webp",
-      "maskImage": "assets/questions/sports/feyenoord/mask.png",
-      "thumbnail": "assets/questions/sports/feyenoord/thumbnail.webp",
-      "answerColor": "#FFFFFF",
-      "startColor": null,
-      "renderMode": "preserve-lightness",
-      "enabled": false,
-      "difficulty": 1,
-      "tags": [],
-      "metadata": {
-        "createdAt": "2026-08-05",
-        "makerVersion": "1.0.0"
-      }
-    },
-    {
-      "schemaVersion": 1,
       "id": "ligue1",
       "categoryId": "sports",
       "title": "ligue1",
@@ -1003,25 +984,6 @@
       "startColor": null,
       "renderMode": "preserve-lightness",
       "enabled": true,
-      "difficulty": 1,
-      "tags": [],
-      "metadata": {
-        "createdAt": "2026-08-08",
-        "makerVersion": "1.0.0"
-      }
-    },
-    {
-      "schemaVersion": 1,
-      "id": "fcb",
-      "categoryId": "sports",
-      "title": "fcb",
-      "originalImage": "assets/questions/sports/fcb/original.webp",
-      "maskImage": "assets/questions/sports/fcb/mask.png",
-      "thumbnail": "assets/questions/sports/fcb/thumbnail.webp",
-      "answerColor": "#A21F4B",
-      "startColor": null,
-      "renderMode": "preserve-lightness",
-      "enabled": false,
       "difficulty": 1,
       "tags": [],
       "metadata": {

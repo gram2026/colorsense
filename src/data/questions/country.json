@@ -5,39 +5,343 @@
   "questions": [
     {
       "schemaVersion": 1,
-      "id": "korea",
+      "id": "chad",
       "categoryId": "country",
-      "title": "korea",
-      "originalImage": "assets/questions/country/korea/original.webp",
-      "maskImage": "assets/questions/country/korea/mask.png",
-      "thumbnail": "assets/questions/country/korea/thumbnail.webp",
-      "answerColor": "#0247A0",
+      "title": "chad",
+      "originalImage": "assets/questions/country/chad/original.webp",
+      "maskImage": "assets/questions/country/chad/mask.png",
+      "thumbnail": "assets/questions/country/chad/thumbnail.webp",
+      "answerColor": "#FECB00",
       "startColor": null,
       "renderMode": "preserve-lightness",
       "enabled": true,
       "difficulty": 1,
       "tags": [],
       "metadata": {
-        "createdAt": "2026-08-02",
+        "createdAt": "2026-09-17",
         "makerVersion": "1.0.0"
       }
     },
     {
       "schemaVersion": 1,
-      "id": "malyisia",
+      "id": "albania",
       "categoryId": "country",
-      "title": "malyisia",
-      "originalImage": "assets/questions/country/malyisia/original.webp",
-      "maskImage": "assets/questions/country/malyisia/mask.png",
-      "thumbnail": "assets/questions/country/malyisia/thumbnail.webp",
-      "answerColor": "#2E2B71",
+      "title": "albania",
+      "originalImage": "assets/questions/country/albania/original.webp",
+      "maskImage": "assets/questions/country/albania/mask.png",
+      "thumbnail": "assets/questions/country/albania/thumbnail.webp",
+      "answerColor": "#000000",
       "startColor": null,
       "renderMode": "preserve-lightness",
       "enabled": true,
       "difficulty": 1,
       "tags": [],
       "metadata": {
-        "createdAt": "2026-08-07",
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "algeria",
+      "categoryId": "country",
+      "title": "algeria",
+      "originalImage": "assets/questions/country/algeria/original.webp",
+      "maskImage": "assets/questions/country/algeria/mask.png",
+      "thumbnail": "assets/questions/country/algeria/thumbnail.webp",
+      "answerColor": "#006633",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "andorra",
+      "categoryId": "country",
+      "title": "andorra",
+      "originalImage": "assets/questions/country/andorra/original.webp",
+      "maskImage": "assets/questions/country/andorra/mask.png",
+      "thumbnail": "assets/questions/country/andorra/thumbnail.webp",
+      "answerColor": "#FEDD00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "angola",
+      "categoryId": "country",
+      "title": "angola",
+      "originalImage": "assets/questions/country/angola/original.webp",
+      "maskImage": "assets/questions/country/angola/mask.png",
+      "thumbnail": "assets/questions/country/angola/thumbnail.webp",
+      "answerColor": "#FFCB00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "argentina",
+      "categoryId": "country",
+      "title": "argentina",
+      "originalImage": "assets/questions/country/argentina/original.webp",
+      "maskImage": "assets/questions/country/argentina/mask.png",
+      "thumbnail": "assets/questions/country/argentina/thumbnail.webp",
+      "answerColor": "#74ACDF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "australia",
+      "categoryId": "country",
+      "title": "australia",
+      "originalImage": "assets/questions/country/australia/original.webp",
+      "maskImage": "assets/questions/country/australia/mask.png",
+      "thumbnail": "assets/questions/country/australia/thumbnail.webp",
+      "answerColor": "#012169",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "austria",
+      "categoryId": "country",
+      "title": "austria",
+      "originalImage": "assets/questions/country/austria/original.webp",
+      "maskImage": "assets/questions/country/austria/mask.png",
+      "thumbnail": "assets/questions/country/austria/thumbnail.webp",
+      "answerColor": "#FFFFFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "azerbaijan",
+      "categoryId": "country",
+      "title": "azerbaijan",
+      "originalImage": "assets/questions/country/azerbaijan/original.webp",
+      "maskImage": "assets/questions/country/azerbaijan/mask.png",
+      "thumbnail": "assets/questions/country/azerbaijan/thumbnail.webp",
+      "answerColor": "#00B5E2",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "armenia",
+      "categoryId": "country",
+      "title": "armenia",
+      "originalImage": "assets/questions/country/armenia/original.webp",
+      "maskImage": "assets/questions/country/armenia/mask.png",
+      "thumbnail": "assets/questions/country/armenia/thumbnail.webp",
+      "answerColor": "#D90012",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bahrain",
+      "categoryId": "country",
+      "title": "bahrain",
+      "originalImage": "assets/questions/country/bahrain/original.webp",
+      "maskImage": "assets/questions/country/bahrain/mask.png",
+      "thumbnail": "assets/questions/country/bahrain/thumbnail.webp",
+      "answerColor": "#DA291C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bangladesh",
+      "categoryId": "country",
+      "title": "bangladesh",
+      "originalImage": "assets/questions/country/bangladesh/original.webp",
+      "maskImage": "assets/questions/country/bangladesh/mask.png",
+      "thumbnail": "assets/questions/country/bangladesh/thumbnail.webp",
+      "answerColor": "#006A4E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "barbados",
+      "categoryId": "country",
+      "title": "barbados",
+      "originalImage": "assets/questions/country/barbados/original.webp",
+      "maskImage": "assets/questions/country/barbados/mask.png",
+      "thumbnail": "assets/questions/country/barbados/thumbnail.webp",
+      "answerColor": "#FFC726",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "belarus",
+      "categoryId": "country",
+      "title": "belarus",
+      "originalImage": "assets/questions/country/belarus/original.webp",
+      "maskImage": "assets/questions/country/belarus/mask.png",
+      "thumbnail": "assets/questions/country/belarus/thumbnail.webp",
+      "answerColor": "#007C30",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "belgium",
+      "categoryId": "country",
+      "title": "belgium",
+      "originalImage": "assets/questions/country/belgium/original.webp",
+      "maskImage": "assets/questions/country/belgium/mask.png",
+      "thumbnail": "assets/questions/country/belgium/thumbnail.webp",
+      "answerColor": "#FDDA25",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bhutan",
+      "categoryId": "country",
+      "title": "bhutan",
+      "originalImage": "assets/questions/country/bhutan/original.webp",
+      "maskImage": "assets/questions/country/bhutan/mask.png",
+      "thumbnail": "assets/questions/country/bhutan/thumbnail.webp",
+      "answerColor": "#FF671F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bolivia",
+      "categoryId": "country",
+      "title": "bolivia",
+      "originalImage": "assets/questions/country/bolivia/original.webp",
+      "maskImage": "assets/questions/country/bolivia/mask.png",
+      "thumbnail": "assets/questions/country/bolivia/thumbnail.webp",
+      "answerColor": "#BF1E10",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "bosnia-and-herzegovina",
+      "categoryId": "country",
+      "title": "bosnia-and-herzegovina",
+      "originalImage": "assets/questions/country/bosnia-and-herzegovina/original.webp",
+      "maskImage": "assets/questions/country/bosnia-and-herzegovina/mask.png",
+      "thumbnail": "assets/questions/country/bosnia-and-herzegovina/thumbnail.webp",
+      "answerColor": "#FECB00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
         "makerVersion": "1.0.0"
       }
     },
@@ -49,33 +353,1021 @@
       "originalImage": "assets/questions/country/brazil/original.webp",
       "maskImage": "assets/questions/country/brazil/mask.png",
       "thumbnail": "assets/questions/country/brazil/thumbnail.webp",
-      "answerColor": "#2F3292",
+      "answerColor": "#302681",
       "startColor": null,
       "renderMode": "preserve-lightness",
       "enabled": true,
       "difficulty": 1,
       "tags": [],
       "metadata": {
-        "createdAt": "2026-08-08",
+        "createdAt": "2026-09-17",
         "makerVersion": "1.0.0"
       }
     },
     {
       "schemaVersion": 1,
-      "id": "turkey",
+      "id": "bulgaria",
       "categoryId": "country",
-      "title": "turkey",
-      "originalImage": "assets/questions/country/turkey/original.webp",
-      "maskImage": "assets/questions/country/turkey/mask.png",
-      "thumbnail": "assets/questions/country/turkey/thumbnail.webp",
-      "answerColor": "#ED1C24",
+      "title": "bulgaria",
+      "originalImage": "assets/questions/country/bulgaria/original.webp",
+      "maskImage": "assets/questions/country/bulgaria/mask.png",
+      "thumbnail": "assets/questions/country/bulgaria/thumbnail.webp",
+      "answerColor": "#00966E",
       "startColor": null,
       "renderMode": "preserve-lightness",
       "enabled": true,
       "difficulty": 1,
       "tags": [],
       "metadata": {
-        "createdAt": "2026-08-08",
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cambodia",
+      "categoryId": "country",
+      "title": "cambodia",
+      "originalImage": "assets/questions/country/cambodia/original.webp",
+      "maskImage": "assets/questions/country/cambodia/mask.png",
+      "thumbnail": "assets/questions/country/cambodia/thumbnail.webp",
+      "answerColor": "#E00025",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cameroon",
+      "categoryId": "country",
+      "title": "cameroon",
+      "originalImage": "assets/questions/country/cameroon/original.webp",
+      "maskImage": "assets/questions/country/cameroon/mask.png",
+      "thumbnail": "assets/questions/country/cameroon/thumbnail.webp",
+      "answerColor": "#CE1126",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "canada",
+      "categoryId": "country",
+      "title": "canada",
+      "originalImage": "assets/questions/country/canada/original.webp",
+      "maskImage": "assets/questions/country/canada/mask.png",
+      "thumbnail": "assets/questions/country/canada/thumbnail.webp",
+      "answerColor": "#FF0000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cape-verde",
+      "categoryId": "country",
+      "title": "cape-verde",
+      "originalImage": "assets/questions/country/cape-verde/original.webp",
+      "maskImage": "assets/questions/country/cape-verde/mask.png",
+      "thumbnail": "assets/questions/country/cape-verde/thumbnail.webp",
+      "answerColor": "#CF2027",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "chile",
+      "categoryId": "country",
+      "title": "chile",
+      "originalImage": "assets/questions/country/chile/original.webp",
+      "maskImage": "assets/questions/country/chile/mask.png",
+      "thumbnail": "assets/questions/country/chile/thumbnail.webp",
+      "answerColor": "#0032A0",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "china",
+      "categoryId": "country",
+      "title": "china",
+      "originalImage": "assets/questions/country/china/original.webp",
+      "maskImage": "assets/questions/country/china/mask.png",
+      "thumbnail": "assets/questions/country/china/thumbnail.webp",
+      "answerColor": "#FFFF00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "colombia",
+      "categoryId": "country",
+      "title": "colombia",
+      "originalImage": "assets/questions/country/colombia/original.webp",
+      "maskImage": "assets/questions/country/colombia/mask.png",
+      "thumbnail": "assets/questions/country/colombia/thumbnail.webp",
+      "answerColor": "#FFCD00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "congo-brazzaville",
+      "categoryId": "country",
+      "title": "congo-brazzaville",
+      "originalImage": "assets/questions/country/congo-brazzaville/original.webp",
+      "maskImage": "assets/questions/country/congo-brazzaville/mask.png",
+      "thumbnail": "assets/questions/country/congo-brazzaville/thumbnail.webp",
+      "answerColor": "#DC241F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "congo-kinshasa",
+      "categoryId": "country",
+      "title": "congo-kinshasa",
+      "originalImage": "assets/questions/country/congo-kinshasa/original.webp",
+      "maskImage": "assets/questions/country/congo-kinshasa/mask.png",
+      "thumbnail": "assets/questions/country/congo-kinshasa/thumbnail.webp",
+      "answerColor": "#007FFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "costa-rica",
+      "categoryId": "country",
+      "title": "costa-rica",
+      "originalImage": "assets/questions/country/costa-rica/original.webp",
+      "maskImage": "assets/questions/country/costa-rica/mask.png",
+      "thumbnail": "assets/questions/country/costa-rica/thumbnail.webp",
+      "answerColor": "#FFFFFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cote-divoire",
+      "categoryId": "country",
+      "title": "cote-divoire",
+      "originalImage": "assets/questions/country/cote-divoire/original.webp",
+      "maskImage": "assets/questions/country/cote-divoire/mask.png",
+      "thumbnail": "assets/questions/country/cote-divoire/thumbnail.webp",
+      "answerColor": "#F77F00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "croatia",
+      "categoryId": "country",
+      "title": "croatia",
+      "originalImage": "assets/questions/country/croatia/original.webp",
+      "maskImage": "assets/questions/country/croatia/mask.png",
+      "thumbnail": "assets/questions/country/croatia/thumbnail.webp",
+      "answerColor": "#FF0000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cuba",
+      "categoryId": "country",
+      "title": "cuba",
+      "originalImage": "assets/questions/country/cuba/original.webp",
+      "maskImage": "assets/questions/country/cuba/mask.png",
+      "thumbnail": "assets/questions/country/cuba/thumbnail.webp",
+      "answerColor": "#002A8F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "curacao",
+      "categoryId": "country",
+      "title": "curacao",
+      "originalImage": "assets/questions/country/curacao/original.webp",
+      "maskImage": "assets/questions/country/curacao/mask.png",
+      "thumbnail": "assets/questions/country/curacao/thumbnail.webp",
+      "answerColor": "#002B7F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cyprus",
+      "categoryId": "country",
+      "title": "cyprus",
+      "originalImage": "assets/questions/country/cyprus/original.webp",
+      "maskImage": "assets/questions/country/cyprus/mask.png",
+      "thumbnail": "assets/questions/country/cyprus/thumbnail.webp",
+      "answerColor": "#4D5B2D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "czechia",
+      "categoryId": "country",
+      "title": "czechia",
+      "originalImage": "assets/questions/country/czechia/original.webp",
+      "maskImage": "assets/questions/country/czechia/mask.png",
+      "thumbnail": "assets/questions/country/czechia/thumbnail.webp",
+      "answerColor": "#FFFFFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "denmark",
+      "categoryId": "country",
+      "title": "denmark",
+      "originalImage": "assets/questions/country/denmark/original.webp",
+      "maskImage": "assets/questions/country/denmark/mask.png",
+      "thumbnail": "assets/questions/country/denmark/thumbnail.webp",
+      "answerColor": "#C8102E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "ecuador",
+      "categoryId": "country",
+      "title": "ecuador",
+      "originalImage": "assets/questions/country/ecuador/original.webp",
+      "maskImage": "assets/questions/country/ecuador/mask.png",
+      "thumbnail": "assets/questions/country/ecuador/thumbnail.webp",
+      "answerColor": "#FFDD00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "egypt",
+      "categoryId": "country",
+      "title": "egypt",
+      "originalImage": "assets/questions/country/egypt/original.webp",
+      "maskImage": "assets/questions/country/egypt/mask.png",
+      "thumbnail": "assets/questions/country/egypt/thumbnail.webp",
+      "answerColor": "#CE1126",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "el-salvador",
+      "categoryId": "country",
+      "title": "el-salvador",
+      "originalImage": "assets/questions/country/el-salvador/original.webp",
+      "maskImage": "assets/questions/country/el-salvador/mask.png",
+      "thumbnail": "assets/questions/country/el-salvador/thumbnail.webp",
+      "answerColor": "#0047AB",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "england",
+      "categoryId": "country",
+      "title": "england",
+      "originalImage": "assets/questions/country/england/original.webp",
+      "maskImage": "assets/questions/country/england/mask.png",
+      "thumbnail": "assets/questions/country/england/thumbnail.webp",
+      "answerColor": "#C8102E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "estonia",
+      "categoryId": "country",
+      "title": "estonia",
+      "originalImage": "assets/questions/country/estonia/original.webp",
+      "maskImage": "assets/questions/country/estonia/mask.png",
+      "thumbnail": "assets/questions/country/estonia/thumbnail.webp",
+      "answerColor": "#000000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "ethiopia",
+      "categoryId": "country",
+      "title": "ethiopia",
+      "originalImage": "assets/questions/country/ethiopia/original.webp",
+      "maskImage": "assets/questions/country/ethiopia/mask.png",
+      "thumbnail": "assets/questions/country/ethiopia/thumbnail.webp",
+      "answerColor": "#FCDD09",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "finland",
+      "categoryId": "country",
+      "title": "finland",
+      "originalImage": "assets/questions/country/finland/original.webp",
+      "maskImage": "assets/questions/country/finland/mask.png",
+      "thumbnail": "assets/questions/country/finland/thumbnail.webp",
+      "answerColor": "#002F6C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "france",
+      "categoryId": "country",
+      "title": "france",
+      "originalImage": "assets/questions/country/france/original.webp",
+      "maskImage": "assets/questions/country/france/mask.png",
+      "thumbnail": "assets/questions/country/france/thumbnail.webp",
+      "answerColor": "#CE1126",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "gabon",
+      "categoryId": "country",
+      "title": "gabon",
+      "originalImage": "assets/questions/country/gabon/original.webp",
+      "maskImage": "assets/questions/country/gabon/mask.png",
+      "thumbnail": "assets/questions/country/gabon/thumbnail.webp",
+      "answerColor": "#FCD116",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "georgia",
+      "categoryId": "country",
+      "title": "georgia",
+      "originalImage": "assets/questions/country/georgia/original.webp",
+      "maskImage": "assets/questions/country/georgia/mask.png",
+      "thumbnail": "assets/questions/country/georgia/thumbnail.webp",
+      "answerColor": "#FF0000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "germany",
+      "categoryId": "country",
+      "title": "germany",
+      "originalImage": "assets/questions/country/germany/original.webp",
+      "maskImage": "assets/questions/country/germany/mask.png",
+      "thumbnail": "assets/questions/country/germany/thumbnail.webp",
+      "answerColor": "#DD0000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "ghana",
+      "categoryId": "country",
+      "title": "ghana",
+      "originalImage": "assets/questions/country/ghana/original.webp",
+      "maskImage": "assets/questions/country/ghana/mask.png",
+      "thumbnail": "assets/questions/country/ghana/thumbnail.webp",
+      "answerColor": "#010100",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "greece",
+      "categoryId": "country",
+      "title": "greece",
+      "originalImage": "assets/questions/country/greece/original.webp",
+      "maskImage": "assets/questions/country/greece/mask.png",
+      "thumbnail": "assets/questions/country/greece/thumbnail.webp",
+      "answerColor": "#0D5EAF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "hong-kong-sar-china",
+      "categoryId": "country",
+      "title": "hong-kong-sar-china",
+      "originalImage": "assets/questions/country/hong-kong-sar-china/original.webp",
+      "maskImage": "assets/questions/country/hong-kong-sar-china/mask.png",
+      "thumbnail": "assets/questions/country/hong-kong-sar-china/thumbnail.webp",
+      "answerColor": "#EE1C25",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "hungary",
+      "categoryId": "country",
+      "title": "hungary",
+      "originalImage": "assets/questions/country/hungary/original.webp",
+      "maskImage": "assets/questions/country/hungary/mask.png",
+      "thumbnail": "assets/questions/country/hungary/thumbnail.webp",
+      "answerColor": "#CE2939",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "iceland",
+      "categoryId": "country",
+      "title": "iceland",
+      "originalImage": "assets/questions/country/iceland/original.webp",
+      "maskImage": "assets/questions/country/iceland/mask.png",
+      "thumbnail": "assets/questions/country/iceland/thumbnail.webp",
+      "answerColor": "#DC1E35",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "india",
+      "categoryId": "country",
+      "title": "india",
+      "originalImage": "assets/questions/country/india/original.webp",
+      "maskImage": "assets/questions/country/india/mask.png",
+      "thumbnail": "assets/questions/country/india/thumbnail.webp",
+      "answerColor": "#09048E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "indonesia",
+      "categoryId": "country",
+      "title": "indonesia",
+      "originalImage": "assets/questions/country/indonesia/original.webp",
+      "maskImage": "assets/questions/country/indonesia/mask.png",
+      "thumbnail": "assets/questions/country/indonesia/thumbnail.webp",
+      "answerColor": "#FFFFFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "iran",
+      "categoryId": "country",
+      "title": "iran",
+      "originalImage": "assets/questions/country/iran/original.webp",
+      "maskImage": "assets/questions/country/iran/mask.png",
+      "thumbnail": "assets/questions/country/iran/thumbnail.webp",
+      "answerColor": "#DA0000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "iraq",
+      "categoryId": "country",
+      "title": "iraq",
+      "originalImage": "assets/questions/country/iraq/original.webp",
+      "maskImage": "assets/questions/country/iraq/mask.png",
+      "thumbnail": "assets/questions/country/iraq/thumbnail.webp",
+      "answerColor": "#017B3D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "ireland",
+      "categoryId": "country",
+      "title": "ireland",
+      "originalImage": "assets/questions/country/ireland/original.webp",
+      "maskImage": "assets/questions/country/ireland/mask.png",
+      "thumbnail": "assets/questions/country/ireland/thumbnail.webp",
+      "answerColor": "#169B62",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "israel",
+      "categoryId": "country",
+      "title": "israel",
+      "originalImage": "assets/questions/country/israel/original.webp",
+      "maskImage": "assets/questions/country/israel/mask.png",
+      "thumbnail": "assets/questions/country/israel/thumbnail.webp",
+      "answerColor": "#0038B8",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "italy",
+      "categoryId": "country",
+      "title": "italy",
+      "originalImage": "assets/questions/country/italy/original.webp",
+      "maskImage": "assets/questions/country/italy/mask.png",
+      "thumbnail": "assets/questions/country/italy/thumbnail.webp",
+      "answerColor": "#009246",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "jamaica",
+      "categoryId": "country",
+      "title": "jamaica",
+      "originalImage": "assets/questions/country/jamaica/original.webp",
+      "maskImage": "assets/questions/country/jamaica/mask.png",
+      "thumbnail": "assets/questions/country/jamaica/thumbnail.webp",
+      "answerColor": "#FFB81C",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "japan",
+      "categoryId": "country",
+      "title": "japan",
+      "originalImage": "assets/questions/country/japan/original.webp",
+      "maskImage": "assets/questions/country/japan/mask.png",
+      "thumbnail": "assets/questions/country/japan/thumbnail.webp",
+      "answerColor": "#BC002D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "lithuania",
+      "categoryId": "country",
+      "title": "lithuania",
+      "originalImage": "assets/questions/country/lithuania/original.webp",
+      "maskImage": "assets/questions/country/lithuania/mask.png",
+      "thumbnail": "assets/questions/country/lithuania/thumbnail.webp",
+      "answerColor": "#006A44",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "laos",
+      "categoryId": "country",
+      "title": "laos",
+      "originalImage": "assets/questions/country/laos/original.webp",
+      "maskImage": "assets/questions/country/laos/mask.png",
+      "thumbnail": "assets/questions/country/laos/thumbnail.webp",
+      "answerColor": "#FFFFFF",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "latvia",
+      "categoryId": "country",
+      "title": "latvia",
+      "originalImage": "assets/questions/country/latvia/original.webp",
+      "maskImage": "assets/questions/country/latvia/mask.png",
+      "thumbnail": "assets/questions/country/latvia/thumbnail.webp",
+      "answerColor": "#9D2235",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "libya",
+      "categoryId": "country",
+      "title": "libya",
+      "originalImage": "assets/questions/country/libya/original.webp",
+      "maskImage": "assets/questions/country/libya/mask.png",
+      "thumbnail": "assets/questions/country/libya/thumbnail.webp",
+      "answerColor": "#000000",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "macao-sar-china",
+      "categoryId": "country",
+      "title": "macao-sar-china",
+      "originalImage": "assets/questions/country/macao-sar-china/original.webp",
+      "maskImage": "assets/questions/country/macao-sar-china/mask.png",
+      "thumbnail": "assets/questions/country/macao-sar-china/thumbnail.webp",
+      "answerColor": "#0F7562",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "malaysia",
+      "categoryId": "country",
+      "title": "malaysia",
+      "originalImage": "assets/questions/country/malaysia/original.webp",
+      "maskImage": "assets/questions/country/malaysia/mask.png",
+      "thumbnail": "assets/questions/country/malaysia/thumbnail.webp",
+      "answerColor": "#000066",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mexico",
+      "categoryId": "country",
+      "title": "mexico",
+      "originalImage": "assets/questions/country/mexico/original.webp",
+      "maskImage": "assets/questions/country/mexico/mask.png",
+      "thumbnail": "assets/questions/country/mexico/thumbnail.webp",
+      "answerColor": "#5D351E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "micronesia",
+      "categoryId": "country",
+      "title": "micronesia",
+      "originalImage": "assets/questions/country/micronesia/original.webp",
+      "maskImage": "assets/questions/country/micronesia/mask.png",
+      "thumbnail": "assets/questions/country/micronesia/thumbnail.webp",
+      "answerColor": "#75B2DD",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "monaco",
+      "categoryId": "country",
+      "title": "monaco",
+      "originalImage": "assets/questions/country/monaco/original.webp",
+      "maskImage": "assets/questions/country/monaco/mask.png",
+      "thumbnail": "assets/questions/country/monaco/thumbnail.webp",
+      "answerColor": "#CE1126",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mongolia",
+      "categoryId": "country",
+      "title": "mongolia",
+      "originalImage": "assets/questions/country/mongolia/original.webp",
+      "maskImage": "assets/questions/country/mongolia/mask.png",
+      "thumbnail": "assets/questions/country/mongolia/thumbnail.webp",
+      "answerColor": "#0066B2",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-17",
         "makerVersion": "1.0.0"
       }
     }

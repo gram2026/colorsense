@@ -63,14 +63,23 @@ export function composePreserveLightnessPixel(
   if (strength <= 0.004) {
     return { r: origR, g: origG, b: origB };
   }
-  const effectiveS = clamp(selectedS * (originalS / 100), 0, 100);
-  const effectiveL = clamp(originalL + (selectedL - 50), 0, 100);
+  const lift = darkNeutralColorWeight(originalL, originalS);
+  const effectiveS = clamp(selectedS * (originalS / 100 * (1 - lift) + lift), 0, 100);
+  const effectiveL = clamp((originalL - 50) * (1 - lift) + selectedL, 0, 100);
   const recolored = hslToRgb({ h: selectedH, s: effectiveS, l: effectiveL });
   return {
     r: origR * (1 - strength) + recolored.r * strength,
     g: origG * (1 - strength) + recolored.g * strength,
     b: origB * (1 - strength) + recolored.b * strength,
   };
+}
+
+// Near-black neutral pixels need the picked color directly; fade the correction
+// out smoothly so neighboring shades do not acquire a hard boundary.
+function darkNeutralColorWeight(lightness, saturation) {
+  const dark = clamp((25 - lightness) / 15, 0, 1);
+  const neutral = clamp((30 - saturation) / 20, 0, 1);
+  return dark * dark * (3 - 2 * dark) * neutral * neutral * (3 - 2 * neutral);
 }
 
 /** preserve-lightness 합성 루프. 실시간(축소) 렌더링과 제출 시 원본 해상도 스냅샷이 같은 코드를 쓴다. */
@@ -84,8 +93,9 @@ export function paintPreserveLightnessBuffer(orig, out, lightness, saturation, m
     if (strength <= 0.004) {
       out[idx] = orig[idx]; out[idx + 1] = orig[idx + 1]; out[idx + 2] = orig[idx + 2];
     } else {
-      const l = clamp(lightness[i] + selL - 50, 0, 100) / 100;
-      const s = clamp(selS * saturation[i] / 100, 0, 100) / 100;
+      const lift = darkNeutralColorWeight(lightness[i], saturation[i]);
+      const l = clamp((lightness[i] - 50) * (1 - lift) + selL, 0, 100) / 100;
+      const s = clamp(selS * (saturation[i] / 100 * (1 - lift) + lift), 0, 100) / 100;
       const c = (1 - Math.abs(2 * l - 1)) * s;
       const m = l - c / 2;
       const keep = 1 - strength;

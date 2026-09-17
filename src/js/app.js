@@ -38,7 +38,7 @@ onLangChange(() => {
 async function bootstrap() {
   await initI18n();
   tryRestoreSession();
-  initRouter();
+  await initRouter();
 }
 
 bootstrap();

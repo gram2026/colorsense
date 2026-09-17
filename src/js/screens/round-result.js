@@ -1,10 +1,10 @@
 /** 문제 결과 화면 */
 
 import { qs, formatScore } from "../utils/dom.js";
-import { getState, setState } from "../state.js";
+import { getState, setState, resetGame } from "../state.js";
 import { navigate } from "../router.js";
 import { getScoreComment } from "../color/scoring.js";
-import { t } from "../i18n.js";
+import { t, getLang, setLang } from "../i18n.js";
 
 export function mount(container) {
   const root = qs(".screen-inner", container);
@@ -20,6 +20,16 @@ export function mount(container) {
   const comment = t(getScoreComment(entry.score));
 
   root.innerHTML = `
+    <header class="result-header">
+      <button type="button" class="topbar-brand result-header__brand" data-action="home" aria-label="${t("nav.home")}">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="topbar-brand__name">ColorsGuesser</span>
+      </button>
+      <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">
+        ${getLang() === "en" ? "EN" : "KO"}
+      </button>
+    </header>
+
     <div class="round-result">
       <div class="round-result__score-label">${t("roundResult.scoreLabel")}</div>
       <div class="score-pop is-animating" data-role="score">0</div>
@@ -58,6 +68,15 @@ export function mount(container) {
   `;
 
   animateScore(root.querySelector('[data-role="score"]'), entry.score);
+
+  root.querySelector('[data-action="lang"]').addEventListener("click", () => {
+    setLang(getLang() === "ko" ? "en" : "ko");
+  });
+
+  root.querySelector('[data-action="home"]').addEventListener("click", () => {
+    resetGame();
+    navigate("home");
+  });
 
   root.querySelector('[data-action="next"]').addEventListener("click", () => {
     if (isLast) {

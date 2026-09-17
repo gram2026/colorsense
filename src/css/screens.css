@@ -322,7 +322,14 @@
   gap: var(--space-4);
 }
 
-.sv-panel {
+.color-picker__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(42px, 24%, 96px);
+  align-items: stretch;
+  gap: clamp(5px, 2%, 10px);
+}
+
+.hs-panel {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -333,13 +340,13 @@
   border: var(--border-width) solid var(--border-color);
 }
 
-.sv-panel canvas {
+.hs-panel canvas {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-.sv-panel__thumb {
+.hs-panel__thumb {
   position: absolute;
   width: 22px;
   height: 22px;
@@ -350,43 +357,34 @@
   pointer-events: none;
 }
 
-.hue-slider {
+.value-slider {
   position: relative;
   width: 100%;
-  height: 26px;
-  border-radius: var(--radius-pill);
+  height: 100%;
+  min-height: 0;
+  border-radius: 0;
   touch-action: none;
   cursor: pointer;
-  border: var(--border-width) solid var(--border-color);
+  border: 0;
+  background: transparent;
+  overflow: visible;
 }
 
-.hue-slider__thumb {
+.value-slider__track {
   position: absolute;
-  top: 50%;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.35), var(--shadow-sm);
-  transform: translate(-50%, -50%);
+  /* Let the rounded stroke caps extend beyond the SVG viewport. */
+  overflow: visible;
+  inset: 8% 16%;
+  width: 68%;
+  height: 84%;
   pointer-events: none;
 }
 
-.lightness-slider {
-  position: relative;
-  width: 100%;
-  height: 26px;
-  border-radius: var(--radius-pill);
-  touch-action: none;
-  cursor: pointer;
-  border: var(--border-width) solid var(--border-color);
-}
-
-.lightness-slider__thumb {
+.value-slider__thumb {
   position: absolute;
-  top: 50%;
-  width: 26px;
-  height: 26px;
+  left: 50%;
+  width: 24px;
+  height: 15px;
   border-radius: 50%;
   border: 3px solid #fff;
   box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.35), var(--shadow-sm);
@@ -413,6 +411,25 @@
 }
 
 /* ================= 결과(라운드) 화면 ================= */
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--border-width-thick) solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--bg-page);
+}
+
+.result-header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
 
 .round-result {
   display: flex;
@@ -442,13 +459,19 @@
 }
 
 .round-result__compare {
-  display: flex;
-  gap: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(8px, 3vw, 16px);
   width: 100%;
+}
+
+.round-result__compare > div {
+  min-width: 0;
 }
 
 .round-result__photo {
   flex: 1;
+  aspect-ratio: 1;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: var(--border-width) solid var(--border-color);
@@ -458,6 +481,8 @@
 .round-result__photo canvas,
 .round-result__photo img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
 }
 

@@ -8,7 +8,7 @@ import { getGrade } from "../color/scoring.js";
 import { shareResult } from "../share.js";
 import { showToast } from "../toast.js";
 import { loadCategories, loadQuestionsForCategory, getCategoryName } from "../data-loader.js";
-import { t, getLang } from "../i18n.js";
+import { t, getLang, setLang } from "../i18n.js";
 
 export async function mount(container) {
   const root = qs(".screen-inner", container);
@@ -29,6 +29,16 @@ export async function mount(container) {
   const categoryName = category ? getCategoryName(category) : "";
 
   root.innerHTML = `
+    <header class="result-header">
+      <button type="button" class="topbar-brand result-header__brand" data-action="header-home" aria-label="${t("nav.home")}">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="topbar-brand__name">ColorsGuesser</span>
+      </button>
+      <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">
+        ${getLang() === "en" ? "EN" : "KO"}
+      </button>
+    </header>
+
     <div class="final-result">
       <h1 class="top-bar__title">${t("finalResult.title", { categoryName })}</h1>
       <div class="grade-badge">${grade.label}</div>
@@ -71,6 +81,15 @@ export async function mount(container) {
       </div>
     </div>
   `;
+
+  root.querySelector('[data-action="lang"]').addEventListener("click", () => {
+    setLang(getLang() === "ko" ? "en" : "ko");
+  });
+
+  root.querySelector('[data-action="header-home"]').addEventListener("click", () => {
+    resetGame();
+    navigate("home");
+  });
 
   root.querySelector('[data-action="share"]').addEventListener("click", async () => {
     const result = await shareResult({ categoryName, averageScore: average, roundCount: roundScores.length });
