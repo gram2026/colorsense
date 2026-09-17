@@ -45,8 +45,8 @@ export function mount(container) {
           <div class="round-result__color-name">${t("roundResult.answer")} · ${entry.answerColor}</div>
         </div>
         <div class="round-result__color-block">
-          <div class="color-swatch color-swatch--lg" style="background:${entry.userColor}"></div>
-          <div class="round-result__color-name">${t("roundResult.myPick")} · ${entry.userColor}</div>
+          <div class="color-swatch color-swatch--lg" style="background:${entry.appliedColor ?? entry.userColor}"></div>
+          <div class="round-result__color-name">${t("roundResult.myPick")} · ${entry.appliedColor ?? entry.userColor}</div>
         </div>
       </div>
 

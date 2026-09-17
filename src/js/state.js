@@ -12,7 +12,7 @@ function createInitialState() {
     questions: [],
     currentQuestionIndex: 0,
     currentColor: "#808080",
-    roundScores: [], // [{ questionId, score, deltaE, userColor, answerColor }]
+    roundScores: [], // [{ questionId, score, deltaE, userColor, appliedColor, answerColor }]
     totalScore: 0,
     soundEnabled: getSoundEnabled(),
   };

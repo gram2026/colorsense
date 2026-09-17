@@ -4,12 +4,13 @@ import { qs, iconSvg } from "../utils/dom.js";
 import { getState, setState } from "../state.js";
 import { navigate } from "../router.js";
 import { loadConfig } from "../data-loader.js";
-import { MaskRenderer } from "../color/mask-renderer.js";
+import { MaskRenderer, appliedColorHex, resolveRenderMode } from "../color/mask-renderer.js";
 import { ColorPicker } from "../color/color-picker.js";
 import { hexToHsv, hsvToHex } from "../color/color-convert.js";
 import { calculateScore } from "../color/scoring.js";
 import { showToast } from "../toast.js";
 import { t, getLang, setLang } from "../i18n.js";
+import { COUNTRY_NAMES_KO } from "../data/country-names.js";
 
 let renderer = null;
 let colorPicker = null;
@@ -56,7 +57,7 @@ export async function mount(container) {
             <span>${t("game.loading")}</span>
           </div>
         </div>
-        ${isCountry ? `<div class="game-country-name">${escapeHtml(question.id)}</div>` : ""}
+        ${isCountry ? `<div class="game-country-name">${escapeHtml(countryDisplayName(question))}</div>` : ""}
       </div>
       <div class="game-control-pane">
         <div class="color-picker" data-role="color-picker"></div>
@@ -155,6 +156,12 @@ function generateStartColor(answerHex, cfg) {
   return hsvToHex({ h: newHue, s: newSat, v: startValue });
 }
 
+/** 국가 이름: 한국어 모드에서는 미리 번역해둔 이름, 영어 모드는 기존처럼 id */
+function countryDisplayName(question) {
+  if (getLang() === "ko" && COUNTRY_NAMES_KO[question.id]) return COUNTRY_NAMES_KO[question.id];
+  return question.id;
+}
+
 function randomBetween(min, max) {
   return min + Math.random() * (max - min);
 }
@@ -169,17 +176,26 @@ async function handleSubmit(question, config, { imageFailed = false } = {}) {
   const state = getState();
   const userHex = imageFailed ? question.answerColor : colorPicker?.getHex() ?? "#808080";
   renderer?.setColor(userHex);
-  const { score, deltaE } = calculateScore(userHex, question.answerColor, config.scoring);
+  // 사진에 실제로 보이는 색끼리 비교해야 "똑같아 보이는데 오답" 이 생기지 않는다.
+  const appliedHex =
+    resolveRenderMode(question.renderMode) === "preserve-lightness"
+      ? appliedColorHex(userHex, question.answerColor)
+      : userHex;
+  const { score, deltaE } = calculateScore(appliedHex, question.answerColor, config.scoring);
 
+  const koCountryName = COUNTRY_NAMES_KO[question.id];
+  const isCountry = question.categoryId === "country";
   const entry = {
     questionId: question.id,
-    title: question.title,
-    titleEn: question.titleEn,
+    // 최종 결과 목록은 한국어면 title, 영어면 titleEn을 쓴다. 국가 문제는 영어 표시를 지금처럼 id로 유지한다.
+    title: isCountry && koCountryName ? koCountryName : question.title,
+    titleEn: question.titleEn ?? (isCountry ? question.id : undefined),
     thumbnail: question.thumbnail,
     originalImage: question.originalImage,
     score,
     deltaE,
     userColor: userHex,
+    appliedColor: appliedHex,
     answerColor: question.answerColor,
     userSnapshot: imageFailed ? null : renderer?.snapshotDataURL() ?? null,
   };

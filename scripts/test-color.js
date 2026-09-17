@@ -5,7 +5,7 @@
 import { hexToRgb, rgbToHex, rgbToHsl, hslToRgb, hexToLab } from "../src/js/color/color-convert.js";
 import { deltaE2000, deltaE76 } from "../src/js/color/delta-e.js";
 import { calculateScore, DEFAULT_SCORING_CONFIG } from "../src/js/color/scoring.js";
-import { composePreserveLightnessPixel, paintPreserveLightnessBuffer, resolveRenderMode } from "../src/js/color/mask-renderer.js";
+import { composePreserveLightnessPixel, paintPreserveLightnessBuffer, resolveRenderMode, appliedColorHex } from "../src/js/color/mask-renderer.js";
 
 let pass = 0;
 let fail = 0;
@@ -331,6 +331,19 @@ for (const hex of ["#FF0000", "#00FF00", "#245BCD", "#FFFFFF", "#000000"]) {
     new Float32Array([0, 0]), new Float32Array([0, 0]), new Float32Array([1, 0]), 2, h, s, l);
   assert(approx(out[0], rgb.r) && approx(out[1], rgb.g) && approx(out[2], rgb.b), `렌더 버퍼 검정 → ${hex}`);
   assert(out[4] === 12 && out[5] === 15 && out[6] === 18, "마스크 밖 원본 유지");
+}
+
+console.log("\n사진에 실제로 보이는 색으로 채점: 같아 보이면 높은 점수, 다른 색이면 낮은 점수");
+{
+  const sameLook = appliedColorHex("#ED1818", "#AB1B0B");
+  assert(calculateScore(sameLook, "#AB1B0B").score >= 90, `밝은 빨강을 골라도 사진에서 원래 빨강처럼 보이면 높은 점수 (${sameLook})`);
+
+  const answerHue = rgbToHsl(hexToRgb("#AB1B0B")).h;
+  const exactPick = rgbToHex(hslToRgb({ h: answerHue, s: 100, l: 50 }));
+  assert(appliedColorHex(exactPick, "#AB1B0B") === "#AB1B0B", "정답 색조를 채도 100·명도 50으로 고르면 사진이 원본과 똑같아짐");
+
+  const wrong = appliedColorHex("#00FF00", "#AB1B0B");
+  assert(calculateScore(wrong, "#AB1B0B").score <= 20, `빨강 자리에 초록을 고르면 여전히 낮은 점수 (${wrong})`);
 }
 
 console.log("\n----------------------------------------");

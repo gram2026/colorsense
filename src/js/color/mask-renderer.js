@@ -9,7 +9,7 @@
  *   느낌까지 살아있는 채로, 피커에서 고른 밝기(어둡게/밝게)도 실제로 사진에 반영된다.
  */
 
-import { hexToRgb, rgbToHsl, hslToRgb, clamp } from "./color-convert.js";
+import { hexToRgb, rgbToHex, rgbToHsl, hslToRgb, clamp } from "./color-convert.js";
 import { loadImages } from "../utils/image-loader.js";
 import { SUPPORTED_RENDER_MODES } from "../utils/validation.js";
 
@@ -72,6 +72,21 @@ export function composePreserveLightnessPixel(
     g: origG * (1 - strength) + recolored.g * strength,
     b: origB * (1 - strength) + recolored.b * strength,
   };
+}
+
+/**
+ * 고른 색이 정답 색 영역에 실제로 칠해졌을 때 보이는 색.
+ * 사진은 원본의 명도/채도를 살린 채 합성되므로, 같아 보이는데 원본 HEX끼리만 비교하면 오답이 되는 문제를 막는다.
+ * @param {string} pickHex 사용자가 고른 색
+ * @param {string} baseHex 칠해질 원본 색(정답 색)
+ * @returns {string} #RRGGBB
+ */
+export function appliedColorHex(pickHex, baseHex) {
+  const base = hexToRgb(baseHex);
+  const baseHsl = rgbToHsl(base);
+  const pick = rgbToHsl(hexToRgb(pickHex));
+  const out = composePreserveLightnessPixel(base.r, base.g, base.b, pick.h, pick.s, baseHsl.l, baseHsl.s, 1, pick.l);
+  return rgbToHex(out);
 }
 
 // Near-black neutral pixels need the picked color directly; fade the correction
