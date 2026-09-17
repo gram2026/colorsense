@@ -43,25 +43,6 @@
     },
     {
       "schemaVersion": 1,
-      "id": "car1",
-      "categoryId": "animation",
-      "title": "car1",
-      "originalImage": "assets/questions/animation/car1/original.webp",
-      "maskImage": "assets/questions/animation/car1/mask.png",
-      "thumbnail": "assets/questions/animation/car1/thumbnail.webp",
-      "answerColor": "#930202",
-      "startColor": null,
-      "renderMode": "preserve-lightness",
-      "enabled": true,
-      "difficulty": 1,
-      "tags": [],
-      "metadata": {
-        "createdAt": "2026-08-02",
-        "makerVersion": "1.0.0"
-      }
-    },
-    {
-      "schemaVersion": 1,
       "id": "rainbow",
       "categoryId": "animation",
       "title": "rainbow",

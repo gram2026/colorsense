@@ -158,6 +158,7 @@ async function handleSubmit(question, config, { imageFailed = false } = {}) {
 
   const state = getState();
   const userHex = imageFailed ? question.answerColor : colorPicker?.getHex() ?? "#808080";
+  renderer?.setColor(userHex);
   const { score, deltaE } = calculateScore(userHex, question.answerColor, config.scoring);
 
   const entry = {
@@ -181,6 +182,7 @@ async function handleSubmit(question, config, { imageFailed = false } = {}) {
 }
 
 export function unmount() {
+  colorPicker?.destroy();
   renderer?.destroy();
   renderer = null;
   colorPicker = null;

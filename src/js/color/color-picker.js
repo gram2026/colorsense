@@ -5,7 +5,7 @@
  * - 마우스, 터치(Pointer Events로 통합), 키보드(화살표) 모두 지원
  */
 
-import { hslToHex, hexToHsl } from "./color-convert.js";
+import { hslToHex, hexToHsl, hslToRgb } from "./color-convert.js";
 import { iconSvg } from "../utils/dom.js";
 import { t } from "../i18n.js";
 
@@ -16,6 +16,8 @@ export class ColorPicker {
     this.root = root;
     this.onChange = onChange;
     this.hsl = hexToHsl(initialHex);
+    this._rafId = null;
+    this._svDirty = false;
 
     this._buildDom();
     this._bindEvents();
@@ -36,10 +38,6 @@ export class ColorPicker {
            style="background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);">
         <div class="hue-slider__thumb"></div>
       </div>
-      <div class="lightness-slider" tabindex="0" role="slider" aria-label="${t("colorPicker.lightnessAria")}"
-           aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100">
-        <div class="lightness-slider__thumb"></div>
-      </div>
       <div class="color-picker__preview">
         <div class="color-swatch color-swatch--lg" aria-hidden="true"></div>
         <div>
@@ -59,8 +57,6 @@ export class ColorPicker {
     this.svThumb = this.root.querySelector(".sv-panel__thumb");
     this.hueSlider = this.root.querySelector(".hue-slider");
     this.hueThumb = this.root.querySelector(".hue-slider__thumb");
-    this.lightnessSlider = this.root.querySelector(".lightness-slider");
-    this.lightnessThumb = this.root.querySelector(".lightness-slider__thumb");
     this.swatchEl = this.root.querySelector(".color-swatch--lg");
     this.hexEl = this.root.querySelector(".color-picker__hex");
     this.submitBtn = this.root.querySelector(".submit-color-btn");
@@ -85,10 +81,6 @@ export class ColorPicker {
       this._setHsl({ h });
     });
 
-    this._bindDrag(this.lightnessSlider, (x, _y, rect) => {
-      const l = clamp01(x / rect.width) * 100;
-      this._setHsl({ l });
-    });
 
     this.svPanel.addEventListener("keydown", (e) => {
       const step = e.shiftKey ? 10 : 3;
@@ -109,14 +101,6 @@ export class ColorPicker {
       e.preventDefault();
     });
 
-    this.lightnessSlider.addEventListener("keydown", (e) => {
-      const step = e.shiftKey ? 20 : 5;
-      if (e.key === "ArrowRight" || e.key === "ArrowUp") this._setHsl({ l: clamp(this.hsl.l + step, 0, 100) });
-      else if (e.key === "ArrowLeft" || e.key === "ArrowDown")
-        this._setHsl({ l: clamp(this.hsl.l - step, 0, 100) });
-      else return;
-      e.preventDefault();
-    });
   }
 
   _bindDrag(element, onMove) {
@@ -159,13 +143,28 @@ export class ColorPicker {
 
   _setHsl(partial) {
     this.hsl = { ...this.hsl, ...partial };
-    if (partial.h !== undefined) this._drawSvPanel();
-    this._updateThumbs();
-    this._updatePreview();
-    this.onChange?.(this.getHex());
+    this._svDirty ||= partial.h !== undefined;
+    if (this._rafId !== null) return;
+    this._rafId = requestAnimationFrame(() => {
+      this._rafId = null;
+      if (this._svDirty) this._drawSvPanel();
+      this._svDirty = false;
+      this._updateThumbs();
+      this._updatePreview();
+      this.onChange?.(this.getHex());
+    });
+  }
+
+  destroy() {
+    if (this._rafId !== null) cancelAnimationFrame(this._rafId);
+    this._rafId = null;
+    document.body.classList.remove("is-dragging");
   }
 
   setColorHex(hex, { silent = false } = {}) {
+    if (this._rafId !== null) cancelAnimationFrame(this._rafId);
+    this._rafId = null;
+    this._svDirty = false;
     this.hsl = hexToHsl(hex);
     this._drawSvPanel();
     this._updateThumbs();
@@ -184,11 +183,11 @@ export class ColorPicker {
       const l = 100 - (y / (SV_RES - 1)) * 100;
       for (let x = 0; x < SV_RES; x++) {
         const s = (x / (SV_RES - 1)) * 100;
-        const hex = hslToHex({ h, s, l });
+        const { r, g, b } = hslToRgb({ h, s, l });
         const i = (y * SV_RES + x) * 4;
-        imageData.data[i] = parseInt(hex.slice(1, 3), 16);
-        imageData.data[i + 1] = parseInt(hex.slice(3, 5), 16);
-        imageData.data[i + 2] = parseInt(hex.slice(5, 7), 16);
+        imageData.data[i] = Math.round(r);
+        imageData.data[i + 1] = Math.round(g);
+        imageData.data[i + 2] = Math.round(b);
         imageData.data[i + 3] = 255;
       }
     }
@@ -200,12 +199,6 @@ export class ColorPicker {
     this.svThumb.style.left = `${s}%`;
     this.svThumb.style.top = `${100 - l}%`;
     this.hueThumb.style.left = `${(h / 360) * 100}%`;
-    this.lightnessThumb.style.left = `${l}%`;
-    this.lightnessSlider.style.background = `linear-gradient(to right, #000000, ${hslToHex({
-      h,
-      s,
-      l: 50,
-    })}, #ffffff)`;
 
     this.svPanel.setAttribute("aria-valuenow", Math.round(s));
     this.svPanel.setAttribute(
@@ -213,7 +206,6 @@ export class ColorPicker {
       t("colorPicker.svValueText", { s: Math.round(s), l: Math.round(l) })
     );
     this.hueSlider.setAttribute("aria-valuenow", Math.round(h));
-    this.lightnessSlider.setAttribute("aria-valuenow", Math.round(l));
   }
 
   _updatePreview() {

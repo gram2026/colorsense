@@ -74,23 +74,25 @@ export function composePreserveLightnessPixel(
 }
 
 /** preserve-lightness 합성 루프. 실시간(축소) 렌더링과 제출 시 원본 해상도 스냅샷이 같은 코드를 쓴다. */
-function paintPreserveLightnessBuffer(orig, out, lightness, saturation, maskStrength, total, selH, selS, selL) {
+export function paintPreserveLightnessBuffer(orig, out, lightness, saturation, maskStrength, total, selH, selS, selL) {
+  // Hue sector is shared by every pixel; compute it once per frame.
+  const hue = hslToRgb({ h: selH, s: 100, l: 50 });
+  const hr = hue.r / 255, hg = hue.g / 255, hb = hue.b / 255;
   for (let i = 0; i < total; i++) {
     const idx = i * 4;
-    const result = composePreserveLightnessPixel(
-      orig[idx],
-      orig[idx + 1],
-      orig[idx + 2],
-      selH,
-      selS,
-      lightness[i],
-      saturation[i],
-      maskStrength[i],
-      selL
-    );
-    out[idx] = result.r;
-    out[idx + 1] = result.g;
-    out[idx + 2] = result.b;
+    const strength = maskStrength[i];
+    if (strength <= 0.004) {
+      out[idx] = orig[idx]; out[idx + 1] = orig[idx + 1]; out[idx + 2] = orig[idx + 2];
+    } else {
+      const l = clamp(lightness[i] + selL - 50, 0, 100) / 100;
+      const s = clamp(selS * saturation[i] / 100, 0, 100) / 100;
+      const c = (1 - Math.abs(2 * l - 1)) * s;
+      const m = l - c / 2;
+      const keep = 1 - strength;
+      out[idx] = orig[idx] * keep + (hr * c + m) * 255 * strength;
+      out[idx + 1] = orig[idx + 1] * keep + (hg * c + m) * 255 * strength;
+      out[idx + 2] = orig[idx + 2] * keep + (hb * c + m) * 255 * strength;
+    }
     out[idx + 3] = orig[idx + 3];
   }
 }
