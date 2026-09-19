@@ -11,6 +11,8 @@ import { shareResult } from "../share.js";
 import { showToast } from "../toast.js";
 import { loadCategories, loadQuestionsForCategory, getCategoryName } from "../data-loader.js";
 import { t, getLang, setLang } from "../i18n.js";
+import { mountLeaderboard } from "../leaderboard.js";
+let disposeRanking = null;
 
 export async function mount(container) {
   const root = qs(".screen-inner", container);
@@ -71,6 +73,8 @@ export async function mount(container) {
           .join("")}
       </div>
 
+      <section class="sketch-ranking" data-role="ranking"></section>
+
       <div class="final-result__actions">
         <button type="button" class="btn btn--primary btn--block" data-action="share">
           ${iconSvg("share", 18)} ${t("finalResult.share")}
@@ -85,6 +89,11 @@ export async function mount(container) {
       </div>
     </div>
   `;
+
+  disposeRanking = mountLeaderboard(root.querySelector('[data-role="ranking"]'), {
+    categoryId: selectedCategoryId, day: state.quizDay, average, runId: state.runId,
+    rounds: roundScores.map((r, i) => ({ id: r.questionId, categoryId: state.questions[i].categoryId, color: r.userColor })),
+  });
 
   if (grade.tier === "perfect" || grade.tier === "great") {
     setTimeout(() => {
@@ -139,4 +148,4 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-export function unmount() {}
+export function unmount() { disposeRanking?.(); }

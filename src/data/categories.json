@@ -2,6 +2,18 @@
   "version": 1,
   "categories": [
     {
+      "id": "daily",
+      "name": "데일리 퀴즈",
+      "nameEn": "Daily Quiz",
+      "description": "매일 새로운 랜덤 5문제 · 한국 시간 자정 갱신",
+      "descriptionEn": "Five daily questions · resets at midnight KST",
+      "thumbnail": "assets/categories/daily.svg",
+      "heroImage": "assets/categories/daily.svg",
+      "isRandomMix": true,
+      "enabled": true,
+      "order": 0
+    },
+    {
       "id": "brand-logo",
       "name": "기업로고",
       "nameEn": "Brand Logos",
@@ -60,6 +72,18 @@
       "questionFile": "src/data/questions/meme.json",
       "enabled": true,
       "order": 5
+    },
+    {
+      "id": "pokemon",
+      "name": "포켓몬",
+      "nameEn": "Pokémon",
+      "description": "포켓몬의 색을 맞혀보세요.",
+      "descriptionEn": "Guess the colors of Pokémon.",
+      "thumbnail": "assets/categories/pokemon/cover.png",
+      "heroImage": "assets/categories/pokemon/hero.png",
+      "questionFile": "src/data/questions/pokemon.json",
+      "enabled": true,
+      "order": 6
     },
     {
       "id": "dev1",

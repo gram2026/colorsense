@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { pickFive, dailyKey } from '../src/js/quiz-session.js';
+const pool = Array.from({ length: 30 }, (_, i) => ({ categoryId: 'sample', id: String(i) }));
+const picked = pickFive(pool);
+assert.equal(picked.length, 5);
+assert.equal(new Set(picked.map(q => q.id)).size, 5);
+assert.equal(pool[0].id, '0');
+assert.deepEqual(pickFive(pool, '2026-09-18'), pickFive([...pool].reverse(), '2026-09-18'));
+assert.notDeepEqual(pickFive(pool, '2026-09-18'), pickFive(pool, '2026-09-19'));
+assert.equal(dailyKey(new Date('2026-09-18T14:59:59Z')), '2026-09-18');
+assert.equal(dailyKey(new Date('2026-09-18T15:00:00Z')), '2026-09-19');
+assert.equal(pickFive(pool.slice(0, 3)).length, 3);
+console.log('Quiz selection and KST daily reset checks passed.');

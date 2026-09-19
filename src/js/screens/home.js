@@ -14,6 +14,8 @@ import { showToast } from "../toast.js";
 import { t, getLang, setLang } from "../i18n.js";
 
 let onMouseMove = null;
+let disposeRanking = null;
+import { mountLeaderboard } from '../leaderboard.js';
 
 export function mount(container) {
   const root = qs(".screen-inner", container);
@@ -45,6 +47,7 @@ export function mount(container) {
           ${iconSvg("play", 18)}<span>${t("home.play")}</span>
         </button>
       </div>
+      <section class="sketch-ranking home-daily-ranking" data-role="daily-ranking"></section>
       <div class="home-hero__visual" aria-hidden="true">
         <div class="home-hero__grid">
           <div class="home-hero__cell" style="background:#e4572e"></div>
@@ -100,6 +103,7 @@ export function mount(container) {
     </div>
   `;
 
+  disposeRanking = mountLeaderboard(root.querySelector('[data-role="daily-ranking"]'), { categoryId: 'daily', readOnly: true });
   root.querySelector('[data-action="home"]').addEventListener("click", () => navigate("home"));
 
   root.querySelector('[data-action="lang"]').addEventListener("click", () => {
@@ -122,9 +126,9 @@ export function mount(container) {
     const config = await loadConfig();
     const steps = config.app?.tutorialSteps?.[getLang()] || [];
     if (!hasSeenTutorial() && steps.length > 0) {
-      showTutorial(root, steps, () => scrollToCategories(root));
+      showTutorial(root, steps, () => navigate("categories"));
     } else {
-      scrollToCategories(root);
+      navigate("categories");
     }
   });
 
@@ -264,6 +268,7 @@ function openSettings(root) {
 }
 
 export function unmount() {
+  disposeRanking?.();
   if (onMouseMove) {
     window.removeEventListener("mousemove", onMouseMove);
     onMouseMove = null;

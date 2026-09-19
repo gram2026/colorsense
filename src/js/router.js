@@ -33,6 +33,7 @@ const CATEGORY_PATHS = {
   country: "contryflag",
   animation: "animation",
   meme: "meme",
+  pokemon: "pokemon",
 };
 
 const PATH_CATEGORIES = new Map(

@@ -966,17 +966,18 @@ function buildQuestionForValidation() {
   };
 }
 
-async function runValidationFlow({ silent }) {
+async function runValidationFlow({ silent, allowOverwrite = false }) {
   if (categoriesForValidation.length === 0) {
     categoriesForValidation = await loadUsableCategories();
   }
   const question = buildQuestionForValidation();
-  const results = await runFullValidation({
+  let results = await runFullValidation({
     question,
     canvasEditor,
     thumbnailReady: !!lastThumbnailBlob || !!thumbnailEditor?.source,
     categoryList: categoriesForValidation,
   });
+  if (allowOverwrite) results = results.filter(r => r.code !== "duplicate-id");
   const summary = summarize(results);
 
   if (!silent || summary.error > 0) {
@@ -1059,7 +1060,7 @@ async function handleDirectAdd() {
     return;
   }
 
-  const { summary } = await runValidationFlow({ silent: true });
+  const { summary } = await runValidationFlow({ silent: true, allowOverwrite: true });
   if (summary.error > 0) {
     showToast("오류가 있어 추가할 수 없습니다. 검증 결과를 확인해 주세요.");
     return;
@@ -1095,8 +1096,8 @@ async function handleDirectAdd() {
   }
 
   const proceed = await confirmDialog(
-    "이 경로에 문제를 추가합니다",
-    `<p><strong>${escapeHtml(plan.destPath)}/</strong> 폴더를 새로 만들고 아래 파일을 씁니다.</p>
+    plan.overwrite ? "같은 ID의 문제를 덮어쓸까요?" : "이 경로에 문제를 추가합니다",
+    `<p><strong>${escapeHtml(plan.destPath)}/</strong> ${plan.overwrite ? "기존 문제와 이미지를 백업한 후 교체합니다." : "폴더를 새로 만들고 아래 파일을 씁니다."}</p>
      <ul style="margin-top:8px; padding-left:18px;">${plan.files.map((f) => `<li>${escapeHtml(f)}</li>`).join("")}</ul>
      <p style="margin-top:8px;">그리고 <strong>${escapeHtml(plan.questionFilePath)}</strong>에 문제 항목을 추가합니다 (수정 전 자동 백업 생성).</p>`
   );
@@ -1106,6 +1107,7 @@ async function handleDirectAdd() {
   try {
     const thumbnailBlob = await ensureThumbnailBlob();
     const result = await writeQuestionDirectly(rootHandle, {
+      overwrite: plan.overwrite,
       question,
       imageCanvas: canvasEditor.getImageCanvasForExport(),
       maskCanvas: canvasEditor.getMaskCanvasForExport(),

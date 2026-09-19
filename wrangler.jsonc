@@ -1,9 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "colorguesser",
+  "name": "colorsguesser",
   "main": "worker/index.js",
   "compatibility_date": "2026-09-15",
   "workers_dev": true,
+  "routes": [{ "pattern": "colorsguesser.com/*", "zone_name": "colorsguesser.com" }],
+  "d1_databases": [{
+    "binding": "RANKING_DB",
+    "database_name": "colorguesser-rankings",
+    "database_id": "60c57b25-335e-4674-8043-ee7717937ebf",
+    "migrations_dir": "worker/migrations"
+  }],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",

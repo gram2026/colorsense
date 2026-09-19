@@ -4,6 +4,7 @@
  */
 
 import { saveSessionGame, loadSessionGame, clearSessionGame, getSoundEnabled } from "./storage.js";
+import { dailyKey } from './quiz-session.js';
 
 function createInitialState() {
   return {
@@ -29,6 +30,8 @@ const PERSISTED_KEYS = [
   "currentQuestionIndex",
   "roundScores",
   "totalScore",
+  "runId",
+  "quizDay",
 ];
 
 export function getState() {
@@ -36,6 +39,14 @@ export function getState() {
 }
 
 export function setState(partial, { persist = true } = {}) {
+  if (partial.questions?.length && partial.currentQuestionIndex === 0 && partial.roundScores?.length === 0) {
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    bytes[6] = (bytes[6] & 15) | 64;
+    bytes[8] = (bytes[8] & 63) | 128;
+    const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+    const runId = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+    partial = { ...partial, runId, quizDay: (partial.selectedCategoryId || state.selectedCategoryId) === 'daily' ? dailyKey() : null };
+  }
   state = { ...state, ...partial };
   for (const listener of listeners) listener(state);
   if (persist) persistSnapshot();

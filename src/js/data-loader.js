@@ -6,13 +6,13 @@
 
 import { validateQuestionShape, findDuplicateIds, validateCategoryShape } from "./utils/validation.js";
 import { getLang } from "./i18n.js";
+import { pickFive, dailyKey } from "./quiz-session.js";
 
 let configCache = null;
 let categoriesCache = null;
-const questionFileCache = new Map(); // questionFile -> questions[]
 
 async function fetchJson(path) {
-  const res = await fetch(path);
+  const res = await fetch(new URL(path, `${location.origin}/`), { cache: "no-store" });
   if (!res.ok) {
     throw new Error(`JSON 로드 실패 (${res.status}): ${path}`);
   }
@@ -50,17 +50,12 @@ export async function loadConfig() {
 }
 
 async function loadQuestionFile(questionFile) {
-  if (questionFileCache.has(questionFile)) {
-    return questionFileCache.get(questionFile);
-  }
-
   let raw;
   try {
     raw = await fetchJson(questionFile);
   } catch (err) {
     console.error(`[data-loader] 문제 파일 로드 실패: ${questionFile}`, err);
-    questionFileCache.set(questionFile, []);
-    return [];
+    throw err;
   }
 
   const rawQuestions = Array.isArray(raw.questions) ? raw.questions : [];
@@ -87,7 +82,6 @@ async function loadQuestionFile(questionFile) {
     valid.push({ ...question, categoryId: raw.categoryId, categoryName: raw.categoryName });
   }
 
-  questionFileCache.set(questionFile, valid);
   return valid;
 }
 
@@ -152,13 +146,10 @@ export async function loadQuestionsForCategory(categoryId) {
   }
 
   const questions = await loadQuestionFile(category.questionFile);
-  return shuffle(questions);
+  return pickFive(questions);
 }
 
 async function loadRandomMixQuestions(categories, randomCategory) {
-  const config = await loadConfig();
-  const maxQuestions = config.randomCategory?.maxQuestions ?? 6;
-
   const pools = await Promise.all(
     categories
       .filter((c) => !c.isRandomMix && c.questionFile)
@@ -166,17 +157,7 @@ async function loadRandomMixQuestions(categories, randomCategory) {
   );
 
   const all = pools.flat();
-  const shuffled = shuffle(all);
-  return shuffled.slice(0, maxQuestions);
-}
-
-function shuffle(array) {
-  const copy = [...array];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
+  return pickFive(all, randomCategory.id === "daily" ? dailyKey() : null);
 }
 
 /** 카테고리 화면 카드에 표시할 문제 수 등 부가 정보를 미리 계산 */

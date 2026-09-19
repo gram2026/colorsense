@@ -7,6 +7,8 @@ import { getState, setState } from "../state.js";
 import { navigate } from "../router.js";
 import { showToast } from "../toast.js";
 import { t, getLang, setLang } from "../i18n.js";
+import { mountLeaderboard } from '../leaderboard.js';
+let disposeRanking = null;
 
 export async function mount(container) {
   const root = qs(".screen-inner", container);
@@ -68,17 +70,29 @@ export async function mount(container) {
                  </button>`
           }
         </div>
+        <section class="sketch-ranking category-ranking" data-role="category-ranking"></section>
       </section>
     `;
 
     if (!isEmpty) {
       contentEl.querySelector('[data-action="start"]').addEventListener("click", () => {
+        try {
         setState(
-          { questions, currentQuestionIndex: 0, roundScores: [], totalScore: 0 },
+          { selectedCategoryId: categoryId, questions, currentQuestionIndex: 0, roundScores: [], totalScore: 0 },
           { persist: false }
         );
         navigate("game");
+        } catch (err) {
+          console.error('[category-detail] 게임 시작 실패', err);
+          showToast(getLang() === 'en' ? 'Unable to start. Please reload and try again.' : '게임 시작에 실패했습니다. 새로고침 후 다시 시도해 주세요.');
+        }
       });
+    }
+    try {
+      disposeRanking = mountLeaderboard(contentEl.querySelector('[data-role="category-ranking"]'), { categoryId, readOnly: true });
+    } catch (err) {
+      console.error('[category-detail] 랭킹 초기화 실패', err);
+      contentEl.querySelector('[data-role="category-ranking"]').textContent = getLang() === 'en' ? 'Ranking unavailable' : '랭킹을 불러오지 못했습니다';
     }
   } catch (err) {
     console.error("[category-detail] 로드 실패", err);
@@ -93,4 +107,4 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-export function unmount() {}
+export function unmount() { disposeRanking?.(); }

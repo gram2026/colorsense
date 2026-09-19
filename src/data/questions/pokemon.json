@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "categoryId": "pokemon",
+  "categoryName": "포켓몬",
+  "questions": [
+    {
+      "schemaVersion": 1,
+      "id": "1-2",
+      "categoryId": "pokemon",
+      "title": "1",
+      "originalImage": "assets/questions/pokemon/1-2/original.webp",
+      "maskImage": "assets/questions/pokemon/1-2/mask.png",
+      "thumbnail": "assets/questions/pokemon/1-2/thumbnail.webp",
+      "answerColor": "#7CAD90",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-18",
+        "makerVersion": "1.0.0"
+      }
+    }
+  ]
+}

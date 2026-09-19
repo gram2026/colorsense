@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 const PORT = Number(process.env.PORT) || 5173;
-const GAME_PATHS = new Set(["/brandlogo", "/sports", "/contryflag", "/countryflag", "/animation", "/meme"]);
+const GAME_PATHS = new Set(["/brandlogo", "/sports", "/contryflag", "/countryflag", "/animation", "/meme", "/pokemon"]);
 
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -35,8 +35,22 @@ function safeJoin(root, urlPath) {
   return path.join(root, normalized);
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const requestPath = new URL(req.url, `http://${req.headers.host || "localhost"}`).pathname;
+  if (requestPath === '/api/rankings' && req.method === 'GET') {
+    try {
+      const category = new URL(req.url, 'http://localhost').searchParams.get('category') || '';
+      const response = await fetch(`https://colorsguesser.com/api/rankings?category=${encodeURIComponent(category)}`, { signal: AbortSignal.timeout(8000) });
+      res.writeHead(response.status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+      res.end(await response.text());
+    } catch { res.writeHead(503, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: 'Ranking unavailable' })); }
+    return;
+  }
+  if (requestPath.startsWith('/api/')) {
+    res.writeHead(503, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Use the online site to submit rankings' }));
+    return;
+  }
   const urlPath = req.url === "/" || GAME_PATHS.has(requestPath) ? "/index.html" : req.url;
   let filePath = safeJoin(ROOT, urlPath);
 

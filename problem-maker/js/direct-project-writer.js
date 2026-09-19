@@ -103,7 +103,16 @@ export async function planDirectWrite(rootHandle, { categoryId, questionId }) {
   if (!category.questionFile) throw new Error(`카테고리 "${category.id}"에는 questionFile이 없습니다 (랜덤 믹스 카테고리인가요?).`);
 
   const destPath = `assets/questions/${category.id}/${questionId}`;
+  const ref = await resolveFileByPath(rootHandle, category.questionFile);
+  const doc = await readJsonFile(ref.fileHandle);
+  let folderExists = false;
+  try {
+    let dir = rootHandle;
+    for (const part of destPath.split('/')) dir = await dir.getDirectoryHandle(part);
+    folderExists = true;
+  } catch (err) { if (err.name !== 'NotFoundError') throw err; }
   return {
+    overwrite: folderExists || (doc.questions || []).some(q => q.id === questionId),
     category,
     destPath,
     files: [`${destPath}/original.webp`, `${destPath}/mask.png`, `${destPath}/thumbnail.webp`],
@@ -114,7 +123,7 @@ export async function planDirectWrite(rootHandle, { categoryId, questionId }) {
 /**
  * @returns {{ok:boolean, destPath?:string, backupFile?:string, error?:string}}
  */
-export async function writeQuestionDirectly(rootHandle, { question, imageCanvas, maskCanvas, thumbnailBlob }) {
+export async function writeQuestionDirectly(rootHandle, { question, imageCanvas, maskCanvas, thumbnailBlob, overwrite = false }) {
   const categoriesFile = await resolveFileByPath(rootHandle, "src/data/categories.json");
   const categoriesDoc = await readJsonFile(categoriesFile.fileHandle);
   const category = (categoriesDoc.categories || []).find((c) => c.id === question.categoryId);
@@ -125,7 +134,7 @@ export async function writeQuestionDirectly(rootHandle, { question, imageCanvas,
   const questionDoc = await readJsonFile(questionFileRef.fileHandle);
   const existingQuestions = Array.isArray(questionDoc.questions) ? questionDoc.questions : [];
 
-  if (existingQuestions.some((q) => q.id === question.id)) {
+  if (!overwrite && existingQuestions.some((q) => q.id === question.id)) {
     throw new Error(`이미 존재하는 문제 id입니다: ${question.id} (다른 id를 사용하세요)`);
   }
 
@@ -136,7 +145,17 @@ export async function writeQuestionDirectly(rootHandle, { question, imageCanvas,
   await writeTextFile(questionFileRef.dirHandle, backupName, JSON.stringify(questionDoc, null, 2) + "\n");
 
   // 2) 목적지 폴더 생성 (이미 있으면 실패 -> 사용자 확인 없이 덮어쓰지 않는다)
-  const destDir = await ensureDirByPath(rootHandle, destRelPath, { mustNotExist: true });
+  const destDir = await ensureDirByPath(rootHandle, destRelPath, { mustNotExist: !overwrite });
+  if (overwrite) {
+    const oldFiles = [];
+    for await (const [name, handle] of destDir.entries()) {
+      if (handle.kind === 'file') oldFiles.push([name, await handle.getFile()]);
+    }
+    if (oldFiles.length) {
+      const backupDir = await ensureDirByPath(rootHandle, `assets/question-backups/${category.id}/${question.id}-${timestamp()}-${Date.now()}`);
+      for (const [name, blob] of oldFiles) await writeBlobFile(backupDir, name, blob);
+    }
+  }
 
   // 3) 이미지/마스크/썸네일 파일 준비 + 기록
   const [originalBlob, maskBlob] = await Promise.all([
@@ -167,7 +186,7 @@ export async function writeQuestionDirectly(rootHandle, { question, imageCanvas,
       makerVersion: "1.0.0",
     },
   };
-  questionDoc.questions = [...existingQuestions, newQuestion];
+  questionDoc.questions = [...existingQuestions.filter(q => q.id !== question.id), newQuestion];
   await writeTextFile(questionFileRef.dirHandle, questionFileRef.name, JSON.stringify(questionDoc, null, 2) + "\n");
 
   // 5) 검증: 다시 읽어서 실제로 반영됐는지 확인

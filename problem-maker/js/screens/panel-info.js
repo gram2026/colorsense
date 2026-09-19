@@ -214,7 +214,7 @@ async function validateIdField(root, project) {
   const taken = await isIdTaken(project.categoryId, project.id, { excludeId: project.editingOriginalId || null });
   if (taken) {
     errorEl.hidden = false;
-    errorEl.textContent = "이미 사용 중인 id입니다.";
+    errorEl.textContent = "이미 사용 중인 ID입니다. 프로젝트에 추가할 때 확인 후 덮어쓸 수 있습니다.";
   } else {
     errorEl.hidden = true;
   }
