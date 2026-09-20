@@ -25,7 +25,7 @@ export function mount(container) {
     <div class="home-topbar">
       <button type="button" class="topbar-brand" data-action="home" aria-label="${t("nav.home")}">
         <span class="logo-mark" aria-hidden="true"></span>
-        <span class="topbar-brand__name">ColorsGuesser</span>
+        <span class="topbar-brand__name brand-wordmark" aria-label="ColorsGuesser">Color<span class="brand-wordmark__s">S</span> Guesser</span>
       </button>
       <div class="row" style="gap: var(--space-2)">
         <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">${
@@ -42,7 +42,7 @@ export function mount(container) {
 
     <section class="home-hero">
       <div class="home-hero__content">
-        <h1 class="home-logo">ColorsGuesser</h1>
+        <h1 class="home-logo brand-wordmark" aria-label="ColorsGuesser">Color<span class="brand-wordmark__s">S</span> Guesser</h1>
         <button type="button" class="btn btn--play" data-action="play" aria-label="${t("categoryDetail.startAria")}">
           ${iconSvg("play", 18)}<span>${t("home.play")}</span>
         </button>

@@ -17,7 +17,7 @@ export async function mount(container) {
   root.innerHTML = `
     <div class="top-bar">
       <button type="button" class="back-link" data-action="home" aria-label="${t("nav.home")}">
-        <span class="logo-mark" aria-hidden="true"></span><span>ColorsGuesser</span>
+        <span class="logo-mark" aria-hidden="true"></span><span class="brand-wordmark" aria-label="ColorsGuesser">Color<span class="brand-wordmark__s">S</span> Guesser</span>
       </button>
       <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">${
         getLang() === "en" ? "EN" : "KO"

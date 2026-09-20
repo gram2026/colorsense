@@ -1,13 +1,14 @@
 /** 게임 화면: 사진 + 마스크 색상 합성 + 컬러 피커 */
 
 import { qs, iconSvg } from "../utils/dom.js";
-import { getState, setState } from "../state.js";
+import { getState, setState, resetGame } from "../state.js";
 import { navigate } from "../router.js";
 import { loadConfig } from "../data-loader.js";
-import { MaskRenderer, appliedColorHex, resolveRenderMode } from "../color/mask-renderer.js";
+import { MaskRenderer } from "../color/mask-renderer.js";
 import { ColorPicker } from "../color/color-picker.js";
 import { hexToHsv, hsvToHex } from "../color/color-convert.js";
 import { calculateScore } from "../color/scoring.js";
+import { maskedAverages } from '../color/masked-average.js';
 import { showToast } from "../toast.js";
 import { t, getLang, setLang } from "../i18n.js";
 import { COUNTRY_NAMES_KO } from "../data/country-names.js";
@@ -33,8 +34,8 @@ export async function mount(container) {
   root.innerHTML = `
     <div class="game-header">
       <div class="top-bar">
-        <button type="button" class="back-link" data-action="exit" aria-label="${t("game.exitAria")}">
-          <span class="logo-mark" aria-hidden="true"></span><span>ColorsGuesser</span>
+        <button type="button" class="back-link" data-action="home" aria-label="${t("nav.home")}">
+          <span class="logo-mark" aria-hidden="true"></span><span class="brand-wordmark" aria-label="ColorsGuesser">Color<span class="brand-wordmark__s">S</span> Guesser</span>
         </button>
       </div>
 
@@ -64,6 +65,11 @@ export async function mount(container) {
       </div>
     </div>
   `;
+
+  root.querySelector('[data-action="home"]').addEventListener("click", () => {
+    resetGame();
+    navigate("home");
+  });
 
   root.querySelectorAll('[data-action="exit"]').forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -177,16 +183,29 @@ async function handleSubmit(question, config, { imageFailed = false } = {}) {
   const userHex = imageFailed ? question.answerColor : colorPicker?.getHex() ?? "#808080";
   renderer?.setColor(userHex);
   // 사진에 실제로 보이는 색끼리 비교해야 "똑같아 보이는데 오답" 이 생기지 않는다.
-  const appliedHex =
-    resolveRenderMode(question.renderMode) === "preserve-lightness"
-      ? appliedColorHex(userHex, question.answerColor)
-      : userHex;
-  const { score, deltaE } = calculateScore(appliedHex, question.answerColor, config.scoring);
+  let averages;
+  try {
+    if (imageFailed) {
+      averages = { applied: userHex, answer: question.answerColor };
+    } else {
+    const response = await fetch(`/assets/scoring/${question.categoryId}/${question.id}.json`);
+    if (!response.ok) throw new Error('Scoring profile unavailable');
+    averages = maskedAverages(await response.json(), userHex, question.renderMode);
+    }
+  } catch (err) {
+    submitting = false;
+    showToast(getLang() === 'en' ? 'Unable to load scoring data. Please reload.' : '채점 데이터를 불러오지 못했습니다. 새로고침해 주세요.');
+    return;
+  }
+  const appliedHex = averages.applied;
+  if (getState().questions !== state.questions) return;
+  const { score, deltaE } = imageFailed ? { score: 0, deltaE: null } : calculateScore(appliedHex, averages.answer, config.scoring);
 
   const koCountryName = COUNTRY_NAMES_KO[question.id];
   const isCountry = question.categoryId === "country";
   const entry = {
     questionId: question.id,
+    skipped: imageFailed,
     // 최종 결과 목록은 한국어면 title, 영어면 titleEn을 쓴다. 국가 문제는 영어 표시를 지금처럼 id로 유지한다.
     title: isCountry && koCountryName ? koCountryName : question.title,
     titleEn: question.titleEn ?? (isCountry ? question.id : undefined),
@@ -196,7 +215,7 @@ async function handleSubmit(question, config, { imageFailed = false } = {}) {
     deltaE,
     userColor: userHex,
     appliedColor: appliedHex,
-    answerColor: question.answerColor,
+    answerColor: averages.answer,
     userSnapshot: imageFailed ? null : renderer?.snapshotDataURL() ?? null,
   };
 

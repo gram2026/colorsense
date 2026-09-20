@@ -10,10 +10,10 @@ import { listDrafts, deleteDraft, isSupported as draftStorageSupported } from ".
  */
 export async function renderStartScreen(root, handlers) {
   root.innerHTML = `
-    <div class="maker-start__logo">
+    <a class="maker-start__logo" href="/" aria-label="게임 홈으로">
       <span class="logo-mark" aria-hidden="true"></span>
       <h1 class="maker-start__title">퀴즈 메이커</h1>
-    </div>
+    </a>
 
     <div class="maker-start__grid">
       <button type="button" class="card start-card" data-action="new">

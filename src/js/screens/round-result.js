@@ -4,7 +4,7 @@ import { qs, formatScore } from "../utils/dom.js";
 import { getState, setState, resetGame } from "../state.js";
 import { navigate } from "../router.js";
 import { getScoreComment, getScoreTier } from "../color/scoring.js";
-import { scoreLaunchMarkup, playScoreLaunch, pickFlyerKind } from "../utils/score-launch.js";
+import { scoreLaunchMarkup, playScoreLaunch, pickFlyerKind, perfectDanceMarkup } from "../utils/score-launch.js";
 import { scoreColorVars, applyScoreColorVars } from "../utils/score-colors.js";
 import { t, getLang, setLang } from "../i18n.js";
 
@@ -26,7 +26,7 @@ export function mount(container) {
     <header class="result-header">
       <button type="button" class="topbar-brand result-header__brand" data-action="home" aria-label="${t("nav.home")}">
         <span class="logo-mark" aria-hidden="true"></span>
-        <span class="topbar-brand__name">ColorsGuesser</span>
+        <span class="topbar-brand__name brand-wordmark" aria-label="ColorsGuesser">Color<span class="brand-wordmark__s">S</span> Guesser</span>
       </button>
       <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">
         ${getLang() === "en" ? "EN" : "KO"}
@@ -38,6 +38,7 @@ export function mount(container) {
       <div class="score-pop" data-role="score">0</div>
       ${scoreLaunchMarkup(pickFlyerKind())}
       <div class="round-result__comment">${comment}</div>
+      ${entry.score === 100 ? perfectDanceMarkup() : ""}
 
       <div class="round-result__colors">
         <div class="round-result__color-block">
@@ -84,6 +85,7 @@ export function mount(container) {
     onLand: () => {
       scoreEl.classList.add("is-landed");
       resultEl.classList.remove("is-launching");
+      root.querySelector('.perfect-dance')?.classList.add('is-celebrating');
     },
   });
 

@@ -36,7 +36,7 @@ export async function mount(container) {
     <header class="result-header">
       <button type="button" class="topbar-brand result-header__brand" data-action="header-home" aria-label="${t("nav.home")}">
         <span class="logo-mark" aria-hidden="true"></span>
-        <span class="topbar-brand__name">ColorsGuesser</span>
+        <span class="topbar-brand__name brand-wordmark" aria-label="ColorsGuesser">Color<span class="brand-wordmark__s">S</span> Guesser</span>
       </button>
       <button type="button" class="icon-btn lang-btn" data-action="lang" aria-label="${t("nav.langButton")}">
         ${getLang() === "en" ? "EN" : "KO"}
@@ -92,7 +92,7 @@ export async function mount(container) {
 
   disposeRanking = mountLeaderboard(root.querySelector('[data-role="ranking"]'), {
     categoryId: selectedCategoryId, day: state.quizDay, average, runId: state.runId,
-    rounds: roundScores.map((r, i) => ({ id: r.questionId, categoryId: state.questions[i].categoryId, color: r.userColor })),
+    rounds: roundScores.map((r, i) => ({ id: r.questionId, categoryId: state.questions[i].categoryId, color: r.userColor, skipped: r.skipped === true })),
   });
 
   if (grade.tier === "perfect" || grade.tier === "great") {

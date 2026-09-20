@@ -9,7 +9,7 @@
     "start": "node scripts/start-local.js",
     "validate-data": "node scripts/validate-data.js",
     "import-question": "node scripts/import-question.js",
-    "test": "node scripts/test-color.js",
+    "test": "node scripts/test-color.js && node scripts/test-masked-average.js",
     "test:problem-maker": "node scripts/test-problem-maker.js",
     "generate-sample-assets": "node scripts/generate-sample-assets.js",
     "build": "npm run validate-data && node scripts/build.js",
@@ -25,6 +25,7 @@
     "jszip": "^3.10.1"
   },
   "devDependencies": {
+    "sharp": "^0.35.4",
     "wrangler": "4.132.0"
   }
 }

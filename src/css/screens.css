@@ -1163,3 +1163,35 @@
     animation: none;
   }
 }
+
+.perfect-dance {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(12px, 4vw, 28px);
+  height: 82px;
+  margin: 8px auto 12px;
+  opacity: 0;
+  pointer-events: none;
+}
+.perfect-dance.is-celebrating { opacity: 1; }
+.perfect-dance__character {
+  width: clamp(40px, 12vw, 58px);
+  height: 60px;
+  transform-origin: 50% 100%;
+}
+.perfect-dance .score-launch__pose--air { display: none; }
+.perfect-dance .score-launch__pose--land { display: block; }
+.perfect-dance.is-celebrating .perfect-dance__character {
+  animation: perfect-party 900ms ease-in-out infinite;
+  animation-delay: var(--dance-delay);
+}
+@keyframes perfect-party {
+  0%, 100% { transform: translateY(0) rotate(-9deg) scale(1.04, .96); }
+  25% { transform: translateY(-12px) rotate(7deg) scale(.96, 1.04); }
+  50% { transform: translateY(0) rotate(9deg) scale(1.04, .96); }
+  75% { transform: translateY(-9px) rotate(-7deg) scale(.96, 1.04); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .perfect-dance.is-celebrating .perfect-dance__character { animation: none; }
+}

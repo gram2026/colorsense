@@ -1,7 +1,7 @@
 import { validateNickname } from '../src/js/nickname.js';
 import { dailyKey, pickFive } from '../src/js/quiz-session.js';
 import { calculateScore } from '../src/js/color/scoring.js';
-import { appliedColorHex, resolveRenderMode } from '../src/js/color/mask-renderer.js';
+import { maskedAverages } from '../src/js/color/masked-average.js';
 
 export async function ranking(request, env) {
   const reply = (body, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
@@ -42,8 +42,9 @@ export async function ranking(request, env) {
     const id = `${round.categoryId}/${round.id}`;
     if (!q || used.has(id) || !/^#[0-9a-f]{6}$/i.test(round.color)) return reply({ error: 'Invalid rounds' }, 400);
     used.add(id);
-    const applied = resolveRenderMode(q.renderMode) === 'preserve-lightness' ? appliedColorHex(round.color, q.answerColor) : round.color;
-    total += calculateScore(applied, q.answerColor, config.scoring).score;
+    if (round.skipped === true) continue;
+    const averages = maskedAverages(await json(`assets/scoring/${q.categoryId}/${q.id}.json`), round.color, q.renderMode);
+    total += calculateScore(averages.applied, averages.answer, config.scoring).score;
   }
   const ip = request.headers.get('CF-Connecting-IP') || 'local';
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`${day}:${ip}`));

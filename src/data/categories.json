@@ -7,8 +7,8 @@
       "nameEn": "Daily Quiz",
       "description": "매일 새로운 랜덤 5문제 · 한국 시간 자정 갱신",
       "descriptionEn": "Five daily questions · resets at midnight KST",
-      "thumbnail": "assets/categories/daily.svg",
-      "heroImage": "assets/categories/daily.svg",
+      "thumbnail": "assets/categories/daily-collage.png",
+      "heroImage": "assets/categories/daily-collage.png",
       "isRandomMix": true,
       "enabled": true,
       "order": 0

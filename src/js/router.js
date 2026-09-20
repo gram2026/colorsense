@@ -53,6 +53,7 @@ export function registerScreen(screenId, module) {
 function screenIdFromLocation() {
   const raw = (location.hash || "").replace(/^#\/?/, "").trim();
   if (VALID_SCREENS.includes(raw)) return raw;
+  if (location.pathname === "/" && !raw) return "home";
   return categoryIdFromPath() ? "game" : null;
 }
 
@@ -62,6 +63,7 @@ function categoryIdFromPath() {
 }
 
 function urlForScreen(screenId) {
+  if (screenId === "home") return "/";
   if (screenId === "game") {
     const categoryPath = CATEGORY_PATHS[getState().selectedCategoryId];
     if (categoryPath) return `/${categoryPath}`;
@@ -103,6 +105,10 @@ function renderScreen(screenId) {
   if (safeId !== screenId) {
     navigate(safeId, { replace: true });
     return;
+  }
+
+  if (safeId === "home" && (location.pathname !== "/" || location.hash)) {
+    history.replaceState({ screenId: "home" }, "", "/");
   }
 
   if (currentModule && typeof currentModule.unmount === "function") {

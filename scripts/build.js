@@ -1,8 +1,10 @@
 import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { buildScoringProfiles } from './build-scoring-profiles.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+await buildScoringProfiles(root);
 const output = path.join(root, 'dist');
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });

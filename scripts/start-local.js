@@ -9,6 +9,7 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildScoringProfiles } from './build-scoring-profiles.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -37,6 +38,11 @@ function safeJoin(root, urlPath) {
 
 const server = http.createServer(async (req, res) => {
   const requestPath = new URL(req.url, `http://${req.headers.host || "localhost"}`).pathname;
+  const profile = requestPath.match(/^\/assets\/scoring\/([a-z0-9-]+)\/([a-z0-9-]+)\.json$/);
+  if (profile) {
+    try { await buildScoringProfiles(ROOT, profile[1], profile[2]); }
+    catch { res.writeHead(503); res.end('Scoring data unavailable'); return; }
+  }
   if (requestPath === '/api/rankings' && req.method === 'GET') {
     try {
       const category = new URL(req.url, 'http://localhost').searchParams.get('category') || '';

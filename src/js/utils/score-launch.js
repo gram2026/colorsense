@@ -130,6 +130,12 @@ const CAT_SVG = `
 
 const FLYER_SVG = { chick: CHICK_SVG, gymnast: GYMNAST_SVG, dog: DOG_SVG, cat: CAT_SVG };
 
+export function perfectDanceMarkup() {
+  return `<div class="perfect-dance" aria-hidden="true">${FLYER_KINDS.map((kind, i) =>
+    `<div class="perfect-dance__character" style="--dance-delay:${i * -0.17}s">${FLYER_SVG[kind]}</div>`
+  ).join('')}</div>`;
+}
+
 export function scoreLaunchMarkup(kind = "chick") {
   return `
     <div class="score-launch score-launch--${kind}" data-role="launch" data-kind="${kind}" aria-hidden="true">

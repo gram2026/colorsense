@@ -1,10 +1,7 @@
 /**
  * 점수 계산
- * 사용자 색상과 정답 색상의 Delta E를 구하고, 설정된 곡선(curveExponent)에 따라
- * 0~maxScore 범위의 점수로 변환한다.
- *
- * (1 - t)^curveExponent 형태로 곡선을 준다. 지수가 1보다 작으면 중간권 점수가
- * 선형보다 후하게 나온다.
+ * 평균색의 Delta E를 유사도로 바꾸고, 중간 구간부터 완만하게 상승하는
+ * 단조 S 곡선으로 점수를 매긴다.
  */
 
 import { hexToLab } from "./color-convert.js";
@@ -14,12 +11,21 @@ import { deltaE76, deltaE2000 } from "./delta-e.js";
 export const DEFAULT_SCORING_CONFIG = {
   maxScore: 100,
   method: "ciede2000",
-  perfectThreshold: 1,
+  perfectThreshold: 2.5,
   zeroScoreThreshold: 80,
-  curveExponent: 1.1,
+  curve: "similarity-s",
+  curveExponent: 0.75,
   hardTopFrom: 96,
-  hardTopExponent: 3,
+  hardTopExponent: 1,
 };
+
+/** A gentle S curve, with a modest midrange penalty and no abrupt steep segment. */
+export function scoreFromSimilarity(similarity) {
+  const x = Math.max(0,Math.min(1,similarity));
+  // Derivative stays positive (0.2…1.28): steady gains throughout the range.
+  if (x === 1) return 100;
+  return 100 * x * (0.2 + x * (1.8 - x));
+}
 
 /**
  * @param {string} userHex 사용자가 선택한 색 (#RRGGBB)
@@ -45,7 +51,7 @@ export function calculateScore(userHex, answerHex, config = DEFAULT_SCORING_CONF
     score = 0;
   } else {
     const t = (deltaE - perfectThreshold) / (zeroScoreThreshold - perfectThreshold);
-    const ratio = Math.pow(1 - t, curveExponent);
+    const ratio = cfg.curve === "similarity-s" ? scoreFromSimilarity(1-t)/100 : Math.pow(1 - t, curveExponent);
     score = maxScore * ratio;
   }
 

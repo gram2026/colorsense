@@ -68,7 +68,7 @@ console.log("\n4) 점수 계산 (100점 만점, 소수점 첫째 자리까지)")
   assert(nearRed.score >= 95, `아주 비슷한 빨강은 95점 이상 (실제 ${nearRed.score})`);
 
   const complementary = calculateScore("#FF0000", "#00FFFF");
-  assert(complementary.score <= 30, `보색 관계는 낮은 점수 (실제 ${complementary.score})`);
+  assert(complementary.score < 50, `보색 관계는 쉬운 채점에서도 50점 미만 (실제 ${complementary.score})`);
 
   const grayNear = calculateScore("#808080", "#828282");
   assert(grayNear.score >= 95, `채도가 낮은 회색끼리 비슷하면 여전히 높은 점수 (실제 ${grayNear.score})`);
@@ -343,7 +343,7 @@ console.log("\n사진에 실제로 보이는 색으로 채점: 같아 보이면 
   assert(appliedColorHex(exactPick, "#AB1B0B") === "#AB1B0B", "정답 색조를 채도 100·명도 50으로 고르면 사진이 원본과 똑같아짐");
 
   const wrong = appliedColorHex("#00FF00", "#AB1B0B");
-  assert(calculateScore(wrong, "#AB1B0B").score <= 20, `빨강 자리에 초록을 고르면 여전히 낮은 점수 (${wrong})`);
+  assert(calculateScore(wrong, "#AB1B0B").score < 50, `빨강 자리에 초록을 고르면 쉬운 채점에서도 50점 미만 (${wrong})`);
 }
 
 console.log("\n----------------------------------------");

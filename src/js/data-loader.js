@@ -29,11 +29,12 @@ export async function loadConfig() {
       scoring: {
         maxScore: 100,
         method: "ciede2000",
-        perfectThreshold: 1,
+        perfectThreshold: 2.5,
         zeroScoreThreshold: 80,
-        curveExponent: 1.1,
+        curve: "similarity-s",
+        curveExponent: 0.75,
         hardTopFrom: 96,
-        hardTopExponent: 3,
+        hardTopExponent: 1,
       },
       startColor: {
         minHueOffsetDeg: 35,

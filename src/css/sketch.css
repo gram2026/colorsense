@@ -32,12 +32,27 @@
 /* Slightly fuller handwriting without jumping to a heavy bold weight. */
 #app { -webkit-text-stroke: 0.16px currentColor; }
 .home-logo, .category-hero__title { font-weight: 400; rotate: -0.6deg; }
+
+.brand-wordmark { white-space: nowrap; }
+.brand-wordmark__s {
+  display: inline-block;
+  color: #f58232;
+  font-size: 0.78em;
+  position: relative;
+  top: -0.36em;
+  margin-left: 0.025em;
+  margin-right: 0.035em;
+  transform: rotate(20deg);
+}
 .home-categories-section__title { rotate: 0.4deg; transform-origin: left center; }
-.topbar-brand__name, .back-link { font-size: 24px; font-weight: 400; }
+.topbar-brand__name, .back-link { font-size: 21px; font-weight: 400; }
+.home-logo { font-size: clamp(35px, 5.3vw, 56px); }
 .home-hero { background-image: none; }
 .home-hero__visual { background: transparent; backdrop-filter: none; }
 .home-divider { height: 1px; transform: rotate(-0.15deg); }
 .logo-mark {
+  width: 17px;
+  height: 17px;
   background: var(--color-primary);
   border: 1px solid var(--text-primary);
   border-radius: 2px 4px 3px 1px;
@@ -157,7 +172,8 @@
 
 @media (max-width: 600px) {
   .color-picker { padding: 16px; gap: 14px; }
-  .topbar-brand__name, .back-link { font-size: 21px; }
+  .topbar-brand__name, .back-link { font-size: 19px; }
+  .home-logo { font-size: 32px; }
 }
 
 /* Side by side by default, sized by both viewport dimensions. */
@@ -175,7 +191,7 @@
 }
 .game-header .top-bar { padding: 0; margin: 0; border: 0; }
 .game-topbar { padding: 0 0 5px; gap: 8px; }
-.game-header .back-link { font-size: 21px; }
+.game-header .back-link { font-size: 19px; }
 .result-header { border-bottom-width: 1px; }
 .game-layout { flex: none; flex-direction: row; justify-content: center; align-items: center; gap: 40px; }
 .game-photo-pane, .game-control-pane {
