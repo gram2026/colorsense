@@ -1,0 +1,1 @@
+{"name":"colorsguesser-notebook-maker","private":true,"type":"module","scripts":{"start":"node server.mjs"}}

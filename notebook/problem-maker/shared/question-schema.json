@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://colorguesser.local/schema/question-schema.json",
+  "title": "Color Guesser Question",
+  "description": "게임 본체와 문제 제작기가 공유하는 문제(question) 데이터 계약. 필드명과 의미를 양쪽에서 절대 바꾸지 않는다.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "categoryId",
+    "title",
+    "originalImage",
+    "maskImage",
+    "thumbnail",
+    "answerColor",
+    "renderMode",
+    "enabled"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "스키마 버전. 필드 구조가 바뀌면 올린다."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "카테고리 내에서 고유해야 하는 문제 ID (예: tomato-001)"
+    },
+    "categoryId": {
+      "type": "string",
+      "description": "categories.json 에 존재하는 카테고리 id와 일치해야 함"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "문제 제목 (짧게)"
+    },
+    "originalImage": {
+      "type": "string",
+      "description": "원본 사진 상대 경로"
+    },
+    "maskImage": {
+      "type": "string",
+      "description": "마스크 이미지 상대 경로 (흰색/알파 = 색상 변경 영역)"
+    },
+    "thumbnail": {
+      "type": "string",
+      "description": "카테고리 상세 화면 등에서 쓰는 썸네일 경로"
+    },
+    "answerColor": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "description": "정답 색상 HEX 값"
+    },
+    "startColor": {
+      "type": ["string", "null"],
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "description": "고정 시작 색상. null이면 게임이 매 판 임의로 생성"
+    },
+    "renderMode": {
+      "type": "string",
+      "enum": ["preserve-lightness"],
+      "description": "마스크 색상 합성 방식. 현재는 preserve-lightness(원본 명암 유지, Hue/Saturation만 교체)만 지원"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "false면 게임에서 로드하지 않음"
+    },
+    "difficulty": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": { "type": "string" },
+        "makerVersion": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -3,6 +3,8 @@ node_modules/
 dist/
 assets/scoring/
 vendor/
+!notebook/vendor/
+!notebook/vendor/**
 .wrangler/
 .claude/
 .vscode/

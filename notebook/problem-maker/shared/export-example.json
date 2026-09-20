@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "traffic-light-red-001",
+  "categoryId": "objects",
+  "title": "신호등",
+  "originalImage": "original.webp",
+  "maskImage": "mask.png",
+  "thumbnail": "thumbnail.webp",
+  "answerColor": "#E6322D",
+  "startColor": null,
+  "renderMode": "preserve-lightness",
+  "enabled": true,
+  "difficulty": 1,
+  "tags": ["traffic-light", "red"],
+  "metadata": {
+    "createdAt": "2026-07-30",
+    "makerVersion": "1.0.0"
+  }
+}

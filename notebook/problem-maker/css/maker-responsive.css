@@ -1,0 +1,60 @@
+/* 문제 제작기 반응형: 기본은 데스크톱, 좁은 화면에서도 완전히 깨지지는 않게 한다 */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 1100px) {
+  .maker-body {
+    grid-template-columns: 60px 1fr 300px;
+  }
+}
+
+@media (max-width: 860px) {
+  .maker-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .maker-toolrail {
+    flex-direction: row;
+    border-right: none;
+    border-bottom: var(--border-width) solid var(--border-color);
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .tool-rail__divider {
+    width: var(--border-width);
+    height: 32px;
+  }
+
+  .maker-panel {
+    border-left: none;
+    border-top: var(--border-width) solid var(--border-color);
+    max-height: 46vh;
+  }
+
+  .maker-filename {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 560px) {
+  .maker-topbar {
+    flex-wrap: wrap;
+  }
+
+  .maker-statusbar {
+    font-size: 10px;
+    gap: var(--space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

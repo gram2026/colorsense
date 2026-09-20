@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "app": {
+    "name": "ColorsGuesser",
+    "defaultSoundEnabled": true,
+    "tutorialSteps": {
+      "ko": [
+        { "title": "색을 맞혀보세요", "desc": "왼쪽 사진의 색이 흐트러져 있어요." },
+        { "title": "색상 조절", "desc": "오른쪽 패널로 색을 직접 맞춰보세요." },
+        { "title": "제출", "desc": "확신이 서면 제출하고 점수를 확인하세요." }
+      ],
+      "en": [
+        { "title": "Guess the color", "desc": "The color in the photo on the left has been changed." },
+        { "title": "Adjust the color", "desc": "Use the panel on the right to match it." },
+        { "title": "Submit", "desc": "When you're confident, submit to see your score." }
+      ]
+    }
+  },
+  "scoring": {
+    "maxScore": 100,
+    "method": "ciede2000",
+    "perfectThreshold": 2.5,
+    "zeroScoreThreshold": 80,
+    "curve": "similarity-s",
+    "curveExponent": 0.75,
+    "hardTopFrom": 96,
+    "hardTopExponent": 1
+  },
+  "startColor": {
+    "minHueOffsetDeg": 35,
+    "maxHueOffsetDeg": 65,
+    "minSaturationOffset": 16,
+    "maxSaturationOffset": 30,
+    "startValue": 93
+  },
+  "randomCategory": {
+    "id": "random",
+    "maxQuestions": 6
+  }
+}

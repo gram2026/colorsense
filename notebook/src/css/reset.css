@@ -1,0 +1,86 @@
+/* 최소한의 리셋: 브라우저 기본 스타일 차이를 없애고 우리 디자인 토큰으로 시작한다 */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+  background-image: var(--grain-image);
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  background-blend-mode: soft-light;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.02em;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 포커스 표시는 지우지 않고 디자인에 맞게 꾸민다 */
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}

@@ -1,0 +1,105 @@
+/*
+  디자인 토큰 모음
+  ---------------
+  Claude Design의 "ColorGuesser 메인 페이지" 프로젝트(Modernist 디자인 시스템 +
+  NFL.dc.html 카테고리 페이지 목업)의 톤을 그대로 옮겨왔다.
+  크림색 그레인 배경, Archivo 볼드 타이포, 헤어라인 구분선, 골드 악센트,
+  18px 라운드 코너가 핵심이다. 참고 디자인에서 실제로 강조색으로 쓰인 색은
+  골드(#FFC72C) 하나뿐이며(Play/Start 버튼, NEW 뱃지, 링크 hover 모두 동일 골드
+  램프), 그 외에는 잉크색(#201e1d)과 크림색만 사용한다. 색상/폰트/여백/둥근
+  정도는 전부 변수로 관리한다.
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap");
+
+:root {
+  /* ===== 메인 악센트: 골드 램프 (참고 디자인의 유일한 강조색) ===== */
+  --color-primary: #ffc72c; /* 기본 골드 — Play/Start 버튼, 진행바, 등급 배지 */
+  --color-primary-dark: #c89400; /* press/강조 텍스트용 진한 골드 */
+  --color-primary-light: #fff3d1; /* 옅은 골드 틴트 배경 (뱃지 등) */
+  --color-secondary: #e6ad10; /* hover용 중간 톤 골드 */
+  --color-secondary-dark: #8a6600; /* 크림 배경 위에서도 읽히는 짙은 골드-브라운 텍스트 */
+  --color-accent: #ffc72c; /* 강조 뱃지 — 메인 골드와 동일 */
+
+  /* ===== 배경/표면 ===== */
+  --bg-page: #fbf7ec; /* 크림 배경 + 아래 grain 텍스처와 함께 사용 */
+  --bg-page-alt: #f3efe0;
+  --bg-card: #fffdf7;
+  --bg-card-muted: #f6f2e6;
+  --bg-overlay: rgba(32, 30, 29, 0.55);
+
+  /* ===== 텍스트 ===== */
+  --text-primary: #201e1d;
+  --text-secondary: color-mix(in srgb, #201e1d 62%, transparent);
+  --text-muted: color-mix(in srgb, #201e1d 42%, transparent);
+  --text-on-primary: #201e1d; /* 골드 배경 위에는 흰색이 아니라 잉크색 텍스트 */
+
+  /* ===== 경계선 (헤어라인) ===== */
+  --border-color: color-mix(in srgb, #201e1d 12%, transparent);
+  --border-width: 1.5px;
+  --border-width-thick: 2px;
+
+  /* ===== 둥근 정도 ===== */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* ===== 그림자 (잉크 틴트 그림자) ===== */
+  --shadow-sm: 0 1px 3px color-mix(in srgb, #201e1d 12%, transparent);
+  --shadow-md: 0 8px 22px color-mix(in srgb, #201e1d 15%, transparent);
+  --shadow-lg: 0 20px 44px color-mix(in srgb, #201e1d 24%, transparent);
+  --shadow-inset: inset 0 0 0 var(--border-width) var(--border-color);
+
+  /* ===== 여백 스케일 (4px 기준) ===== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+
+  /* ===== 폰트 ===== */
+  --font-heading: "Archivo", "Pretendard", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --font-family: "Archivo", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic",
+    -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 26px;
+  --font-size-2xl: 34px;
+  --font-size-3xl: 44px;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  /* ===== 레이아웃 ===== */
+  --max-width-app: 1180px;
+  --max-width-narrow: 640px;
+  --header-height: 64px;
+
+  /* ===== 애니메이션 ===== */
+  --transition-fast: 120ms ease;
+  --transition-base: 220ms ease;
+  --transition-slow: 420ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ===== z-index ===== */
+  --z-header: 100;
+  --z-overlay: 500;
+  --z-toast: 900;
+
+  /* ===== 배경 그레인 텍스처 (NFL.dc.html과 동일한 SVG 노이즈) ===== */
+  --grain-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22 result=%22t%22/%3E%3CfeGaussianBlur in=%22t%22 stdDeviation=%220.4%22 result=%22b%22/%3E%3CfeColorMatrix in=%22b%22 type=%22matrix%22 values=%220 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.22 0%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');
+}
+
+/* 애니메이션을 줄이길 원하는 사용자를 위한 처리 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+  }
+}

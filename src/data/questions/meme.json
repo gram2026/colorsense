@@ -116,6 +116,196 @@
         "createdAt": "2026-09-12",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dicaprio",
+      "categoryId": "meme",
+      "title": "dicaprio",
+      "originalImage": "assets/questions/meme/dicaprio/original.webp",
+      "maskImage": "assets/questions/meme/dicaprio/mask.png",
+      "thumbnail": "assets/questions/meme/dicaprio/thumbnail.webp",
+      "answerColor": "#334754",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "sibadog",
+      "categoryId": "meme",
+      "title": "sibadog",
+      "originalImage": "assets/questions/meme/sibadog/original.webp",
+      "maskImage": "assets/questions/meme/sibadog/mask.png",
+      "thumbnail": "assets/questions/meme/sibadog/thumbnail.webp",
+      "answerColor": "#CEBA86",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "money",
+      "categoryId": "meme",
+      "title": "money",
+      "originalImage": "assets/questions/meme/money/original.webp",
+      "maskImage": "assets/questions/meme/money/mask.png",
+      "thumbnail": "assets/questions/meme/money/thumbnail.webp",
+      "answerColor": "#E8B28A",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "unclesam",
+      "categoryId": "meme",
+      "title": "unclesam",
+      "originalImage": "assets/questions/meme/unclesam/original.webp",
+      "maskImage": "assets/questions/meme/unclesam/mask.png",
+      "thumbnail": "assets/questions/meme/unclesam/thumbnail.webp",
+      "answerColor": "#080309",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dogememe",
+      "categoryId": "meme",
+      "title": "dogememe",
+      "originalImage": "assets/questions/meme/dogememe/original.webp",
+      "maskImage": "assets/questions/meme/dogememe/mask.png",
+      "thumbnail": "assets/questions/meme/dogememe/thumbnail.webp",
+      "answerColor": "#C9B580",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "yeschad",
+      "categoryId": "meme",
+      "title": "yeschad",
+      "originalImage": "assets/questions/meme/yeschad/original.webp",
+      "maskImage": "assets/questions/meme/yeschad/mask.png",
+      "thumbnail": "assets/questions/meme/yeschad/thumbnail.webp",
+      "answerColor": "#EBE0D9",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dragon3",
+      "categoryId": "meme",
+      "title": "dragon3",
+      "originalImage": "assets/questions/meme/dragon3/original.webp",
+      "maskImage": "assets/questions/meme/dragon3/mask.png",
+      "thumbnail": "assets/questions/meme/dragon3/thumbnail.webp",
+      "answerColor": "#C6AF30",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "drake",
+      "categoryId": "meme",
+      "title": "drake",
+      "originalImage": "assets/questions/meme/drake/original.webp",
+      "maskImage": "assets/questions/meme/drake/mask.png",
+      "thumbnail": "assets/questions/meme/drake/thumbnail.webp",
+      "answerColor": "#CFAF00",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "3pider",
+      "categoryId": "meme",
+      "title": "3pider",
+      "originalImage": "assets/questions/meme/3pider/original.webp",
+      "maskImage": "assets/questions/meme/3pider/mask.png",
+      "thumbnail": "assets/questions/meme/3pider/thumbnail.webp",
+      "answerColor": "#1A3F77",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "poo",
+      "categoryId": "meme",
+      "title": "poo",
+      "originalImage": "assets/questions/meme/poo/original.webp",
+      "maskImage": "assets/questions/meme/poo/mask.png",
+      "thumbnail": "assets/questions/meme/poo/thumbnail.webp",
+      "answerColor": "#B13921",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-20",
+        "makerVersion": "1.0.0"
+      }
     }
   ]
 }

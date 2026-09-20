@@ -1,0 +1,102 @@
+/* 반응형 규칙: 모바일 우선 조정 + 넓은 화면 상한 */
+
+/* overflow-x: hidden을 html/body에 걸면 그 요소가 스크롤 컨테이너가 되어버려서
+   position: sticky가 실제 뷰포트 스크롤 기준으로 계산되지 않는다 (헤더 고정이 깨짐).
+   clip은 스크롤 컨테이너를 만들지 않고 시각적으로만 가로 넘침을 잘라내므로 안전하다. */
+html {
+  overflow-x: clip;
+}
+
+/* ---------- 태블릿 이하 ---------- */
+@media (max-width: 900px) {
+  .grid-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .game-layout {
+    flex-direction: column;
+  }
+
+  .game-photo-pane {
+    flex: none;
+  }
+
+  .game-photo-frame {
+    min-height: 260px;
+    max-height: 46vh;
+  }
+
+  .game-control-pane {
+    max-width: none;
+    padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
+  }
+
+}
+
+/* ---------- 좁은 모바일 ---------- */
+@media (max-width: 480px) {
+  .round-result {
+    padding-inline: clamp(12px, 4vw, 24px);
+  }
+
+  .screen-inner {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .grid-categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .home-logo {
+    font-size: var(--font-size-2xl);
+  }
+
+  .btn--play {
+    padding: 18px 40px;
+    font-size: var(--font-size-lg);
+  }
+
+  .color-picker__hex {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* 최소 360px 화면에서도 카테고리 카드가 찌그러지지 않게 */
+@media (max-width: 360px) {
+  .grid-categories {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+}
+
+/* ---------- 아주 넓은 화면: 지나치게 늘어나지 않도록 상한 ---------- */
+@media (min-width: 1400px) {
+  .screen-inner {
+    max-width: 1280px;
+  }
+}
+
+/* ---------- 터치 드래그 중 페이지 스크롤 방지 ---------- */
+.hs-panel,
+.value-slider {
+  touch-action: none;
+}
+
+body.is-dragging {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* 게임 화면에서 제출 버튼을 엄지로 누르기 쉬운 위치에 고정 (모바일) */
+@media (max-width: 900px) {
+  .color-picker {
+    position: relative;
+  }
+
+  .submit-bar {
+    position: sticky;
+    bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  }
+}
