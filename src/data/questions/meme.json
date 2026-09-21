@@ -306,6 +306,25 @@
         "createdAt": "2026-09-20",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dog",
+      "categoryId": "meme",
+      "title": "dog",
+      "originalImage": "assets/questions/meme/dog/original.webp",
+      "maskImage": "assets/questions/meme/dog/mask.png",
+      "thumbnail": "assets/questions/meme/dog/thumbnail.webp",
+      "answerColor": "#562F1D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
     }
   ]
 }

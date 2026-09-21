@@ -1826,6 +1826,367 @@
         "createdAt": "2026-09-20",
         "makerVersion": "1.0.0"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "137",
+      "categoryId": "pokemon",
+      "title": "137",
+      "originalImage": "assets/questions/pokemon/137/original.webp",
+      "maskImage": "assets/questions/pokemon/137/mask.png",
+      "thumbnail": "assets/questions/pokemon/137/thumbnail.webp",
+      "answerColor": "#CB7982",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "142",
+      "categoryId": "pokemon",
+      "title": "142",
+      "originalImage": "assets/questions/pokemon/142/original.webp",
+      "maskImage": "assets/questions/pokemon/142/mask.png",
+      "thumbnail": "assets/questions/pokemon/142/thumbnail.webp",
+      "answerColor": "#9480A4",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "143",
+      "categoryId": "pokemon",
+      "title": "143",
+      "originalImage": "assets/questions/pokemon/143/original.webp",
+      "maskImage": "assets/questions/pokemon/143/mask.png",
+      "thumbnail": "assets/questions/pokemon/143/thumbnail.webp",
+      "answerColor": "#40798E",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "144",
+      "categoryId": "pokemon",
+      "title": "144",
+      "originalImage": "assets/questions/pokemon/144/original.webp",
+      "maskImage": "assets/questions/pokemon/144/mask.png",
+      "thumbnail": "assets/questions/pokemon/144/thumbnail.webp",
+      "answerColor": "#5D97B9",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "145",
+      "categoryId": "pokemon",
+      "title": "145",
+      "originalImage": "assets/questions/pokemon/145/original.webp",
+      "maskImage": "assets/questions/pokemon/145/mask.png",
+      "thumbnail": "assets/questions/pokemon/145/thumbnail.webp",
+      "answerColor": "#DBBE78",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "146",
+      "categoryId": "pokemon",
+      "title": "146",
+      "originalImage": "assets/questions/pokemon/146/original.webp",
+      "maskImage": "assets/questions/pokemon/146/mask.png",
+      "thumbnail": "assets/questions/pokemon/146/thumbnail.webp",
+      "answerColor": "#EFA575",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "148",
+      "categoryId": "pokemon",
+      "title": "148",
+      "originalImage": "assets/questions/pokemon/148/original.webp",
+      "maskImage": "assets/questions/pokemon/148/mask.png",
+      "thumbnail": "assets/questions/pokemon/148/thumbnail.webp",
+      "answerColor": "#739DC5",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "149",
+      "categoryId": "pokemon",
+      "title": "149",
+      "originalImage": "assets/questions/pokemon/149/original.webp",
+      "maskImage": "assets/questions/pokemon/149/mask.png",
+      "thumbnail": "assets/questions/pokemon/149/thumbnail.webp",
+      "answerColor": "#D4A268",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "150",
+      "categoryId": "pokemon",
+      "title": "150",
+      "originalImage": "assets/questions/pokemon/150/original.webp",
+      "maskImage": "assets/questions/pokemon/150/mask.png",
+      "thumbnail": "assets/questions/pokemon/150/thumbnail.webp",
+      "answerColor": "#997A97",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "151",
+      "categoryId": "pokemon",
+      "title": "151",
+      "originalImage": "assets/questions/pokemon/151/original.webp",
+      "maskImage": "assets/questions/pokemon/151/mask.png",
+      "thumbnail": "assets/questions/pokemon/151/thumbnail.webp",
+      "answerColor": "#D6B1BB",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "152",
+      "categoryId": "pokemon",
+      "title": "152",
+      "originalImage": "assets/questions/pokemon/152/original.webp",
+      "maskImage": "assets/questions/pokemon/152/mask.png",
+      "thumbnail": "assets/questions/pokemon/152/thumbnail.webp",
+      "answerColor": "#8ABE7D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "153",
+      "categoryId": "pokemon",
+      "title": "153",
+      "originalImage": "assets/questions/pokemon/153/original.webp",
+      "maskImage": "assets/questions/pokemon/153/mask.png",
+      "thumbnail": "assets/questions/pokemon/153/thumbnail.webp",
+      "answerColor": "#98A979",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "154",
+      "categoryId": "pokemon",
+      "title": "154",
+      "originalImage": "assets/questions/pokemon/154/original.webp",
+      "maskImage": "assets/questions/pokemon/154/mask.png",
+      "thumbnail": "assets/questions/pokemon/154/thumbnail.webp",
+      "answerColor": "#E3929F",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "155",
+      "categoryId": "pokemon",
+      "title": "155",
+      "originalImage": "assets/questions/pokemon/155/original.webp",
+      "maskImage": "assets/questions/pokemon/155/mask.png",
+      "thumbnail": "assets/questions/pokemon/155/thumbnail.webp",
+      "answerColor": "#466E75",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "156",
+      "categoryId": "pokemon",
+      "title": "156",
+      "originalImage": "assets/questions/pokemon/156/original.webp",
+      "maskImage": "assets/questions/pokemon/156/mask.png",
+      "thumbnail": "assets/questions/pokemon/156/thumbnail.webp",
+      "answerColor": "#486C6D",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "157",
+      "categoryId": "pokemon",
+      "title": "157",
+      "originalImage": "assets/questions/pokemon/157/original.webp",
+      "maskImage": "assets/questions/pokemon/157/mask.png",
+      "thumbnail": "assets/questions/pokemon/157/thumbnail.webp",
+      "answerColor": "#EB9632",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "158",
+      "categoryId": "pokemon",
+      "title": "158",
+      "originalImage": "assets/questions/pokemon/158/original.webp",
+      "maskImage": "assets/questions/pokemon/158/mask.png",
+      "thumbnail": "assets/questions/pokemon/158/thumbnail.webp",
+      "answerColor": "#58949B",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "159",
+      "categoryId": "pokemon",
+      "title": "159",
+      "originalImage": "assets/questions/pokemon/159/original.webp",
+      "maskImage": "assets/questions/pokemon/159/mask.png",
+      "thumbnail": "assets/questions/pokemon/159/thumbnail.webp",
+      "answerColor": "#C05A67",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "160",
+      "categoryId": "pokemon",
+      "title": "160",
+      "originalImage": "assets/questions/pokemon/160/original.webp",
+      "maskImage": "assets/questions/pokemon/160/mask.png",
+      "thumbnail": "assets/questions/pokemon/160/thumbnail.webp",
+      "answerColor": "#C46768",
+      "startColor": null,
+      "renderMode": "preserve-lightness",
+      "enabled": true,
+      "difficulty": 1,
+      "tags": [],
+      "metadata": {
+        "createdAt": "2026-09-21",
+        "answerSource": "masked-original-average"
+      }
     }
   ]
 }
