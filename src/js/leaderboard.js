@@ -63,6 +63,7 @@ export function mountLeaderboard(root, { categoryId, day, average, runId, rounds
       const minutes = Math.max(0, Math.floor((now - row.time) / 60000));
       time.textContent = minutes < 1 ? (en ? 'Just now' : '방금 전') : minutes < 60 ? (en ? `${minutes}m ago` : `${minutes}분 전`) : (en ? `${Math.floor(minutes / 60)}h ago` : `${Math.floor(minutes / 60)}시간 전`);
       details.append(name, time);
+      if (row.isTest) time.textContent = en ? 'Daily test record' : '오늘의 테스트 기록';
       const score = document.createElement('strong');
       score.textContent = row.score.toFixed(1);
       item.append(rank, details, score);

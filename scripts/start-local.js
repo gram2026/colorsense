@@ -10,7 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildScoringProfiles } from './build-scoring-profiles.js';
-import { dailyKey } from '../src/js/quiz-session.js';
+import { createTestRankings } from '../src/js/test-rankings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -48,17 +48,14 @@ const server = http.createServer(async (req, res) => {
     try {
       const category = new URL(req.url, 'http://localhost').searchParams.get('category') || '';
       if (process.env.LOCAL_RANKING_FIXTURES !== '0') {
-        const fixtures = JSON.parse(await fs.promises.readFile(path.join(ROOT, 'src/data/ranking-fixtures.json'), 'utf8'));
-        if (!Object.hasOwn(fixtures, category)) {
+        const categories = JSON.parse(await fs.promises.readFile(path.join(ROOT, 'src/data/categories.json'), 'utf8')).categories;
+        if (!categories.some(c => c.id === category && c.enabled && !c.comingSoon)) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: 'Unknown category' }));
           return;
         }
-        const now = Date.now();
-        const midnight = Math.floor((now + 9 * 3600000) / 86400000) * 86400000 - 9 * 3600000;
-        const rows = fixtures[category].map(({minutesAgo, ...row}) => ({...row, isTest: true, time: Math.max(midnight, now - minutesAgo * 60000)}));
         res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
-        res.end(JSON.stringify({ rows, day: dailyKey(), fixture: true }));
+        res.end(JSON.stringify(createTestRankings(category)));
         return;
       }
       const response = await fetch(`https://colorsguesser.com/api/rankings?category=${encodeURIComponent(category)}`, { signal: AbortSignal.timeout(8000) });

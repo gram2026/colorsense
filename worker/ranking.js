@@ -2,6 +2,7 @@ import { validateNickname } from '../src/js/nickname.js';
 import { dailyKey, pickFive } from '../src/js/quiz-session.js';
 import { calculateScore } from '../src/js/color/scoring.js';
 import { maskedAverages } from '../src/js/color/masked-average.js';
+import { createTestRankings } from '../src/js/test-rankings.js';
 
 export async function ranking(request, env) {
   const reply = (body, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
@@ -19,10 +20,7 @@ export async function ranking(request, env) {
   const day = dailyKey();
   if (request.method === 'GET') {
     const { results } = await env.RANKING_DB.prepare('SELECT name, score, time FROM rankings WHERE category = ? AND day = ? ORDER BY score DESC, time ASC LIMIT 100').bind(categoryId, day).all();
-    const fixtures = await json('src/data/ranking-fixtures.json');
-    const now = Date.now();
-    const midnight = Math.floor((now + 9 * 3600000) / 86400000) * 86400000 - 9 * 3600000;
-    const samples = (fixtures[categoryId] || []).map(({minutesAgo, ...row}) => ({...row, isTest: true, time: Math.max(midnight, now - minutesAgo * 60000)}));
+    const samples = createTestRankings(categoryId, new Date(`${day}T00:00:00+09:00`)).rows;
     const rows = [...results.filter(r => validateNickname(r.name).ok), ...samples].sort((a,b)=>b.score-a.score || a.time-b.time).slice(0,100);
     return reply({ rows, day, fixture: samples.length > 0 });
   }
