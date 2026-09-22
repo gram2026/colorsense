@@ -27,9 +27,9 @@ export function mountLeaderboard(root, { categoryId, day, average, runId, rounds
       const data = await response.json();
       if (disposed) return;
       const fixture = data.fixture === true;
-      root.querySelector('.ranking-local').textContent = fixture ? (en ? 'TEST' : '테스트') : (en ? 'ONLINE' : '공용');
+      root.querySelector('.ranking-local').textContent = en ? 'TODAY' : '오늘';
       root.querySelector('.ranking-scope').textContent = fixture
-        ? (en ? 'Includes labeled test players and scores' : '테스트로 표시된 가상 닉네임·점수가 포함되어 있습니다')
+        ? (en ? 'Includes automatically generated virtual records' : '자동 생성된 가상 기록이 포함되어 있습니다')
         : (en ? 'Shared leaderboard · resets at midnight KST' : '전체 방문자 랭킹 · 한국 시간 자정 초기화');
       onlineRows = data.rows; rowsDay = data.day;
       render();
@@ -58,12 +58,12 @@ export function mountLeaderboard(root, { categoryId, day, average, runId, rounds
       const details = document.createElement('div');
       details.className = 'ranking-person';
       const name = document.createElement('b');
-      name.textContent = row.name + (row.isTest ? (en ? ' · TEST' : ' · 테스트') : '');
+      name.textContent = row.name;
       const time = document.createElement('small');
       const minutes = Math.max(0, Math.floor((now - row.time) / 60000));
       time.textContent = minutes < 1 ? (en ? 'Just now' : '방금 전') : minutes < 60 ? (en ? `${minutes}m ago` : `${minutes}분 전`) : (en ? `${Math.floor(minutes / 60)}h ago` : `${Math.floor(minutes / 60)}시간 전`);
       details.append(name, time);
-      if (row.isTest) time.textContent = en ? 'Daily test record' : '오늘의 테스트 기록';
+      if (row.isTest) time.textContent = en ? 'Daily challenge' : '오늘의 도전';
       const score = document.createElement('strong');
       score.textContent = row.score.toFixed(1);
       item.append(rank, details, score);
