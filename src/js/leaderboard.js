@@ -26,6 +26,11 @@ export function mountLeaderboard(root, { categoryId, day, average, runId, rounds
       if (!response.ok) throw new Error();
       const data = await response.json();
       if (disposed) return;
+      const fixture = data.fixture === true;
+      root.querySelector('.ranking-local').textContent = fixture ? (en ? 'TEST' : '테스트') : (en ? 'ONLINE' : '공용');
+      root.querySelector('.ranking-scope').textContent = fixture
+        ? (en ? 'Includes labeled test players and scores' : '테스트로 표시된 가상 닉네임·점수가 포함되어 있습니다')
+        : (en ? 'Shared leaderboard · resets at midnight KST' : '전체 방문자 랭킹 · 한국 시간 자정 초기화');
       onlineRows = data.rows; rowsDay = data.day;
       render();
     } catch { if (!disposed) root.querySelector('[role="status"]').textContent = en ? 'Online ranking is unavailable. Please try again later.' : '온라인 랭킹에 연결할 수 없습니다. 잠시 후 다시 시도해 주세요.'; }
@@ -53,7 +58,7 @@ export function mountLeaderboard(root, { categoryId, day, average, runId, rounds
       const details = document.createElement('div');
       details.className = 'ranking-person';
       const name = document.createElement('b');
-      name.textContent = row.name;
+      name.textContent = row.name + (row.isTest ? (en ? ' · TEST' : ' · 테스트') : '');
       const time = document.createElement('small');
       const minutes = Math.max(0, Math.floor((now - row.time) / 60000));
       time.textContent = minutes < 1 ? (en ? 'Just now' : '방금 전') : minutes < 60 ? (en ? `${minutes}m ago` : `${minutes}분 전`) : (en ? `${Math.floor(minutes / 60)}h ago` : `${Math.floor(minutes / 60)}시간 전`);

@@ -1,0 +1,1 @@
+Test records are stored in src/data/ranking-fixtures.json and included in deployment assets. Local and online rankings label fictional records with isTest: true. Real database records are preserved; samples are combined for display only and never inserted into D1.

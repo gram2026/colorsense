@@ -19,7 +19,12 @@ export async function ranking(request, env) {
   const day = dailyKey();
   if (request.method === 'GET') {
     const { results } = await env.RANKING_DB.prepare('SELECT name, score, time FROM rankings WHERE category = ? AND day = ? ORDER BY score DESC, time ASC LIMIT 100').bind(categoryId, day).all();
-    return reply({ rows: results.filter(r => validateNickname(r.name).ok), day });
+    const fixtures = await json('src/data/ranking-fixtures.json');
+    const now = Date.now();
+    const midnight = Math.floor((now + 9 * 3600000) / 86400000) * 86400000 - 9 * 3600000;
+    const samples = (fixtures[categoryId] || []).map(({minutesAgo, ...row}) => ({...row, isTest: true, time: Math.max(midnight, now - minutesAgo * 60000)}));
+    const rows = [...results.filter(r => validateNickname(r.name).ok), ...samples].sort((a,b)=>b.score-a.score || a.time-b.time).slice(0,100);
+    return reply({ rows, day, fixture: samples.length > 0 });
   }
   if (request.method !== 'POST') return reply({ error: 'Method not allowed' }, 405);
   if (request.headers.get('Origin') && request.headers.get('Origin') !== url.origin) return reply({ error: 'Invalid origin' }, 403);
